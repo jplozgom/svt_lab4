@@ -36,7 +36,6 @@ proctype Player1() {
 	
 	do
 	:: 	
-		
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
 			:: chRefToPs?BALL ->
@@ -75,37 +74,6 @@ proctype Player2() {
 					
 	od
 }
-/*
-proctype Player2() {
-	printf("hi I am player 2");
-	bit receivedBall = 0	
-	do
-		receivedBall = 0;
-		
-		if
-			/* if ball from ref or ball from players then send a ball to the other side */
-/*			:: chRefToPs?BALL ->
-				printf("P2 receives ball from ref"); 
-				receivedBall = 1
-			::chP1ToP2?BALL -> 
-				printf("receive P2 from P1");
-			 	receivedBall = 1
-			:: else -> 
-				pActiveBalls[1] = 0;
-		fi
-		
-		if
-			:: receivedBall == 1 ->
-				pActiveBalls[1] = 1;
-				printf("P2 receives from P1, send ball ... P2 -> P1"); 
-				chP2ToP1!BALL;
-				
-			:: else -> skip;
-		fi
-					
-	od
-}*/
-
 
 init {
 	run Referee();
