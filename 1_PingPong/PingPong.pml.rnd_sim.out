@@ -1,0 +1,325 @@
+  0:	proc  - (:root:) creates proc  0 (:init:)
+spin: PingPong.pml:0, warning, global, 'bit   pActiveBalls' variable is never used (other than in print stmnts)
+Starting Referee with pid 1
+  1:	proc  0 (:init::1) creates proc  1 (Referee)
+  1:	proc  0 (:init::1) PingPong.pml:55 (state 1)	[(run Referee())]
+
+Starting Player with pid 2
+  2:	proc  0 (:init::1) creates proc  2 (Player)
+  2:	proc  0 (:init::1) PingPong.pml:56 (state 2)	[(run Player(1))]
+
+Starting Player with pid 3
+  3:	proc  0 (:init::1) creates proc  3 (Player)
+  3:	proc  0 (:init::1) PingPong.pml:57 (state 3)	[(run Player(2))]
+
+hi I am player 1  4:	proc  2 (Player:1) PingPong.pml:35 (state 1)	[printf('hi I am player %d',playerNumber)]
+
+  5:	proc  1 (Referee:1) PingPong.pml:30 (state -)	[values: 1!BALL]
+  5:	proc  1 (Referee:1) PingPong.pml:30 (state 1)	[chRefToPs!BALL]
+		queue 1 (chRefToPs): [BALL]
+
+hi I am player 2  6:	proc  3 (Player:1) PingPong.pml:35 (state 1)	[printf('hi I am player %d',playerNumber)]
+
+  7:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+  8:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+  9:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 10:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 11:	proc  3 (Player:1) PingPong.pml:41 (state -)	[values: 1?BALL]
+ 11:	proc  3 (Player:1) PingPong.pml:41 (state 3)	[chRefToPs?BALL]
+		queue 1 (chRefToPs): 
+
+send a ball 12:	proc  3 (Player:1) PingPong.pml:42 (state 4)	[printf('send a ball')]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 13:	proc  3 (Player:1) PingPong.pml:45 (state 7)	[((playerNumber==2))]
+
+ 14:	proc  3 (Player:1) PingPong.pml:45 (state -)	[values: 3!BALL]
+ 14:	proc  3 (Player:1) PingPong.pml:45 (state 8)	[chP2ToP1!BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+
+ 15:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 15:	proc  2 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 3 (chP2ToP1): 
+
+send ball 16:	proc  2 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+ 17:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 17:	proc  2 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+
+ 18:	proc  3 (Player:1) PingPong.pml:47 (state 10)	[.(goto)]
+
+ 19:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 20:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 21:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 22:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 23:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 24:	proc  3 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 24:	proc  3 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 25:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+send ball 26:	proc  3 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+
+ 27:	proc  3 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 27:	proc  3 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+
+ 28:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 28:	proc  2 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 3 (chP2ToP1): 
+
+ 29:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 30:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+send ball 31:	proc  2 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+ 32:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 32:	proc  2 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+
+ 33:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 34:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 35:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 36:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 37:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 37:	proc  2 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+send ball 38:	proc  2 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+
+ 39:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 39:	proc  2 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+
+ 40:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 41:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 41:	proc  3 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 3 (chP2ToP1): 
+
+ 42:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+send ball 43:	proc  3 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+ 44:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 44:	proc  3 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+
+ 45:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 46:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 47:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 48:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 48:	proc  2 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 49:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+send ball 50:	proc  2 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 51:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 51:	proc  2 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+
+ 52:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 53:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 53:	proc  3 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+send ball 54:	proc  3 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+ 55:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 55:	proc  3 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+
+ 56:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 57:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 58:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 58:	proc  2 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 59:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 60:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 61:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+send ball 62:	proc  2 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 63:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 63:	proc  2 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 3 (chP2ToP1): [BALL]
+
+ 64:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 65:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 66:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 66:	proc  3 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 67:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+send ball 68:	proc  3 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 69:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 69:	proc  3 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 70:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 71:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 71:	proc  2 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+send ball 72:	proc  2 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+
+ 73:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 74:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 75:	proc  2 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 75:	proc  2 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+
+ 76:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 76:	proc  3 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+
+ 77:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+send ball 78:	proc  3 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+ 79:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 80:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 81:	proc  3 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 81:	proc  3 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+
+ 82:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 83:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 84:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 85:	proc  3 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 85:	proc  3 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+send ball 86:	proc  3 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+
+ 87:	proc  3 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 87:	proc  3 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+
+ 88:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+ 88:	proc  2 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 3 (chP2ToP1): 
+
+ 89:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+send ball 90:	proc  2 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+ 91:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 92:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+ 92:	proc  2 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
+
+ 93:	proc  2 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+ 94:	proc  2 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+ 95:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+ 96:	proc  3 (Player:1) PingPong.pml:47 (state -)	[values: 2?BALL]
+ 96:	proc  3 (Player:1) PingPong.pml:47 (state 11)	[chP1ToP2?BALL]
+		queue 2 (chP1ToP2): 
+
+send ball 97:	proc  3 (Player:1) PingPong.pml:47 (state 12)	[printf('send ball')]
+
+ 98:	proc  3 (Player:1) PingPong.pml:47 (state -)	[values: 3!BALL]
+ 98:	proc  3 (Player:1) PingPong.pml:47 (state 13)	[chP2ToP1!BALL]
+		queue 3 (chP2ToP1): [BALL]
+
+ 99:	proc  2 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+100:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 3?BALL]
+100:	proc  2 (Player:1) PingPong.pml:48 (state 14)	[chP2ToP1?BALL]
+		queue 2 (chP1ToP2): 
+		queue 3 (chP2ToP1): 
+
+101:	proc  3 (Player:1) PingPong.pml:50 (state 18)	[.(goto)]
+
+send ball102:	proc  2 (Player:1) PingPong.pml:48 (state 15)	[printf('send ball')]
+
+103:	proc  3 (Player:1) PingPong.pml:51 (state 20)	[.(goto)]
+
+104:	proc  3 (Player:1) PingPong.pml:38 (state 2)	[(1)]
+
+105:	proc  2 (Player:1) PingPong.pml:48 (state -)	[values: 2!BALL]
+105:	proc  2 (Player:1) PingPong.pml:48 (state 16)	[chP1ToP2!BALL]
+		queue 2 (chP1ToP2): [BALL]
