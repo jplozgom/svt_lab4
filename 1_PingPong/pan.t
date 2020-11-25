@@ -28,43 +28,39 @@ settable(void)
 
 	trans[2] = (Trans **) emalloc(5*sizeof(Trans *));
 
-	trans[2][1]	= settr(24,0,2,3,3,"(run Referee())", 0, 2, 0);
-	trans[2][2]	= settr(25,0,3,4,4,"(run Player(1))", 0, 2, 0);
-	trans[2][3]	= settr(26,0,4,5,5,"(run Player(2))", 0, 2, 0);
-	trans[2][4]	= settr(27,0,0,6,6,"-end-", 0, 3500, 0);
+	trans[2][1]	= settr(21,0,2,3,3,"(run Referee())", 0, 2, 0);
+	trans[2][2]	= settr(22,0,3,4,4,"(run Player(1))", 0, 2, 0);
+	trans[2][3]	= settr(23,0,4,5,5,"(run Player(2))", 0, 2, 0);
+	trans[2][4]	= settr(24,0,0,6,6,"-end-", 0, 3500, 0);
 
 	/* proctype 1: Player */
 
-	trans[1] = (Trans **) emalloc(23*sizeof(Trans *));
+	trans[1] = (Trans **) emalloc(20*sizeof(Trans *));
 
-	trans[1][1]	= settr(2,0,19,7,0,"printf('hi I am player %d',playerNumber)", 0, 2, 0);
-	trans[1][20]	= settr(21,0,19,1,0,".(goto)", 0, 2, 0);
-	T = trans[1][19] = settr(20,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(20,0,2,0,0,"DO", 0, 2, 0);
-	trans[1][2]	= settr(3,0,17,1,0,"(1)", 0, 2, 0);
-	T = trans[1][17] = settr(18,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(18,0,3,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(18,0,11,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(18,0,14,0,0,"IF", 0, 2, 0);
-	trans[1][3]	= settr(4,0,4,8,8,"chRefToPs?BALL", 1, 505, 0);
-	trans[1][4]	= settr(5,0,9,9,0,"printf('send a ball')", 0, 2, 0);
-	T = trans[1][9] = settr(10,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(10,0,5,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(10,0,7,0,0,"IF", 0, 2, 0);
-	trans[1][5]	= settr(6,0,6,10,0,"((playerNumber==1))", 0, 2, 0);
-	trans[1][6]	= settr(7,0,19,11,11,"chP1ToP2!BALL", 1, 3, 0);
-	trans[1][10]	= settr(11,0,19,1,0,".(goto)", 0, 2, 0);
-	trans[1][7]	= settr(8,0,8,12,0,"((playerNumber==2))", 0, 2, 0);
-	trans[1][8]	= settr(9,0,19,13,13,"chP2ToP1!BALL", 1, 4, 0);
-	trans[1][18]	= settr(19,0,19,1,0,".(goto)", 0, 2, 0);
-	trans[1][11]	= settr(12,0,12,14,14,"chP1ToP2?BALL", 1, 503, 0);
-	trans[1][12]	= settr(13,0,13,15,0,"printf('send ball')", 0, 2, 0);
-	trans[1][13]	= settr(14,0,19,16,16,"chP2ToP1!BALL", 1, 4, 0);
-	trans[1][14]	= settr(15,0,15,17,17,"chP2ToP1?BALL", 1, 504, 0);
-	trans[1][15]	= settr(16,0,16,18,0,"printf('send ball')", 0, 2, 0);
-	trans[1][16]	= settr(17,0,19,19,19,"chP1ToP2!BALL", 1, 3, 0);
-	trans[1][21]	= settr(22,0,22,1,0,"break", 0, 2, 0);
-	trans[1][22]	= settr(23,0,0,20,20,"-end-", 0, 3500, 0);
+	trans[1][1]	= settr(2,0,16,7,0,"printf('hi I am player %d',playerNumber)", 0, 2, 0);
+	trans[1][17]	= settr(18,0,16,1,0,".(goto)", 0, 2, 0);
+	T = trans[1][16] = settr(17,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(17,0,2,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(17,0,10,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(17,0,13,0,0,"DO", 0, 2, 0);
+	trans[1][2]	= settr(3,0,3,8,8,"chRefToPs?BALL", 1, 505, 0);
+	trans[1][3]	= settr(4,0,8,9,0,"printf('send a ball')", 0, 2, 0);
+	T = trans[1][8] = settr(9,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(9,0,4,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(9,0,6,0,0,"IF", 0, 2, 0);
+	trans[1][4]	= settr(5,0,5,10,0,"((playerNumber==1))", 0, 2, 0);
+	trans[1][5]	= settr(6,0,16,11,11,"chP1ToP2!BALL", 1, 3, 0);
+	trans[1][9]	= settr(10,0,16,1,0,".(goto)", 0, 2, 0);
+	trans[1][6]	= settr(7,0,7,12,0,"((playerNumber==2))", 0, 2, 0);
+	trans[1][7]	= settr(8,0,16,13,13,"chP2ToP1!BALL", 1, 4, 0);
+	trans[1][10]	= settr(11,0,11,14,14,"chP1ToP2?BALL", 1, 503, 0);
+	trans[1][11]	= settr(12,0,12,15,0,"printf('send ball')", 0, 2, 0);
+	trans[1][12]	= settr(13,0,16,16,16,"chP2ToP1!BALL", 1, 4, 0);
+	trans[1][13]	= settr(14,0,14,17,17,"chP2ToP1?BALL", 1, 504, 0);
+	trans[1][14]	= settr(15,0,15,18,0,"printf('send ball')", 0, 2, 0);
+	trans[1][15]	= settr(16,0,16,19,19,"chP1ToP2!BALL", 1, 3, 0);
+	trans[1][18]	= settr(19,0,19,1,0,"break", 0, 2, 0);
+	trans[1][19]	= settr(20,0,0,20,20,"-end-", 0, 3500, 0);
 
 	/* proctype 0: Referee */
 

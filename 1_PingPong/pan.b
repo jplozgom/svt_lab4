@@ -36,7 +36,7 @@
 ;
 		;
 		
-	case 8: // STATE 3
+	case 8: // STATE 2
 		;
 		XX = 1;
 		unrecv(now.chRefToPs, XX-1, 0, 1, 1);
@@ -48,7 +48,7 @@
 		;
 		;
 		
-	case 11: // STATE 6
+	case 11: // STATE 5
 		;
 		_m = unsend(now.chP1ToP2);
 		;
@@ -56,13 +56,13 @@
 ;
 		;
 		
-	case 13: // STATE 8
+	case 13: // STATE 7
 		;
 		_m = unsend(now.chP2ToP1);
 		;
 		goto R999;
 
-	case 14: // STATE 11
+	case 14: // STATE 10
 		;
 		XX = 1;
 		unrecv(now.chP1ToP2, XX-1, 0, 1, 1);
@@ -72,13 +72,13 @@
 ;
 		;
 		
-	case 16: // STATE 13
+	case 16: // STATE 12
 		;
 		_m = unsend(now.chP2ToP1);
 		;
 		goto R999;
 
-	case 17: // STATE 14
+	case 17: // STATE 13
 		;
 		XX = 1;
 		unrecv(now.chP2ToP1, XX-1, 0, 1, 1);
@@ -88,13 +88,13 @@
 ;
 		;
 		
-	case 19: // STATE 16
+	case 19: // STATE 15
 		;
 		_m = unsend(now.chP1ToP2);
 		;
 		goto R999;
 
-	case 20: // STATE 22
+	case 20: // STATE 19
 		;
 		p_restor(II);
 		;

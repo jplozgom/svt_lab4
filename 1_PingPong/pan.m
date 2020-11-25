@@ -20,25 +20,25 @@
 		_m = 3; goto P999;
 
 		 /* PROC :init: */
-	case 3: // STATE 1 - PingPong.pml:55 - [(run Referee())] (0:0:0 - 1)
+	case 3: // STATE 1 - PingPong.pml:52 - [(run Referee())] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][1] = 1;
 		if (!(addproc(II, 1, 0, 0)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 4: // STATE 2 - PingPong.pml:56 - [(run Player(1))] (0:0:0 - 1)
+	case 4: // STATE 2 - PingPong.pml:53 - [(run Player(1))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][2] = 1;
 		if (!(addproc(II, 1, 1, 1)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 5: // STATE 3 - PingPong.pml:57 - [(run Player(2))] (0:0:0 - 1)
+	case 5: // STATE 3 - PingPong.pml:54 - [(run Player(2))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][3] = 1;
 		if (!(addproc(II, 1, 1, 2)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 6: // STATE 4 - PingPong.pml:58 - [-end-] (0:0:0 - 1)
+	case 6: // STATE 4 - PingPong.pml:55 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][4] = 1;
 		if (!delproc(1, II)) continue;
@@ -50,8 +50,8 @@
 		reached[1][1] = 1;
 		Printf("hi I am player %d", ((P1 *)_this)->playerNumber);
 		_m = 3; goto P999; /* 0 */
-	case 8: // STATE 3 - PingPong.pml:41 - [chRefToPs?BALL] (0:0:0 - 1)
-		reached[1][3] = 1;
+	case 8: // STATE 2 - PingPong.pml:39 - [chRefToPs?BALL] (0:0:0 - 1)
+		reached[1][2] = 1;
 		if (q_len(now.chRefToPs) == 0) continue;
 
 		XX=1;
@@ -72,20 +72,20 @@
 #endif
 		;
 		_m = 4; goto P999; /* 0 */
-	case 9: // STATE 4 - PingPong.pml:42 - [printf('send a ball')] (0:0:0 - 1)
+	case 9: // STATE 3 - PingPong.pml:40 - [printf('send a ball')] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][4] = 1;
+		reached[1][3] = 1;
 		Printf("send a ball");
 		_m = 3; goto P999; /* 0 */
-	case 10: // STATE 5 - PingPong.pml:44 - [((playerNumber==1))] (0:0:0 - 1)
+	case 10: // STATE 4 - PingPong.pml:42 - [((playerNumber==1))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][5] = 1;
+		reached[1][4] = 1;
 		if (!((((P1 *)_this)->playerNumber==1)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 11: // STATE 6 - PingPong.pml:44 - [chP1ToP2!BALL] (0:0:0 - 1)
+	case 11: // STATE 5 - PingPong.pml:42 - [chP1ToP2!BALL] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][6] = 1;
+		reached[1][5] = 1;
 		if (q_full(now.chP1ToP2))
 			continue;
 #ifdef HAS_CODE
@@ -97,15 +97,15 @@
 		
 		qsend(now.chP1ToP2, 0, 1, 1);
 		_m = 2; goto P999; /* 0 */
-	case 12: // STATE 7 - PingPong.pml:45 - [((playerNumber==2))] (0:0:0 - 1)
+	case 12: // STATE 6 - PingPong.pml:43 - [((playerNumber==2))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][7] = 1;
+		reached[1][6] = 1;
 		if (!((((P1 *)_this)->playerNumber==2)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 13: // STATE 8 - PingPong.pml:45 - [chP2ToP1!BALL] (0:0:0 - 1)
+	case 13: // STATE 7 - PingPong.pml:43 - [chP2ToP1!BALL] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][8] = 1;
+		reached[1][7] = 1;
 		if (q_full(now.chP2ToP1))
 			continue;
 #ifdef HAS_CODE
@@ -117,8 +117,8 @@
 		
 		qsend(now.chP2ToP1, 0, 1, 1);
 		_m = 2; goto P999; /* 0 */
-	case 14: // STATE 11 - PingPong.pml:47 - [chP1ToP2?BALL] (0:0:0 - 1)
-		reached[1][11] = 1;
+	case 14: // STATE 10 - PingPong.pml:45 - [chP1ToP2?BALL] (0:0:0 - 1)
+		reached[1][10] = 1;
 		if (q_len(now.chP1ToP2) == 0) continue;
 
 		XX=1;
@@ -139,14 +139,14 @@
 #endif
 		;
 		_m = 4; goto P999; /* 0 */
-	case 15: // STATE 12 - PingPong.pml:47 - [printf('send ball')] (0:0:0 - 1)
+	case 15: // STATE 11 - PingPong.pml:45 - [printf('send ball')] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][12] = 1;
+		reached[1][11] = 1;
 		Printf("send ball");
 		_m = 3; goto P999; /* 0 */
-	case 16: // STATE 13 - PingPong.pml:47 - [chP2ToP1!BALL] (0:0:0 - 1)
+	case 16: // STATE 12 - PingPong.pml:45 - [chP2ToP1!BALL] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][13] = 1;
+		reached[1][12] = 1;
 		if (q_full(now.chP2ToP1))
 			continue;
 #ifdef HAS_CODE
@@ -158,8 +158,8 @@
 		
 		qsend(now.chP2ToP1, 0, 1, 1);
 		_m = 2; goto P999; /* 0 */
-	case 17: // STATE 14 - PingPong.pml:48 - [chP2ToP1?BALL] (0:0:0 - 1)
-		reached[1][14] = 1;
+	case 17: // STATE 13 - PingPong.pml:46 - [chP2ToP1?BALL] (0:0:0 - 1)
+		reached[1][13] = 1;
 		if (q_len(now.chP2ToP1) == 0) continue;
 
 		XX=1;
@@ -180,14 +180,14 @@
 #endif
 		;
 		_m = 4; goto P999; /* 0 */
-	case 18: // STATE 15 - PingPong.pml:48 - [printf('send ball')] (0:0:0 - 1)
+	case 18: // STATE 14 - PingPong.pml:46 - [printf('send ball')] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][15] = 1;
+		reached[1][14] = 1;
 		Printf("send ball");
 		_m = 3; goto P999; /* 0 */
-	case 19: // STATE 16 - PingPong.pml:48 - [chP1ToP2!BALL] (0:0:0 - 1)
+	case 19: // STATE 15 - PingPong.pml:46 - [chP1ToP2!BALL] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][16] = 1;
+		reached[1][15] = 1;
 		if (q_full(now.chP1ToP2))
 			continue;
 #ifdef HAS_CODE
@@ -199,9 +199,9 @@
 		
 		qsend(now.chP1ToP2, 0, 1, 1);
 		_m = 2; goto P999; /* 0 */
-	case 20: // STATE 22 - PingPong.pml:51 - [-end-] (0:0:0 - 1)
+	case 20: // STATE 19 - PingPong.pml:48 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][22] = 1;
+		reached[1][19] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 

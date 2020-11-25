@@ -133,14 +133,14 @@ typedef struct S_F_MAP {
 } S_F_MAP;
 
 #define _nstates2	5	/* :init: */
-#define minseq2	24
-#define maxseq2	27
+#define minseq2	21
+#define maxseq2	24
 #define _endstate2	4
 
-#define _nstates1	23	/* Player */
+#define _nstates1	20	/* Player */
 #define minseq1	2
-#define maxseq1	23
-#define _endstate1	22
+#define maxseq1	20
+#define _endstate1	19
 
 #define _nstates0	3	/* Referee */
 #define minseq0	0

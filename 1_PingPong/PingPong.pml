@@ -35,18 +35,15 @@ proctype Player(int playerNumber) {
 	printf("hi I am player %d", playerNumber);
 	
 	do
-	:: true ->
-		if
-			/* if ball from ref or ball from players then send a ball to the other side */
-			:: chRefToPs?BALL ->
-				printf("send a ball"); 
-				if
-					:: playerNumber == 1 -> chP1ToP2!BALL
-					:: playerNumber == 2 -> chP2ToP1!BALL
-				fi  
-			::chP1ToP2?BALL -> printf("send ball"); chP2ToP1!BALL;
-			::chP2ToP1?BALL -> printf("send ball"); chP1ToP2!BALL;
-		fi
+		/* if ball from ref or ball from players then send a ball to the other side */
+		:: chRefToPs?BALL ->
+			printf("receive ball from ref"); 
+			if
+				:: playerNumber == 1 -> chP1ToP2!BALL
+				:: playerNumber == 2 -> chP2ToP1!BALL
+			fi  
+		::chP1ToP2?BALL -> printf("send ball P2 -> P1"); chP2ToP1!BALL;
+		::chP2ToP1?BALL -> printf("send ball P1 -> P2"); chP1ToP2!BALL;
 	od
 }
 

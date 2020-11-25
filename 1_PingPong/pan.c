@@ -491,7 +491,7 @@ int _;	/* predefined write-only variable */
 #endif
 
 short src_ln2 [] = {
-	  0,  55,  56,  57,  58,   0, };
+	  0,  52,  53,  54,  55,   0, };
 S_F_MAP src_file2 [] = {
 	{ "-", 0, 0 },
 	{ "PingPong.pml", 1, 4 },
@@ -502,18 +502,18 @@ uchar reached2 [] = {
 uchar *loopstate2;
 
 short src_ln1 [] = {
-	  0,  35,  38,  41,  42,  44,  44,  45, 
-	 45,  43,  47,  47,  47,  47,  48,  48, 
-	 48,  39,  50,  37,  51,  37,  51,   0, };
+	  0,  35,  39,  40,  42,  42,  43,  43, 
+	 41,  45,  45,  45,  45,  46,  46,  46, 
+	 37,  48,  37,  48,   0, };
 S_F_MAP src_file1 [] = {
 	{ "-", 0, 0 },
-	{ "PingPong.pml", 1, 22 },
-	{ "-", 23, 24 }
+	{ "PingPong.pml", 1, 19 },
+	{ "-", 20, 21 }
 };
 uchar reached1 [] = {
-	  0,   0,   1,   1,   0,   1,   0,   1, 
-	  0,   0,   1,   1,   0,   0,   1,   0, 
-	  0,   0,   1,   0,   1,   1,   0,   0, };
+	  0,   0,   1,   0,   1,   0,   1,   0, 
+	  0,   1,   1,   0,   0,   1,   0,   0, 
+	  0,   1,   1,   0,   0, };
 uchar *loopstate1;
 
 short src_ln0 [] = {
@@ -14304,7 +14304,7 @@ c_chandump(int from)
 	printf("\n");
 }
 
-Trans *t_id_lkup[28];
+Trans *t_id_lkup[25];
 
 
 #ifdef BFS_PAR
