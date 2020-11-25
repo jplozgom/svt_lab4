@@ -26,9 +26,12 @@ ltl allBallsCannotBeConstantMustNotFailForCredit { ![](allBalls == 0) && ![](all
 /* comment your code only if necessary, 
    explaining what each proctype is supposed to be 
 */
+
+/**
+
+*/
 proctype Referee() {
-	chRefToPs!BALL;
-	
+	chRefToPs!BALL;	
 }
 
 proctype Player1() {
