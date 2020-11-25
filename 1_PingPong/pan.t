@@ -22,52 +22,69 @@ settable(void)
 {	Trans *T;
 	Trans *settr(int, int, int, int, int, char *, int, int, int);
 
-	trans = (Trans ***) emalloc(4*sizeof(Trans **));
+	trans = (Trans ***) emalloc(5*sizeof(Trans **));
 
-	/* proctype 2: :init: */
+	/* proctype 3: :init: */
 
-	trans[2] = (Trans **) emalloc(5*sizeof(Trans *));
+	trans[3] = (Trans **) emalloc(5*sizeof(Trans *));
 
-	trans[2][1]	= settr(21,0,2,3,3,"(run Referee())", 0, 2, 0);
-	trans[2][2]	= settr(22,0,3,4,4,"(run Player(1))", 0, 2, 0);
-	trans[2][3]	= settr(23,0,4,5,5,"(run Player(2))", 0, 2, 0);
-	trans[2][4]	= settr(24,0,0,6,6,"-end-", 0, 3500, 0);
+	trans[3][1]	= settr(32,0,2,3,3,"(run Referee())", 0, 2, 0);
+	trans[3][2]	= settr(33,0,3,4,4,"(run Player1())", 0, 2, 0);
+	trans[3][3]	= settr(34,0,4,5,5,"(run Player2())", 0, 2, 0);
+	trans[3][4]	= settr(35,0,0,6,6,"-end-", 0, 3500, 0);
 
-	/* proctype 1: Player */
+	/* proctype 2: Player2 */
 
-	trans[1] = (Trans **) emalloc(20*sizeof(Trans *));
+	trans[2] = (Trans **) emalloc(16*sizeof(Trans *));
 
-	trans[1][1]	= settr(2,0,16,7,0,"printf('hi I am player %d',playerNumber)", 0, 2, 0);
-	trans[1][17]	= settr(18,0,16,1,0,".(goto)", 0, 2, 0);
-	T = trans[1][16] = settr(17,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(17,0,2,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(17,0,10,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(17,0,13,0,0,"DO", 0, 2, 0);
-	trans[1][2]	= settr(3,0,3,8,8,"chRefToPs?BALL", 1, 505, 0);
-	trans[1][3]	= settr(4,0,8,9,0,"printf('send a ball')", 0, 2, 0);
-	T = trans[1][8] = settr(9,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(9,0,4,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(9,0,6,0,0,"IF", 0, 2, 0);
-	trans[1][4]	= settr(5,0,5,10,0,"((playerNumber==1))", 0, 2, 0);
-	trans[1][5]	= settr(6,0,16,11,11,"chP1ToP2!BALL", 1, 3, 0);
-	trans[1][9]	= settr(10,0,16,1,0,".(goto)", 0, 2, 0);
-	trans[1][6]	= settr(7,0,7,12,0,"((playerNumber==2))", 0, 2, 0);
-	trans[1][7]	= settr(8,0,16,13,13,"chP2ToP1!BALL", 1, 4, 0);
-	trans[1][10]	= settr(11,0,11,14,14,"chP1ToP2?BALL", 1, 503, 0);
-	trans[1][11]	= settr(12,0,12,15,0,"printf('send ball')", 0, 2, 0);
-	trans[1][12]	= settr(13,0,16,16,16,"chP2ToP1!BALL", 1, 4, 0);
-	trans[1][13]	= settr(14,0,14,17,17,"chP2ToP1?BALL", 1, 504, 0);
-	trans[1][14]	= settr(15,0,15,18,0,"printf('send ball')", 0, 2, 0);
-	trans[1][15]	= settr(16,0,16,19,19,"chP1ToP2!BALL", 1, 3, 0);
-	trans[1][18]	= settr(19,0,19,1,0,"break", 0, 2, 0);
-	trans[1][19]	= settr(20,0,0,20,20,"-end-", 0, 3500, 0);
+	trans[2][1]	= settr(17,0,12,7,0,"printf('hi I am player 2')", 0, 2, 0);
+	trans[2][13]	= settr(29,0,12,1,0,".(goto)", 0, 2, 0);
+	T = trans[2][12] = settr(28,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(28,0,6,0,0,"DO", 0, 2, 0);
+	T = trans[2][6] = settr(22,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(22,0,2,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(22,0,4,0,0,"IF", 0, 2, 0);
+	trans[2][2]	= settr(18,0,3,8,8,"chRefToPs?BALL", 1, 505, 0);
+	trans[2][3]	= settr(19,0,8,9,0,"printf('P2 receives ball from ref')", 0, 2, 0);
+	trans[2][7]	= settr(23,0,8,1,0,".(goto)", 0, 2, 0);
+	trans[2][4]	= settr(20,0,5,10,10,"chP1ToP2?BALL", 1, 503, 0);
+	trans[2][5]	= settr(21,0,8,11,0,"printf('P2 receives from P1')", 0, 2, 0);
+	trans[2][8]	= settr(24,0,9,12,12,"pActiveBalls[0] = 0", 1, 2, 0);
+	trans[2][9]	= settr(25,0,10,13,13,"pActiveBalls[1] = 1", 1, 2, 0);
+	trans[2][10]	= settr(26,0,11,14,0,"printf('P2 receives from P1, send ball ... P2 -> P1')", 0, 2, 0);
+	trans[2][11]	= settr(27,0,12,15,15,"chP2ToP1!BALL", 1, 4, 0);
+	trans[2][14]	= settr(30,0,15,1,0,"break", 0, 2, 0);
+	trans[2][15]	= settr(31,0,0,16,16,"-end-", 0, 3500, 0);
+
+	/* proctype 1: Player1 */
+
+	trans[1] = (Trans **) emalloc(16*sizeof(Trans *));
+
+	trans[1][1]	= settr(2,0,12,17,0,"printf('hi I am player 1')", 0, 2, 0);
+	trans[1][13]	= settr(14,0,12,1,0,".(goto)", 0, 2, 0);
+	T = trans[1][12] = settr(13,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(13,0,6,0,0,"DO", 0, 2, 0);
+	T = trans[1][6] = settr(7,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(7,0,2,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(7,0,4,0,0,"IF", 0, 2, 0);
+	trans[1][2]	= settr(3,0,3,18,18,"chRefToPs?BALL", 1, 505, 0);
+	trans[1][3]	= settr(4,0,8,19,0,"printf('P1 receives ball from ref')", 0, 2, 0);
+	trans[1][7]	= settr(8,0,8,1,0,".(goto)", 0, 2, 0);
+	trans[1][4]	= settr(5,0,5,20,20,"chP2ToP1?BALL", 1, 504, 0);
+	trans[1][5]	= settr(6,0,8,21,0,"printf('P1 receives from P2')", 0, 2, 0);
+	trans[1][8]	= settr(9,0,9,22,22,"pActiveBalls[1] = 0", 1, 2, 0);
+	trans[1][9]	= settr(10,0,10,23,23,"pActiveBalls[0] = 1", 1, 2, 0);
+	trans[1][10]	= settr(11,0,11,24,0,"printf('P1 receives from P2, send ball ... P1 -> P2')", 0, 2, 0);
+	trans[1][11]	= settr(12,0,12,25,25,"chP1ToP2!BALL", 1, 3, 0);
+	trans[1][14]	= settr(15,0,15,1,0,"break", 0, 2, 0);
+	trans[1][15]	= settr(16,0,0,26,26,"-end-", 0, 3500, 0);
 
 	/* proctype 0: Referee */
 
 	trans[0] = (Trans **) emalloc(3*sizeof(Trans *));
 
-	trans[0][1]	= settr(0,0,2,21,21,"chRefToPs!BALL", 1, 5, 0);
-	trans[0][2]	= settr(1,0,0,22,22,"-end-", 0, 3500, 0);
+	trans[0][1]	= settr(0,0,2,27,27,"chRefToPs!BALL", 1, 5, 0);
+	trans[0][2]	= settr(1,0,0,28,28,"-end-", 0, 3500, 0);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(3*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);

@@ -120,7 +120,7 @@
 #endif
 #ifdef NP
 	#define HAS_NP	2
-	#define VERI	3	/* np_ */
+	#define VERI	4	/* np_ */
 #endif
 #if defined(NOCLAIM) && defined(NP)
 	#undef NOCLAIM
@@ -132,31 +132,38 @@ typedef struct S_F_MAP {
 	int upto;
 } S_F_MAP;
 
-#define _nstates2	5	/* :init: */
-#define minseq2	21
-#define maxseq2	24
-#define _endstate2	4
+#define _nstates3	5	/* :init: */
+#define minseq3	32
+#define maxseq3	35
+#define _endstate3	4
 
-#define _nstates1	20	/* Player */
+#define _nstates2	16	/* Player2 */
+#define minseq2	17
+#define maxseq2	31
+#define _endstate2	15
+
+#define _nstates1	16	/* Player1 */
 #define minseq1	2
-#define maxseq1	20
-#define _endstate1	19
+#define maxseq1	16
+#define _endstate1	15
 
 #define _nstates0	3	/* Referee */
 #define minseq0	0
 #define maxseq0	1
 #define _endstate0	2
 
+extern short src_ln3[];
 extern short src_ln2[];
 extern short src_ln1[];
 extern short src_ln0[];
+extern S_F_MAP src_file3[];
 extern S_F_MAP src_file2[];
 extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	23
-#define _T2	24
+#define _T5	29
+#define _T2	30
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	3
@@ -171,49 +178,59 @@ extern S_F_MAP src_file0[];
 	#endif
 #endif
 
-#define Pinit	((P2 *)_this)
-typedef struct P2 { /* :init: */
+#define Pinit	((P3 *)_this)
+typedef struct P3 { /* :init: */
 	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 6; /* state    */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 5; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
+} P3;
+#define Air3	(sizeof(P3) - 3)
+
+#define PPlayer2	((P2 *)_this)
+typedef struct P2 { /* Player2 */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 5; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
 } P2;
 #define Air2	(sizeof(P2) - 3)
 
-#define PPlayer	((P1 *)_this)
-typedef struct P1 { /* Player */
+#define PPlayer1	((P1 *)_this)
+typedef struct P1 { /* Player1 */
 	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 6; /* state    */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 5; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
-	int playerNumber;
 } P1;
-#define Air1	(sizeof(P1) - Offsetof(P1, playerNumber) - 1*sizeof(int))
+#define Air1	(sizeof(P1) - 3)
 
 #define PReferee	((P0 *)_this)
 typedef struct P0 { /* Referee */
 	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 6; /* state    */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 5; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
 } P0;
 #define Air0	(sizeof(P0) - 3)
 
-typedef struct P3 { /* np_ */
+typedef struct P4 { /* np_ */
 	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 6; /* state    */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 5; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
-} P3;
-#define Air3	(sizeof(P3) - 3)
+} P4;
+#define Air4	(sizeof(P4) - 3)
 
 #define Pclaim	P0
 #ifndef NCLAIMS
@@ -433,11 +450,12 @@ typedef struct TRIX_v6 {
 #define FORWARD_MOVES	"pan.m"
 #define BACKWARD_MOVES	"pan.b"
 #define TRANSITIONS	"pan.t"
-#define _NP_	3
-#define _nstates3	3 /* np_ */
-#define _endstate3	2 /* np_ */
+#define _NP_	4
+#define _nstates4	3 /* np_ */
+#define _endstate4	2 /* np_ */
 
-#define _start3	0 /* np_ */
+#define _start4	0 /* np_ */
+#define _start3	1
 #define _start2	1
 #define _start1	1
 #define _start0	1
@@ -811,7 +829,7 @@ typedef struct BFS_State {
 
 void qsend(int, int, int, int);
 
-#define Addproc(x,y)	addproc(256, y, x, 0)
+#define Addproc(x,y)	addproc(256, y, x)
 #define LOCAL	1
 #define Q_FULL_F	2
 #define Q_EMPT_F	3
@@ -821,7 +839,7 @@ void qsend(int, int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	25
+#define NTRANS	31
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);
