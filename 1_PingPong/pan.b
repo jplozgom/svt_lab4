@@ -51,10 +51,8 @@
 		 /* CLAIM singleBallForever */
 ;
 		;
-		;
-		;
 		
-	case 17: // STATE 13
+	case 16: // STATE 13
 		;
 		p_restor(II);
 		;
@@ -63,28 +61,28 @@
 
 		 /* PROC :init: */
 
-	case 18: // STATE 1
+	case 17: // STATE 1
 		;
 		;
 		delproc(0, now._nr_pr-1);
 		;
 		goto R999;
 
-	case 19: // STATE 2
+	case 18: // STATE 2
 		;
 		;
 		delproc(0, now._nr_pr-1);
 		;
 		goto R999;
 
-	case 20: // STATE 3
+	case 19: // STATE 3
 		;
 		;
 		delproc(0, now._nr_pr-1);
 		;
 		goto R999;
 
-	case 21: // STATE 4
+	case 20: // STATE 4
 		;
 		p_restor(II);
 		;
@@ -94,51 +92,29 @@
 		 /* PROC Player2 */
 ;
 		;
-		
-	case 23: // STATE 2
-		;
-		XX = 1;
-		unrecv(now.chRefToPs, XX-1, 0, 1, 1);
-		;
-		;
-		goto R999;
-
-	case 24: // STATE 3
-		;
-		now.pActiveBalls[1] = trpt->bup.oval;
-		;
+			case 22: // STATE 4
+		sv_restor();
 		goto R999;
 ;
 		
-	case 25: // STATE 4
+	case 23: // STATE 5
 		goto R999;
-
-	case 26: // STATE 5
-		;
-		XX = 1;
-		unrecv(now.chP1ToP2, XX-1, 0, 1, 1);
-		;
-		;
-		goto R999;
-
-	case 27: // STATE 6
-		;
-		now.pActiveBalls[1] = trpt->bup.oval;
-		;
+	case 24: // STATE 8
+		sv_restor();
 		goto R999;
 ;
 		
-	case 28: // STATE 7
+	case 25: // STATE 9
 		goto R999;
 ;
 		
-	case 29: // STATE 10
+	case 26: // STATE 12
 		goto R999;
-	case 30: // STATE 13
+	case 27: // STATE 15
 		sv_restor();
 		goto R999;
 
-	case 31: // STATE 17
+	case 28: // STATE 19
 		;
 		p_restor(II);
 		;
@@ -148,47 +124,29 @@
 		 /* PROC Player1 */
 ;
 		;
-		
-	case 33: // STATE 2
-		;
-		XX = 1;
-		unrecv(now.chRefToPs, XX-1, 0, 1, 1);
-		;
-		;
-		goto R999;
-
-	case 34: // STATE 3
-		;
-		now.pActiveBalls[0] = trpt->bup.oval;
-		;
+			case 30: // STATE 4
+		sv_restor();
 		goto R999;
 ;
-		;
 		
-	case 36: // STATE 5
-		;
-		XX = 1;
-		unrecv(now.chP2ToP1, XX-1, 0, 1, 1);
-		;
-		;
+	case 31: // STATE 5
 		goto R999;
-
-	case 37: // STATE 6
-		;
-		now.pActiveBalls[0] = trpt->bup.oval;
-		;
+	case 32: // STATE 8
+		sv_restor();
+		goto R999;
+;
+		
+	case 33: // STATE 9
 		goto R999;
 ;
 		;
 		;
 		;
-		;
-		;
-			case 41: // STATE 14
+			case 36: // STATE 16
 		sv_restor();
 		goto R999;
 
-	case 42: // STATE 18
+	case 37: // STATE 20
 		;
 		p_restor(II);
 		;
@@ -197,13 +155,13 @@
 
 		 /* PROC Referee */
 
-	case 43: // STATE 1
+	case 38: // STATE 1
 		;
 		_m = unsend(now.chRefToPs);
 		;
 		goto R999;
 
-	case 44: // STATE 2
+	case 39: // STATE 2
 		;
 		p_restor(II);
 		;

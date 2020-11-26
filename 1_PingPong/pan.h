@@ -140,34 +140,34 @@ typedef struct S_F_MAP {
 } S_F_MAP;
 
 #define _nstates6	40	/* allBallsCannotBeConstantMustNotFailForCredit */
-#define minseq6	72
-#define maxseq6	110
+#define minseq6	76
+#define maxseq6	114
 #define _endstate6	39
 
 #define _nstates5	19	/* initiallyNoBallsMustNotFailForCredit */
-#define minseq5	54
-#define maxseq5	71
+#define minseq5	58
+#define maxseq5	75
 #define _endstate5	18
 
 #define _nstates4	14	/* singleBallForever */
-#define minseq4	41
-#define maxseq4	53
+#define minseq4	45
+#define maxseq4	57
 #define _endstate4	13
 
 #define _nstates3	5	/* :init: */
-#define minseq3	37
-#define maxseq3	40
+#define minseq3	41
+#define maxseq3	44
 #define _endstate3	4
 
-#define _nstates2	18	/* Player2 */
-#define minseq2	20
-#define maxseq2	36
-#define _endstate2	17
+#define _nstates2	20	/* Player2 */
+#define minseq2	22
+#define maxseq2	40
+#define _endstate2	19
 
-#define _nstates1	19	/* Player1 */
+#define _nstates1	21	/* Player1 */
 #define minseq1	2
-#define maxseq1	19
-#define _endstate1	18
+#define maxseq1	21
+#define _endstate1	20
 
 #define _nstates0	3	/* Referee */
 #define minseq0	0
@@ -190,8 +190,8 @@ extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	45
-#define _T2	46
+#define _T5	40
+#define _T2	41
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	3
@@ -914,7 +914,7 @@ void qsend(int, int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	47
+#define NTRANS	42
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);
