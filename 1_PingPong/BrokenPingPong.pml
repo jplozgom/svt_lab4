@@ -10,17 +10,13 @@ int pActiveBalls[2];
 /* macros for the property interface -- needed for reference properties */ 
 #define  allBalls (len(chP1ToP2) + len(chP2ToP1) + pActiveBalls[0] + pActiveBalls[1])
 
-
 /* Your LTL properties */
 
-/*ltl singleBallForever {[]( (allBalls == 0) -> <> (allBalls == 1)) }*/
-ltl singleBallForever {<>[](allBalls == 1) }
+/*ltl alwaysAtMostOneBall { ... } // for BrokenPingPong.pml*/
 
+/* for Broken PingPong.pml only */
+/*ltl sanityCheckForAllBallsMustNotFailForCredit { (allBalls == 0) && ![](allBalls == 0) && ![](allBalls == 1) && ![](allBalls == 2) && []true }*/
 
-
-/* for PingPong.pml only */
-ltl initiallyNoBallsMustNotFailForCredit { (allBalls == 0) && []true }
-ltl allBallsCannotBeConstantMustNotFailForCredit { ![](allBalls == 0) && ![](allBalls == 1) && ![](allBalls == 2) && ([]true) }
 
 /* proctypes */
 
@@ -33,6 +29,20 @@ ltl allBallsCannotBeConstantMustNotFailForCredit { ![](allBalls == 0) && ![](all
 */
 proctype Referee() {
 	chRefToPs!BALL;	
+	do
+	::
+		if
+		:: true -> skip; //Disable this for amateur game
+		:: true -> skip;
+		:: true -> skip;
+		:: chP1ToP2?BALL -> 
+			chRefToPs!BALL; 
+		:: chP2ToP1?BALL -> 
+			chRefToPs!BALL;
+		fi
+	od
+	
+	
 }
 
 
@@ -86,8 +96,6 @@ proctype Player2() {
 		}	
 	od
 }
-
-
 
 
 
