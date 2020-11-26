@@ -5,21 +5,22 @@ mtype = { BALL }
 chan chP1ToP2 = [1] of {mtype}
 chan chP2ToP1 = [1] of {mtype}
 chan chRefToPs = [1] of {mtype}
-bit pActiveBalls[2];
+int pActiveBalls[2];
 
 /* macros for the property interface -- needed for reference properties */ 
-/*#define  allBalls 	...*/
+#define  allBalls (len(chP1ToP2) + len(chP2ToP1) + pActiveBalls[0] + pActiveBalls[1])
 
 
 /* Your LTL properties */
 
-/*ltl singleBallForever { ... } // for PingPong.pml*/
+/*ltl singleBallForever {[]( (allBalls == 0) -> <> (allBalls == 1)) }*/
+ltl singleBallForever {<>[](allBalls == 1) } 
 
 
 
 /* for PingPong.pml only */
-/*ltl initiallyNoBallsMustNotFailForCredit { (allBalls == 0) && []true }
-ltl allBallsCannotBeConstantMustNotFailForCredit { ![](allBalls == 0) && ![](allBalls == 1) && ![](allBalls == 2) && ([]true) }*/
+ltl initiallyNoBallsMustNotFailForCredit { (allBalls == 0) && []true }
+ltl allBallsCannotBeConstantMustNotFailForCredit { ![](allBalls == 0) && ![](allBalls == 1) && ![](allBalls == 2) && ([]true) }
 
 /* proctypes */
 
@@ -34,24 +35,36 @@ proctype Referee() {
 	chRefToPs!BALL;	
 }
 
+
 proctype Player1() {
 	printf("hi I am player 1");
 	
 	do
 	:: 	
+		
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
-			:: chRefToPs?BALL ->
+			:: chRefToPs?[BALL] ->
+				d_step{
+					chRefToPs?BALL 
+					pActiveBalls[0] = 1;
+				}	
 				printf("P1 receives ball from ref");
-			::chP2ToP1?BALL -> 
+			::chP2ToP1?[BALL] -> 
+				d_step{
+					chP2ToP1?BALL 
+					pActiveBalls[0] = 1;
+				}		
 				printf("P1 receives from P2");
 		fi
-
-		pActiveBalls[1] = 0;
-		pActiveBalls[0] = 1;					
-		
+		printf("balls %d \n",allBalls);
+								
 		printf("P1 receives from P2, send ball ... P1 -> P2");
-		chP1ToP2!BALL;			
+		d_step{
+			chP1ToP2!BALL;
+			pActiveBalls[0] = 0;
+		}			
+		
 					
 	od
 }
@@ -63,18 +76,26 @@ proctype Player2() {
 	::		
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
-			:: chRefToPs?BALL ->
+			:: 	chRefToPs?[BALL]->
+				d_step{
+					chRefToPs?BALL
+					pActiveBalls[1] = 1;
+				}
 				printf("P2 receives ball from ref");
-			::chP1ToP2?BALL -> 
-				printf("P2 receives from P1");
+			::	chP1ToP2?[BALL] ->
+				d_step{
+					chP1ToP2?BALL
+					pActiveBalls[1] = 1;
+				}
+				printf("P2 receives ball from ref");
 		fi
 	
-		pActiveBalls[0] = 0;
-		pActiveBalls[1] = 1;
-
+		
 		printf("P2 receives from P1, send ball ... P2 -> P1");
-		chP2ToP1!BALL;			
-					
+		d_step{
+			chP2ToP1!BALL;			
+			pActiveBalls[1] = 0;
+		}	
 	od
 }
 
@@ -82,6 +103,7 @@ init {
 	run Referee();
 	run Player1();
 	run Player2();
+	
 }
 
 /* monitor processes for invariants (optional) */

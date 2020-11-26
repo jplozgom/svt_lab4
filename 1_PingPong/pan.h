@@ -102,6 +102,7 @@
 #ifndef NFAIR
 	#define NFAIR	2	/* must be >= 2 */
 #endif
+#define HAS_LTL	1
 #define HAS_CODE	1
 #if defined(RANDSTORE) && !defined(RANDSTOR)
 	#define RANDSTOR	RANDSTORE
@@ -120,10 +121,16 @@
 #endif
 #ifdef NP
 	#define HAS_NP	2
-	#define VERI	4	/* np_ */
+	#define VERI	7	/* np_ */
 #endif
 #if defined(NOCLAIM) && defined(NP)
 	#undef NOCLAIM
+#endif
+#ifndef NOCLAIM
+	#define NCLAIMS	3
+	#ifndef NP
+		#define VERI	6
+	#endif
 #endif
 
 typedef struct S_F_MAP {
@@ -132,38 +139,59 @@ typedef struct S_F_MAP {
 	int upto;
 } S_F_MAP;
 
+#define _nstates6	40	/* allBallsCannotBeConstantMustNotFailForCredit */
+#define minseq6	80
+#define maxseq6	118
+#define _endstate6	39
+
+#define _nstates5	19	/* initiallyNoBallsMustNotFailForCredit */
+#define minseq5	62
+#define maxseq5	79
+#define _endstate5	18
+
+#define _nstates4	14	/* singleBallForever */
+#define minseq4	49
+#define maxseq4	61
+#define _endstate4	13
+
 #define _nstates3	5	/* :init: */
-#define minseq3	32
-#define maxseq3	35
+#define minseq3	45
+#define maxseq3	48
 #define _endstate3	4
 
-#define _nstates2	16	/* Player2 */
-#define minseq2	17
-#define maxseq2	31
-#define _endstate2	15
+#define _nstates2	22	/* Player2 */
+#define minseq2	24
+#define maxseq2	44
+#define _endstate2	21
 
-#define _nstates1	16	/* Player1 */
+#define _nstates1	23	/* Player1 */
 #define minseq1	2
-#define maxseq1	16
-#define _endstate1	15
+#define maxseq1	23
+#define _endstate1	22
 
 #define _nstates0	3	/* Referee */
 #define minseq0	0
 #define maxseq0	1
 #define _endstate0	2
 
+extern short src_ln6[];
+extern short src_ln5[];
+extern short src_ln4[];
 extern short src_ln3[];
 extern short src_ln2[];
 extern short src_ln1[];
 extern short src_ln0[];
+extern S_F_MAP src_file6[];
+extern S_F_MAP src_file5[];
+extern S_F_MAP src_file4[];
 extern S_F_MAP src_file3[];
 extern S_F_MAP src_file2[];
 extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	29
-#define _T2	30
+#define _T5	44
+#define _T2	45
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	3
@@ -178,11 +206,41 @@ extern S_F_MAP src_file0[];
 	#endif
 #endif
 
+typedef struct P6 { /* allBallsCannotBeConstantMustNotFailForCredit */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 7; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
+} P6;
+#define Air6	(sizeof(P6) - 3)
+
+typedef struct P5 { /* initiallyNoBallsMustNotFailForCredit */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 7; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
+} P5;
+#define Air5	(sizeof(P5) - 3)
+
+typedef struct P4 { /* singleBallForever */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 7; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
+} P4;
+#define Air4	(sizeof(P4) - 3)
+
 #define Pinit	((P3 *)_this)
 typedef struct P3 { /* :init: */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 5; /* state    */
+	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -193,7 +251,7 @@ typedef struct P3 { /* :init: */
 typedef struct P2 { /* Player2 */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 5; /* state    */
+	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -204,7 +262,7 @@ typedef struct P2 { /* Player2 */
 typedef struct P1 { /* Player1 */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 5; /* state    */
+	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -215,26 +273,40 @@ typedef struct P1 { /* Player1 */
 typedef struct P0 { /* Referee */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 5; /* state    */
+	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
 } P0;
 #define Air0	(sizeof(P0) - 3)
 
-typedef struct P4 { /* np_ */
+typedef struct P7 { /* np_ */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 5; /* state    */
+	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
-} P4;
-#define Air4	(sizeof(P4) - 3)
+} P7;
+#define Air7	(sizeof(P7) - 3)
 
-#define Pclaim	P0
-#ifndef NCLAIMS
-	#define NCLAIMS 1
+
+#ifndef NOCLAIM
+ #ifndef NP
+	#undef VERI
+	#define VERI	8
+ #endif
+	#define Pclaim	P8
+
+typedef struct P8 {
+	unsigned _pid : 8; /* always zero */
+	unsigned _t   : 4; /* active-claim type  */
+	unsigned _p   : 7; /* active-claim state */
+	unsigned _n   : 3; /* active-claim index */
+	uchar c_cur[NCLAIMS]; /* claim-states */
+} P8;
+	#define Air8	(0)
+
 #endif
 #if defined(BFS) && defined(REACH)
 	#undef REACH
@@ -425,6 +497,7 @@ typedef struct State {
 	uchar chP1ToP2;
 	uchar chP2ToP1;
 	uchar chRefToPs;
+	int pActiveBalls[2];
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
 	char *_ids_[MAXPROC+MAXQ+4];
@@ -446,15 +519,17 @@ typedef struct TRIX_v6 {
 #endif
 
 #define HAS_TRACK	0
-/* hidden variable: */	uchar pActiveBalls[2];
 #define FORWARD_MOVES	"pan.m"
 #define BACKWARD_MOVES	"pan.b"
 #define TRANSITIONS	"pan.t"
-#define _NP_	4
-#define _nstates4	3 /* np_ */
-#define _endstate4	2 /* np_ */
+#define _NP_	7
+#define _nstates7	3 /* np_ */
+#define _endstate7	2 /* np_ */
 
-#define _start4	0 /* np_ */
+#define _start7	0 /* np_ */
+#define _start6	12
+#define _start5	6
+#define _start4	5
 #define _start3	1
 #define _start2	1
 #define _start1	1
@@ -462,7 +537,7 @@ typedef struct TRIX_v6 {
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
-	#define ACCEPT_LAB	0 /* user-defined accept labels */
+	#define ACCEPT_LAB	6 /* user-defined accept labels */
 #endif
 #ifdef MEMCNT
 	#ifdef MEMLIM
@@ -839,7 +914,7 @@ void qsend(int, int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	31
+#define NTRANS	46
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);
