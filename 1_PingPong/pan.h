@@ -2,7 +2,7 @@
 #define PAN_H
 
 #define SpinVersion	"Spin Version 6.5.2 -- 6 December 2019"
-#define PanSource	"PingPong.pml"
+#define PanSource	"BrokenPingPong.pml"
 
 #define G_long	8
 #define G_int	4
