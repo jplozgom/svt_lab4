@@ -1,12 +1,12 @@
-never singleBallForever {    /* !(<> ([] (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))) */
+never singleBallForever {    /* !([] ((! (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))) || (<> (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))))) */
 T0_init:
 	do
-	:: (! ((((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))) -> goto accept_S9
+	:: (! ((! (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0)))) && ! ((((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))) -> goto accept_S4
 	:: (1) -> goto T0_init
 	od;
-accept_S9:
+accept_S4:
 	do
-	:: (1) -> goto T0_init
+	:: (! ((((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))) -> goto accept_S4
 	od;
 }
 never initiallyNoBallsMustNotFailForCredit {    /* !((((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0)) && ([] (1))) */

@@ -13,8 +13,8 @@ int pActiveBalls[2];
 
 /* Your LTL properties */
 
-/*ltl singleBallForever {[]( (allBalls == 0) -> <> (allBalls == 1)) }*/
-ltl singleBallForever {<>[](allBalls == 1) } 
+ltl singleBallForever {[]( (allBalls == 0) -> <> (allBalls == 1)) }
+/*ltl singleBallForever {<>[](allBalls == 1) }*/ 
 
 
 
@@ -44,17 +44,11 @@ proctype Player1() {
 		
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
-			:: chRefToPs?[BALL] ->
-				d_step{
-					chRefToPs?BALL 
-					pActiveBalls[0] = 1;
-				}	
+			:: chRefToPs?BALL  ->
+				pActiveBalls[0] = 1;
 				printf("P1 receives ball from ref");
-			::chP2ToP1?[BALL] -> 
-				d_step{
-					chP2ToP1?BALL 
-					pActiveBalls[0] = 1;
-				}		
+			:: chP2ToP1?BALL  -> 
+				pActiveBalls[0] = 1;
 				printf("P1 receives from P2");
 		fi
 		printf("balls %d \n",allBalls);
@@ -76,18 +70,12 @@ proctype Player2() {
 	::		
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
-			:: 	chRefToPs?[BALL]->
-				d_step{
-					chRefToPs?BALL
-					pActiveBalls[1] = 1;
-				}
+			:: 	chRefToPs?BALL->
+				pActiveBalls[1] = 1;
 				printf("P2 receives ball from ref");
-			::	chP1ToP2?[BALL] ->
-				d_step{
-					chP1ToP2?BALL
-					pActiveBalls[1] = 1;
-				}
-				printf("P2 receives ball from ref");
+			::	chP1ToP2?BALL ->
+				pActiveBalls[1] = 1;
+				printf("P2 receives ball from P1");
 		fi
 	
 		

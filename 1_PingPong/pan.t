@@ -28,177 +28,177 @@ settable(void)
 
 	trans[6] = (Trans **) emalloc(40*sizeof(Trans *));
 
-	trans[6][13]	= settr(92,0,12,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][12] = settr(91,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(91,0,1,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(91,0,3,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(91,0,5,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(91,0,9,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(91,0,10,0,0,"DO", 0, 2, 0);
-	trans[6][1]	= settr(80,0,17,3,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==2))", 1, 2, 0);
-	trans[6][2]	= settr(81,0,17,1,0,"goto accept_S6", 0, 2, 0);
-	trans[6][3]	= settr(82,0,22,4,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))", 1, 2, 0);
-	trans[6][4]	= settr(83,0,22,1,0,"goto accept_S11", 0, 2, 0);
-	trans[6][5]	= settr(84,0,27,5,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))", 1, 2, 0);
-	trans[6][6]	= settr(85,0,27,1,0,"goto accept_S14", 0, 2, 0);
-	T = trans[ 6][9] = settr(88,2,0,0,0,"ATOMIC", 0, 2, 0);
-	T->nxt	= settr(88,2,7,0,0,"ATOMIC", 0, 2, 0);
-	trans[6][7]	= settr(86,0,12,6,6,"(!(1))", 0, 2, 0); /* m: 8 -> 12,0 */
+	trans[6][13]	= settr(84,0,12,1,0,".(goto)", 0, 2, 0);
+	T = trans[6][12] = settr(83,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(83,0,1,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(83,0,3,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(83,0,5,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(83,0,9,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(83,0,10,0,0,"DO", 0, 2, 0);
+	trans[6][1]	= settr(72,0,17,3,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==2))", 1, 2, 0);
+	trans[6][2]	= settr(73,0,17,1,0,"goto accept_S6", 0, 2, 0);
+	trans[6][3]	= settr(74,0,22,4,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))", 1, 2, 0);
+	trans[6][4]	= settr(75,0,22,1,0,"goto accept_S11", 0, 2, 0);
+	trans[6][5]	= settr(76,0,27,5,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))", 1, 2, 0);
+	trans[6][6]	= settr(77,0,27,1,0,"goto accept_S14", 0, 2, 0);
+	T = trans[ 6][9] = settr(80,2,0,0,0,"ATOMIC", 0, 2, 0);
+	T->nxt	= settr(80,2,7,0,0,"ATOMIC", 0, 2, 0);
+	trans[6][7]	= settr(78,0,12,6,6,"(!(1))", 0, 2, 0); /* m: 8 -> 12,0 */
 	reached6[8] = 1;
 	trans[6][8]	= settr(0,0,0,0,0,"assert(!(!(1)))",0,0,0);
-	trans[6][10]	= settr(89,0,35,1,0,"(1)", 0, 2, 0);
-	trans[6][11]	= settr(90,0,35,1,0,"goto T0_S17", 0, 2, 0);
-	trans[6][14]	= settr(93,0,17,1,0,"break", 0, 2, 0);
-	trans[6][18]	= settr(97,0,17,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][17] = settr(96,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(96,0,15,0,0,"DO", 0, 2, 0);
-	trans[6][15]	= settr(94,0,17,7,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==2))", 1, 2, 0);
-	trans[6][16]	= settr(95,0,17,1,0,"goto accept_S6", 0, 2, 0);
-	trans[6][19]	= settr(98,0,22,1,0,"break", 0, 2, 0);
-	trans[6][23]	= settr(102,0,22,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][22] = settr(101,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(101,0,20,0,0,"DO", 0, 2, 0);
-	trans[6][20]	= settr(99,0,22,8,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))", 1, 2, 0);
-	trans[6][21]	= settr(100,0,22,1,0,"goto accept_S11", 0, 2, 0);
-	trans[6][24]	= settr(103,0,27,1,0,"break", 0, 2, 0);
-	trans[6][28]	= settr(107,0,27,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][27] = settr(106,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(106,0,25,0,0,"DO", 0, 2, 0);
-	trans[6][25]	= settr(104,0,27,9,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))", 1, 2, 0);
-	trans[6][26]	= settr(105,0,27,1,0,"goto accept_S14", 0, 2, 0);
-	trans[6][29]	= settr(108,0,35,1,0,"break", 0, 2, 0);
-	trans[6][36]	= settr(115,0,35,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][35] = settr(114,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(114,0,32,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(114,0,33,0,0,"DO", 0, 2, 0);
-	T = trans[ 6][32] = settr(111,2,0,0,0,"ATOMIC", 0, 2, 0);
-	T->nxt	= settr(111,2,30,0,0,"ATOMIC", 0, 2, 0);
-	trans[6][30]	= settr(109,0,35,10,10,"(!(1))", 0, 2, 0); /* m: 31 -> 35,0 */
+	trans[6][10]	= settr(81,0,35,1,0,"(1)", 0, 2, 0);
+	trans[6][11]	= settr(82,0,35,1,0,"goto T0_S17", 0, 2, 0);
+	trans[6][14]	= settr(85,0,17,1,0,"break", 0, 2, 0);
+	trans[6][18]	= settr(89,0,17,1,0,".(goto)", 0, 2, 0);
+	T = trans[6][17] = settr(88,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(88,0,15,0,0,"DO", 0, 2, 0);
+	trans[6][15]	= settr(86,0,17,7,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==2))", 1, 2, 0);
+	trans[6][16]	= settr(87,0,17,1,0,"goto accept_S6", 0, 2, 0);
+	trans[6][19]	= settr(90,0,22,1,0,"break", 0, 2, 0);
+	trans[6][23]	= settr(94,0,22,1,0,".(goto)", 0, 2, 0);
+	T = trans[6][22] = settr(93,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(93,0,20,0,0,"DO", 0, 2, 0);
+	trans[6][20]	= settr(91,0,22,8,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))", 1, 2, 0);
+	trans[6][21]	= settr(92,0,22,1,0,"goto accept_S11", 0, 2, 0);
+	trans[6][24]	= settr(95,0,27,1,0,"break", 0, 2, 0);
+	trans[6][28]	= settr(99,0,27,1,0,".(goto)", 0, 2, 0);
+	T = trans[6][27] = settr(98,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(98,0,25,0,0,"DO", 0, 2, 0);
+	trans[6][25]	= settr(96,0,27,9,0,"(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))", 1, 2, 0);
+	trans[6][26]	= settr(97,0,27,1,0,"goto accept_S14", 0, 2, 0);
+	trans[6][29]	= settr(100,0,35,1,0,"break", 0, 2, 0);
+	trans[6][36]	= settr(107,0,35,1,0,".(goto)", 0, 2, 0);
+	T = trans[6][35] = settr(106,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(106,0,32,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(106,0,33,0,0,"DO", 0, 2, 0);
+	T = trans[ 6][32] = settr(103,2,0,0,0,"ATOMIC", 0, 2, 0);
+	T->nxt	= settr(103,2,30,0,0,"ATOMIC", 0, 2, 0);
+	trans[6][30]	= settr(101,0,35,10,10,"(!(1))", 0, 2, 0); /* m: 31 -> 35,0 */
 	reached6[31] = 1;
 	trans[6][31]	= settr(0,0,0,0,0,"assert(!(!(1)))",0,0,0);
-	trans[6][33]	= settr(112,0,35,1,0,"(1)", 0, 2, 0);
-	trans[6][34]	= settr(113,0,35,1,0,"goto T0_S17", 0, 2, 0);
-	trans[6][37]	= settr(116,0,38,1,0,"break", 0, 2, 0);
-	trans[6][38]	= settr(117,0,39,1,0,"(1)", 0, 2, 0);
-	trans[6][39]	= settr(118,0,0,11,11,"-end-", 0, 3500, 0);
+	trans[6][33]	= settr(104,0,35,1,0,"(1)", 0, 2, 0);
+	trans[6][34]	= settr(105,0,35,1,0,"goto T0_S17", 0, 2, 0);
+	trans[6][37]	= settr(108,0,38,1,0,"break", 0, 2, 0);
+	trans[6][38]	= settr(109,0,39,1,0,"(1)", 0, 2, 0);
+	trans[6][39]	= settr(110,0,0,11,11,"-end-", 0, 3500, 0);
 
 	/* proctype 5: initiallyNoBallsMustNotFailForCredit */
 
 	trans[5] = (Trans **) emalloc(19*sizeof(Trans *));
 
-	trans[5][7]	= settr(68,0,6,1,0,".(goto)", 0, 2, 0);
-	T = trans[5][6] = settr(67,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(67,0,3,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(67,0,4,0,0,"DO", 0, 2, 0);
-	T = trans[ 5][3] = settr(64,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(64,2,1,0,0,"ATOMIC", 1, 2, 0);
-	trans[5][1]	= settr(62,0,6,12,12,"((!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))||!(1)))", 1, 2, 0); /* m: 2 -> 6,0 */
+	trans[5][7]	= settr(60,0,6,1,0,".(goto)", 0, 2, 0);
+	T = trans[5][6] = settr(59,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(59,0,3,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(59,0,4,0,0,"DO", 0, 2, 0);
+	T = trans[ 5][3] = settr(56,2,0,0,0,"ATOMIC", 1, 2, 0);
+	T->nxt	= settr(56,2,1,0,0,"ATOMIC", 1, 2, 0);
+	trans[5][1]	= settr(54,0,6,12,12,"((!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))||!(1)))", 1, 2, 0); /* m: 2 -> 6,0 */
 	reached5[2] = 1;
 	trans[5][2]	= settr(0,0,0,0,0,"assert(!((!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0))||!(1))))",0,0,0);
-	trans[5][4]	= settr(65,0,14,1,0,"(1)", 0, 2, 0);
-	trans[5][5]	= settr(66,0,14,1,0,"goto T0_S2", 0, 2, 0);
-	trans[5][8]	= settr(69,0,14,1,0,"break", 0, 2, 0);
-	trans[5][15]	= settr(76,0,14,1,0,".(goto)", 0, 2, 0);
-	T = trans[5][14] = settr(75,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(75,0,11,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(75,0,12,0,0,"DO", 0, 2, 0);
-	T = trans[ 5][11] = settr(72,2,0,0,0,"ATOMIC", 0, 2, 0);
-	T->nxt	= settr(72,2,9,0,0,"ATOMIC", 0, 2, 0);
-	trans[5][9]	= settr(70,0,14,13,13,"(!(1))", 0, 2, 0); /* m: 10 -> 14,0 */
+	trans[5][4]	= settr(57,0,14,1,0,"(1)", 0, 2, 0);
+	trans[5][5]	= settr(58,0,14,1,0,"goto T0_S2", 0, 2, 0);
+	trans[5][8]	= settr(61,0,14,1,0,"break", 0, 2, 0);
+	trans[5][15]	= settr(68,0,14,1,0,".(goto)", 0, 2, 0);
+	T = trans[5][14] = settr(67,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(67,0,11,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(67,0,12,0,0,"DO", 0, 2, 0);
+	T = trans[ 5][11] = settr(64,2,0,0,0,"ATOMIC", 0, 2, 0);
+	T->nxt	= settr(64,2,9,0,0,"ATOMIC", 0, 2, 0);
+	trans[5][9]	= settr(62,0,14,13,13,"(!(1))", 0, 2, 0); /* m: 10 -> 14,0 */
 	reached5[10] = 1;
 	trans[5][10]	= settr(0,0,0,0,0,"assert(!(!(1)))",0,0,0);
-	trans[5][12]	= settr(73,0,14,1,0,"(1)", 0, 2, 0);
-	trans[5][13]	= settr(74,0,14,1,0,"goto T0_S2", 0, 2, 0);
-	trans[5][16]	= settr(77,0,17,1,0,"break", 0, 2, 0);
-	trans[5][17]	= settr(78,0,18,1,0,"(1)", 0, 2, 0);
-	trans[5][18]	= settr(79,0,0,14,14,"-end-", 0, 3500, 0);
+	trans[5][12]	= settr(65,0,14,1,0,"(1)", 0, 2, 0);
+	trans[5][13]	= settr(66,0,14,1,0,"goto T0_S2", 0, 2, 0);
+	trans[5][16]	= settr(69,0,17,1,0,"break", 0, 2, 0);
+	trans[5][17]	= settr(70,0,18,1,0,"(1)", 0, 2, 0);
+	trans[5][18]	= settr(71,0,0,14,14,"-end-", 0, 3500, 0);
 
 	/* proctype 4: singleBallForever */
 
 	trans[4] = (Trans **) emalloc(14*sizeof(Trans *));
 
-	trans[4][6]	= settr(54,0,5,1,0,".(goto)", 0, 2, 0);
-	T = trans[4][5] = settr(53,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(53,0,1,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(53,0,3,0,0,"DO", 0, 2, 0);
-	trans[4][1]	= settr(49,0,10,15,0,"(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))", 1, 2, 0);
-	trans[4][2]	= settr(50,0,10,1,0,"goto accept_S9", 0, 2, 0);
-	trans[4][3]	= settr(51,0,5,1,0,"(1)", 0, 2, 0);
-	trans[4][4]	= settr(52,0,5,1,0,"goto T0_init", 0, 2, 0);
-	trans[4][7]	= settr(55,0,10,1,0,"break", 0, 2, 0);
-	trans[4][11]	= settr(59,0,10,1,0,".(goto)", 0, 2, 0);
-	T = trans[4][10] = settr(58,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(58,0,8,0,0,"DO", 0, 2, 0);
-	trans[4][8]	= settr(56,0,5,1,0,"(1)", 0, 2, 0);
-	trans[4][9]	= settr(57,0,5,1,0,"goto T0_init", 0, 2, 0);
-	trans[4][12]	= settr(60,0,13,1,0,"break", 0, 2, 0);
-	trans[4][13]	= settr(61,0,0,16,16,"-end-", 0, 3500, 0);
+	trans[4][6]	= settr(46,0,5,1,0,".(goto)", 0, 2, 0);
+	T = trans[4][5] = settr(45,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(45,0,1,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(45,0,3,0,0,"DO", 0, 2, 0);
+	trans[4][1]	= settr(41,0,10,15,0,"((!(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0)))&&!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))))", 1, 2, 0);
+	trans[4][2]	= settr(42,0,10,1,0,"goto accept_S4", 0, 2, 0);
+	trans[4][3]	= settr(43,0,5,1,0,"(1)", 0, 2, 0);
+	trans[4][4]	= settr(44,0,5,1,0,"goto T0_init", 0, 2, 0);
+	trans[4][7]	= settr(47,0,10,1,0,"break", 0, 2, 0);
+	trans[4][11]	= settr(51,0,10,1,0,".(goto)", 0, 2, 0);
+	T = trans[4][10] = settr(50,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(50,0,8,0,0,"DO", 0, 2, 0);
+	trans[4][8]	= settr(48,0,10,16,0,"(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))", 1, 2, 0);
+	trans[4][9]	= settr(49,0,10,1,0,"goto accept_S4", 0, 2, 0);
+	trans[4][12]	= settr(52,0,13,1,0,"break", 0, 2, 0);
+	trans[4][13]	= settr(53,0,0,17,17,"-end-", 0, 3500, 0);
 
 	/* proctype 3: :init: */
 
 	trans[3] = (Trans **) emalloc(5*sizeof(Trans *));
 
-	trans[3][1]	= settr(45,0,2,17,17,"(run Referee())", 0, 2, 0);
-	trans[3][2]	= settr(46,0,3,18,18,"(run Player1())", 0, 2, 0);
-	trans[3][3]	= settr(47,0,4,19,19,"(run Player2())", 0, 2, 0);
-	trans[3][4]	= settr(48,0,0,20,20,"-end-", 0, 3500, 0);
+	trans[3][1]	= settr(37,0,2,18,18,"(run Referee())", 0, 2, 0);
+	trans[3][2]	= settr(38,0,3,19,19,"(run Player1())", 0, 2, 0);
+	trans[3][3]	= settr(39,0,4,20,20,"(run Player2())", 0, 2, 0);
+	trans[3][4]	= settr(40,0,0,21,21,"-end-", 0, 3500, 0);
 
 	/* proctype 2: Player2 */
 
-	trans[2] = (Trans **) emalloc(22*sizeof(Trans *));
+	trans[2] = (Trans **) emalloc(18*sizeof(Trans *));
 
-	trans[2][1]	= settr(24,0,18,21,0,"printf('hi I am player 2')", 0, 2, 0);
-	trans[2][19]	= settr(42,0,18,1,0,".(goto)", 0, 2, 0);
-	T = trans[2][18] = settr(41,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(41,0,12,0,0,"DO", 0, 2, 0);
-	T = trans[2][12] = settr(35,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(35,0,2,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(35,0,7,0,0,"IF", 0, 2, 0);
-	trans[2][2]	= settr(25,0,5,22,0,"(chRefToPs?[BALL])", 1, 2, 0);
-/*->*/	trans[2][5]	= settr(28,32,6,23,23,"D_STEP80", 1, 505, 0);
-	trans[2][6]	= settr(29,0,17,24,24,"printf('P2 receives ball from ref')", 0, 2, 0); /* m: 14 -> 0,17 */
-	reached2[14] = 1;
-	trans[2][13]	= settr(36,0,14,1,0,".(goto)", 0, 2, 0); /* m: 14 -> 0,17 */
-	reached2[14] = 1;
-	trans[2][7]	= settr(30,0,10,25,0,"(chP1ToP2?[BALL])", 1, 2, 0);
-/*->*/	trans[2][10]	= settr(33,32,11,26,26,"D_STEP86", 1, 503, 0);
-	trans[2][11]	= settr(34,0,17,27,27,"printf('P2 receives ball from ref')", 0, 2, 0); /* m: 14 -> 0,17 */
-	reached2[14] = 1;
-	trans[2][14]	= settr(37,0,17,28,28,"printf('P2 receives from P1, send ball ... P2 -> P1')", 0, 2, 0);
-/*->*/	trans[2][17]	= settr(40,32,18,29,29,"D_STEP95", 1, 4, 0);
-	trans[2][20]	= settr(43,0,21,1,0,"break", 0, 2, 0);
-	trans[2][21]	= settr(44,0,0,30,30,"-end-", 0, 3500, 0);
+	trans[2][1]	= settr(20,0,14,22,0,"printf('hi I am player 2')", 0, 2, 0);
+	trans[2][15]	= settr(34,0,14,1,0,".(goto)", 0, 2, 0);
+	T = trans[2][14] = settr(33,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(33,0,8,0,0,"DO", 0, 2, 0);
+	T = trans[2][8] = settr(27,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(27,0,2,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(27,0,5,0,0,"IF", 0, 2, 0);
+	trans[2][2]	= settr(21,0,3,23,23,"chRefToPs?BALL", 1, 505, 0);
+	trans[2][3]	= settr(22,0,4,24,24,"pActiveBalls[1] = 1", 1, 2, 0);
+	trans[2][4]	= settr(23,0,13,25,25,"printf('P2 receives ball from ref')", 0, 2, 0); /* m: 10 -> 0,13 */
+	reached2[10] = 1;
+	trans[2][9]	= settr(28,0,10,1,0,".(goto)", 0, 2, 0); /* m: 10 -> 0,13 */
+	reached2[10] = 1;
+	trans[2][5]	= settr(24,0,6,26,26,"chP1ToP2?BALL", 1, 503, 0);
+	trans[2][6]	= settr(25,0,7,27,27,"pActiveBalls[1] = 1", 1, 2, 0);
+	trans[2][7]	= settr(26,0,13,28,28,"printf('P2 receives ball from P1')", 0, 2, 0); /* m: 10 -> 0,13 */
+	reached2[10] = 1;
+	trans[2][10]	= settr(29,0,13,29,29,"printf('P2 receives from P1, send ball ... P2 -> P1')", 0, 2, 0);
+/*->*/	trans[2][13]	= settr(32,32,14,30,30,"D_STEP83", 1, 4, 0);
+	trans[2][16]	= settr(35,0,17,1,0,"break", 0, 2, 0);
+	trans[2][17]	= settr(36,0,0,31,31,"-end-", 0, 3500, 0);
 
 	/* proctype 1: Player1 */
 
-	trans[1] = (Trans **) emalloc(23*sizeof(Trans *));
+	trans[1] = (Trans **) emalloc(19*sizeof(Trans *));
 
-	trans[1][1]	= settr(2,0,19,31,0,"printf('hi I am player 1')", 0, 2, 0);
-	trans[1][20]	= settr(21,0,19,1,0,".(goto)", 0, 2, 0);
-	T = trans[1][19] = settr(20,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(20,0,12,0,0,"DO", 0, 2, 0);
-	T = trans[1][12] = settr(13,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(13,0,2,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(13,0,7,0,0,"IF", 0, 2, 0);
-	trans[1][2]	= settr(3,0,5,32,0,"(chRefToPs?[BALL])", 1, 2, 0);
-/*->*/	trans[1][5]	= settr(6,32,6,33,33,"D_STEP48", 1, 505, 0);
-	trans[1][6]	= settr(7,0,14,34,34,"printf('P1 receives ball from ref')", 0, 2, 0);
-	trans[1][13]	= settr(14,0,14,1,0,".(goto)", 0, 2, 0);
-	trans[1][7]	= settr(8,0,10,35,0,"(chP2ToP1?[BALL])", 1, 2, 0);
-/*->*/	trans[1][10]	= settr(11,32,11,36,36,"D_STEP54", 1, 504, 0);
-	trans[1][11]	= settr(12,0,14,37,37,"printf('P1 receives from P2')", 0, 2, 0);
-	trans[1][14]	= settr(15,0,15,38,0,"printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))", 1, 2, 0);
-	trans[1][15]	= settr(16,0,18,39,0,"printf('P1 receives from P2, send ball ... P1 -> P2')", 0, 2, 0);
-/*->*/	trans[1][18]	= settr(19,32,19,40,40,"D_STEP63", 1, 3, 0);
-	trans[1][21]	= settr(22,0,22,1,0,"break", 0, 2, 0);
-	trans[1][22]	= settr(23,0,0,41,41,"-end-", 0, 3500, 0);
+	trans[1][1]	= settr(2,0,15,32,0,"printf('hi I am player 1')", 0, 2, 0);
+	trans[1][16]	= settr(17,0,15,1,0,".(goto)", 0, 2, 0);
+	T = trans[1][15] = settr(16,0,0,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(16,0,8,0,0,"DO", 0, 2, 0);
+	T = trans[1][8] = settr(9,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(9,0,2,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(9,0,5,0,0,"IF", 0, 2, 0);
+	trans[1][2]	= settr(3,0,3,33,33,"chRefToPs?BALL", 1, 505, 0);
+	trans[1][3]	= settr(4,0,4,34,34,"pActiveBalls[0] = 1", 1, 2, 0);
+	trans[1][4]	= settr(5,0,10,35,0,"printf('P1 receives ball from ref')", 0, 2, 0);
+	trans[1][9]	= settr(10,0,10,1,0,".(goto)", 0, 2, 0);
+	trans[1][5]	= settr(6,0,6,36,36,"chP2ToP1?BALL", 1, 504, 0);
+	trans[1][6]	= settr(7,0,7,37,37,"pActiveBalls[0] = 1", 1, 2, 0);
+	trans[1][7]	= settr(8,0,10,38,0,"printf('P1 receives from P2')", 0, 2, 0);
+	trans[1][10]	= settr(11,0,11,39,0,"printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))", 1, 2, 0);
+	trans[1][11]	= settr(12,0,14,40,0,"printf('P1 receives from P2, send ball ... P1 -> P2')", 0, 2, 0);
+/*->*/	trans[1][14]	= settr(15,32,15,41,41,"D_STEP57", 1, 3, 0);
+	trans[1][17]	= settr(18,0,18,1,0,"break", 0, 2, 0);
+	trans[1][18]	= settr(19,0,0,42,42,"-end-", 0, 3500, 0);
 
 	/* proctype 0: Referee */
 
 	trans[0] = (Trans **) emalloc(3*sizeof(Trans *));
 
-	trans[0][1]	= settr(0,0,2,42,42,"chRefToPs!BALL", 1, 5, 0);
-	trans[0][2]	= settr(1,0,0,43,43,"-end-", 0, 3500, 0);
+	trans[0][1]	= settr(0,0,2,43,43,"chRefToPs!BALL", 1, 5, 0);
+	trans[0][2]	= settr(1,0,0,44,44,"-end-", 0, 3500, 0);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(3*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);

@@ -1,161 +1,59 @@
 ltl singleBallForever: <> ([] (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))
-starting claim 4
+ltl initiallyNoBallsMustNotFailForCredit: (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0)) && ([] (1))
+ltl allBallsCannotBeConstantMustNotFailForCredit: (((! ([] (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==0)))) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1))))) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==2))))) && ([] (1))
 using statement merging
-MSC: ~G line 3
-  1:	proc  - (singleBallForever:1) _spin_nvr.tmp:3 (state 1)	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-		queue 1 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
+Starting Referee with pid 1
+  1:	proc  0 (:init::1) PingPong.pml:103 (state 1)	[(run Referee())]
 
-Never claim moves to line 3	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-Starting Referee with pid 2
-  2:	proc  0 (:init::1) PingPong.pml:96 (state 1)	[(run Referee())]
+Starting Player1 with pid 2
+  2:	proc  0 (:init::1) PingPong.pml:104 (state 2)	[(run Player1())]
 
-MSC: ~G line 8
-  3:	proc  - (singleBallForever:1) _spin_nvr.tmp:8 (state 8)	[(1)]
+hi I am player 1  3:	proc  2 (Player1:1) PingPong.pml:40 (state 1)	[printf('hi I am player 1')]
 
-Never claim moves to line 8	[(1)]
-Starting Player1 with pid 3
-  4:	proc  0 (:init::1) PingPong.pml:97 (state 2)	[(run Player1())]
+Starting Player2 with pid 3
+  4:	proc  0 (:init::1) PingPong.pml:105 (state 3)	[(run Player2())]
 
-MSC: ~G line 3
-  5:	proc  - (singleBallForever:1) _spin_nvr.tmp:3 (state 1)	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
+hi I am player 2  5:	proc  3 (Player2:1) PingPong.pml:73 (state 1)	[printf('hi I am player 2')]
 
-Never claim moves to line 3	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-hi I am player 1  6:	proc  2 (Player1:1) PingPong.pml:45 (state 1)	[printf('hi I am player 1')]
+  6:	proc  1 (Referee:1) PingPong.pml:35 (state -)	[values: 1!BALL]
+  6:	proc  1 (Referee:1) PingPong.pml:35 (state 1)	[chRefToPs!BALL]
+		queue 1 (chRefToPs): [BALL]
 
-MSC: ~G line 8
-  7:	proc  - (singleBallForever:1) _spin_nvr.tmp:8 (state 8)	[(1)]
+  7:	proc  3 (Player2:1) PingPong.pml:79 (state 2)	[(nempty(chRefToPs))]
 
-Never claim moves to line 8	[(1)]
-Starting Player2 with pid 4
-  8:	proc  0 (:init::1) PingPong.pml:98 (state 3)	[(run Player2())]
+  8:	proc  2 (Player1:1) PingPong.pml:47 (state 2)	[(nempty(chRefToPs))]
 
-MSC: ~G line 3
-  9:	proc  - (singleBallForever:1) _spin_nvr.tmp:3 (state 1)	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
+  9:	proc  3 (Player2:1) PingPong.pml:81 (state -)	[values: 1?BALL]
+  9:	proc  3 (Player2:1) PingPong.pml:80 (state 5)	[chRefToPs?BALL]
+		queue 1 (chRefToPs): 
 
-Never claim moves to line 3	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-hi I am player 2 10:	proc  3 (Player2:1) PingPong.pml:72 (state 1)	[printf('hi I am player 2')]
-
-MSC: ~G line 8
- 11:	proc  - (singleBallForever:1) _spin_nvr.tmp:8 (state 8)	[(1)]
-
-Never claim moves to line 8	[(1)]
- 12:	proc  1 (Referee:1) PingPong.pml:35 (state -)	[values: 3!BALL]
- 12:	proc  1 (Referee:1) PingPong.pml:35 (state 1)	[chRefToPs!BALL]
-		queue 3 (chRefToPs): [BALL]
-
-MSC: ~G line 3
- 13:	proc  - (singleBallForever:1) _spin_nvr.tmp:3 (state 1)	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-
-Never claim moves to line 3	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
- 14:	proc  3 (Player2:1) PingPong.pml:78 (state -)	[values: 3?BALL]
- 14:	proc  3 (Player2:1) PingPong.pml:78 (state 2)	[chRefToPs?BALL]
-		queue 3 (chRefToPs): 
-
-MSC: ~G line 8
- 15:	proc  - (singleBallForever:1) _spin_nvr.tmp:8 (state 8)	[(1)]
-
-Never claim moves to line 8	[(1)]
- 16:	proc  3 (Player2:1) PingPong.pml:79 (state 3)	[pActiveBalls[1] = 1]
+  9:	proc  3 (Player2:1) PingPong.pml:82 (state 4)	[pActiveBalls[1] = 1]
+		queue 1 (chRefToPs): 
 		pActiveBalls[0] = 0
 		pActiveBalls[1] = 1
 
-MSC: ~G line 4
- 17:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
+P2 receives ball from ref 10:	proc  3 (Player2:1) PingPong.pml:84 (state 6)	[printf('P2 receives ball from ref')]	<merge 17 now @14>
 
-Never claim moves to line 4	[(1)]
-P2 receives ball from ref 18:	proc  3 (Player2:1) PingPong.pml:80 (state 4)	[printf('P2 receives ball from ref')]	<merge 13 now @10>
+P2 receives from P1, send ball ... P2 -> P1 10:	proc  3 (Player2:1) PingPong.pml:94 (state 14)	[printf('P2 receives from P1, send ball ... P2 -> P1')]	<merge 17 now @17>
 
-P2 receives from P1, send ball ... P2 -> P1 18:	proc  3 (Player2:1) PingPong.pml:87 (state 10)	[printf('P2 receives from P1, send ball ... P2 -> P1')]	<merge 13 now @13>
-
-<<<<<START OF CYCLE>>>>>
- 19:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
-
- 20:	proc  3 (Player2:1) PingPong.pml:89 (state -)	[values: 2!BALL]
- 20:	proc  3 (Player2:1) PingPong.pml:88 (state 13)	[chP2ToP1!BALL]
+ 11:	proc  3 (Player2:1) PingPong.pml:96 (state -)	[values: 2!BALL]
+ 11:	proc  3 (Player2:1) PingPong.pml:95 (state 17)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
 
- 20:	proc  3 (Player2:1) PingPong.pml:90 (state 12)	[pActiveBalls[1] = 0]
+ 11:	proc  3 (Player2:1) PingPong.pml:97 (state 16)	[pActiveBalls[1] = 0]
 		queue 2 (chP2ToP1): [BALL]
 		pActiveBalls[0] = 0
 		pActiveBalls[1] = 0
 
- 21:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
-
- 22:	proc  2 (Player1:1) PingPong.pml:55 (state -)	[values: 2?BALL]
- 22:	proc  2 (Player1:1) PingPong.pml:55 (state 5)	[chP2ToP1?BALL]
-		queue 2 (chP2ToP1): 
-
-MSC: ~G line 3
- 23:	proc  - (singleBallForever:1) _spin_nvr.tmp:3 (state 1)	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-
-Never claim moves to line 3	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
- 24:	proc  2 (Player1:1) PingPong.pml:56 (state 6)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
-
-MSC: ~G line 8
- 25:	proc  - (singleBallForever:1) _spin_nvr.tmp:8 (state 8)	[(1)]
-
-Never claim moves to line 8	[(1)]
-P1 receives from P2 26:	proc  2 (Player1:1) PingPong.pml:57 (state 7)	[printf('P1 receives from P2')]
-
-MSC: ~G line 4
- 27:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
-
-Never claim moves to line 4	[(1)]
-balls 1 
- 28:	proc  2 (Player1:1) PingPong.pml:59 (state 10)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
-
- 29:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
-
-P1 receives from P2, send ball ... P1 -> P2 30:	proc  2 (Player1:1) PingPong.pml:61 (state 11)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
-
- 31:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
-
- 32:	proc  2 (Player1:1) PingPong.pml:63 (state -)	[values: 1!BALL]
- 32:	proc  2 (Player1:1) PingPong.pml:62 (state 14)	[chP1ToP2!BALL]
-		queue 1 (chP1ToP2): [BALL]
-
- 32:	proc  2 (Player1:1) PingPong.pml:64 (state 13)	[pActiveBalls[0] = 0]
-		queue 1 (chP1ToP2): [BALL]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
- 33:	proc  - (singleBallForever:1) _spin_nvr.tmp:4 (state 3)	[(1)]
-
- 34:	proc  3 (Player2:1) PingPong.pml:81 (state -)	[values: 1?BALL]
- 34:	proc  3 (Player2:1) PingPong.pml:81 (state 5)	[chP1ToP2?BALL]
-		queue 1 (chP1ToP2): 
-
-MSC: ~G line 3
- 35:	proc  - (singleBallForever:1) _spin_nvr.tmp:3 (state 1)	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
-
-Never claim moves to line 3	[(!(((((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1])==1)))]
- 36:	proc  3 (Player2:1) PingPong.pml:82 (state 6)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
-
-MSC: ~G line 8
- 37:	proc  - (singleBallForever:1) _spin_nvr.tmp:8 (state 8)	[(1)]
-
-Never claim moves to line 8	[(1)]
-P2 receives ball from ref 38:	proc  3 (Player2:1) PingPong.pml:83 (state 7)	[printf('P2 receives ball from ref')]	<merge 13 now @10>
-
-P2 receives from P1, send ball ... P2 -> P1 38:	proc  3 (Player2:1) PingPong.pml:87 (state 10)	[printf('P2 receives from P1, send ball ... P2 -> P1')]	<merge 13 now @13>
-
-spin: trail ends after 38 steps
+spin: trail ends after 11 steps
 #processes: 4
-		queue 1 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 3 (chRefToPs): 
+		queue 2 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
 		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
- 38:	proc  3 (Player2:1) PingPong.pml:88 (state 13)
- 38:	proc  2 (Player1:1) PingPong.pml:47 (state 15)
- 38:	proc  1 (Referee:1) PingPong.pml:36 (state 2)
- 38:	proc  0 (:init::1) PingPong.pml:100 (state 4)
-MSC: ~G line 2
- 38:	proc  - (singleBallForever:1) _spin_nvr.tmp:2 (state 5)
+		pActiveBalls[1] = 0
+ 11:	proc  3 (Player2:1) PingPong.pml:75 (state 18)
+ 11:	proc  2 (Player1:1) PingPong.pml:48 (state 5)
+ 11:	proc  1 (Referee:1) PingPong.pml:36 (state 2)
+ 11:	proc  0 (:init::1) PingPong.pml:107 (state 4)
 4 processes created
 Exit-Status 0
