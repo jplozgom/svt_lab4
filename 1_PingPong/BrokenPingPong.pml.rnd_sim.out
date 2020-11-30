@@ -1,601 +1,965 @@
+spin: BrokenPingPong.pml:35, redundant skip
+spin: BrokenPingPong.pml:36, redundant skip
   0:	proc  - (:root:) creates proc  0 (:init:)
-spin: BrokenPingPong.pml:0, warning, global, 'int   pActiveBalls' variable is never used (other than in print stmnts)
+ltl alwaysAtMostOneBall: [] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)<=1))
+ltl sanityCheckForAllBallsMustNotFailForCredit: (((! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0)))) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==1))))) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==2))))) && ([] (1))
 Starting Referee with pid 1
   1:	proc  0 (:init::1) creates proc  1 (Referee)
-  1:	proc  0 (:init::1) BrokenPingPong.pml:100 (state 1)	[(run Referee())]
+  1:	proc  0 (:init::1) BrokenPingPong.pml:110 (state 1)	[(run Referee())]
 
 Starting Player1 with pid 2
   2:	proc  0 (:init::1) creates proc  2 (Player1)
-  2:	proc  0 (:init::1) BrokenPingPong.pml:101 (state 2)	[(run Player1())]
+  2:	proc  0 (:init::1) BrokenPingPong.pml:111 (state 2)	[(run Player1())]
 
 Starting Player2 with pid 3
   3:	proc  0 (:init::1) creates proc  3 (Player2)
-  3:	proc  0 (:init::1) BrokenPingPong.pml:102 (state 3)	[(run Player2())]
+  3:	proc  0 (:init::1) BrokenPingPong.pml:112 (state 3)	[(run Player2())]
 
-hi I am player 2  4:	proc  3 (Player2:1) BrokenPingPong.pml:74 (state 1)	[printf('hi I am player 2')]
+hi I am player 2  4:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 1)	[printf('hi I am player 2')]
 
-  5:	proc  3 (Player2:1) BrokenPingPong.pml:95 (state 17)	[.(goto)]
+  5:	proc  3 (Player2:1) BrokenPingPong.pml:105 (state 17)	[.(goto)]
 
-hi I am player 1  6:	proc  2 (Player1:1) BrokenPingPong.pml:47 (state 1)	[printf('hi I am player 1')]
-
-  7:	proc  1 (Referee:1) BrokenPingPong.pml:31 (state -)	[values: 1!BALL]
-  7:	proc  1 (Referee:1) BrokenPingPong.pml:31 (state 1)	[chRefToPs!BALL]
+  6:	proc  1 (Referee:1) BrokenPingPong.pml:31 (state -)	[values: 1!BALL]
+  6:	proc  1 (Referee:1) BrokenPingPong.pml:31 (state 1)	[chRefToPs!BALL]
 		queue 1 (chRefToPs): [BALL]
 
-  8:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state -)	[values: 1?BALL]
-  8:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state 2)	[chRefToPs?BALL]
-		queue 1 (chRefToPs): 
-  9:	proc  3 (Player2:1) BrokenPingPong.pml:81 (state 3)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
+hi I am player 1  7:	proc  2 (Player1:1) BrokenPingPong.pml:53 (state 1)	[printf('hi I am player 1')]
 
-P2 receives ball from ref 10:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 5)	[printf('P2 receives ball from ref')]
+  8:	proc  2 (Player1:1) BrokenPingPong.pml:79 (state 18)	[.(goto)]
 
- 11:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 18)	[.(goto)]
-
- 12:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
- 13:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-
-P2 receives from P1, send ball ... P2 -> P1 14:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-		queue 3 (chP1ToP2): 
+  9:	proc  2 (Player1:1) BrokenPingPong.pml:60 (state -)	[values: 1?BALL]
+  9:	proc  2 (Player1:1) BrokenPingPong.pml:60 (state 2)	[chRefToPs?BALL]
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
+ 10:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 3)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives ball from ref 11:	proc  2 (Player1:1) BrokenPingPong.pml:62 (state 4)	[printf('P1 receives ball from ref')]
 
- 15:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
- 15:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
+ 12:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+ 13:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+
+balls 1 
+ 14:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+		queue 3 (chP1ToP2): 
+
+ 15:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 16:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+P1 receives from P2, send ball ... P1 -> P2 17:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+ 18:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+ 19:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+ 19:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+ 20:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 21:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+ 21:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+ 22:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1 23:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+P2 receives from P1, send ball ... P2 -> P1 24:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+
+ 25:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+ 25:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
- 16:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+ 26:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
- 17:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state -)	[values: 2?BALL]
- 17:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state 6)	[chP2ToP1?BALL]
+ 27:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+ 27:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+ 28:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2 29:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 1 
+ 30:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+P1 receives from P2, send ball ... P1 -> P2 31:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+ 32:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+
+ 33:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+ 34:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 35:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+ 36:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+ 36:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+		queue 1 (chRefToPs): 
+ 37:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 38:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+ 38:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+ 39:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1 40:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+ 41:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+
+ 42:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+ 43:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+P2 receives from P1, send ball ... P2 -> P1 44:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 45:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+ 45:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+ 46:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 47:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+ 47:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
- 18:	proc  2 (Player1:1) BrokenPingPong.pml:58 (state 7)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
+ 48:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2 49:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
 
-P1 receives from P2 19:	proc  2 (Player1:1) BrokenPingPong.pml:59 (state 9)	[printf('P1 receives from P2')]
+ 50:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+balls 1 
+ 51:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+P1 receives from P2, send ball ... P1 -> P2 52:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 53:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+ 53:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+ 54:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 55:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+
+ 56:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+ 57:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+ 58:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+ 58:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+ 59:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1 60:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+P2 receives from P1, send ball ... P2 -> P1 61:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+
+ 62:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+ 62:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+ 63:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 64:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+ 65:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+ 65:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+ 66:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2 67:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 1 
+ 68:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+P1 receives from P2, send ball ... P1 -> P2 69:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+ 70:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+ 70:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+ 71:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 72:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+ 72:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+ 73:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1 74:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+P2 receives from P1, send ball ... P2 -> P1 75:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+
+ 76:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+ 76:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+ 77:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 78:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+ 78:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+ 79:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2 80:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+ 81:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 2 (chP2ToP1): 
+
+ 82:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 83:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+balls 1 
+ 84:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+ 85:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+P1 receives from P2, send ball ... P1 -> P2 86:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 87:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
 
- 20:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
+ 88:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+ 88:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+ 89:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 90:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+ 90:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+ 91:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1 92:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+P2 receives from P1, send ball ... P2 -> P1 93:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+ 94:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+ 94:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+ 95:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+ 96:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+ 97:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+ 98:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+ 98:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 3 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+ 99:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2100:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+101:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+102:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
 
 balls 1 
- 21:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
-		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): 
+103:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
 
-P1 receives from P2, send ball ... P1 -> P2 22:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+P1 receives from P2, send ball ... P1 -> P2104:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
 
- 23:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
- 23:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
+105:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+
+106:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+106:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
 		queue 3 (chP1ToP2): [BALL]
 		queue 1 (chRefToPs): 
- 24:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+107:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
- 25:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state -)	[values: 3?BALL]
- 25:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[chP1ToP2?BALL]
+108:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+109:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+110:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+110:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
 		queue 3 (chP1ToP2): 
+111:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1112:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
 
- 26:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state -)	[values: 1!BALL]
- 26:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 3)	[chRefToPs!BALL]
-		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): [BALL]
+P2 receives from P1, send ball ... P2 -> P1113:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
 
- 27:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
-
- 28:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state -)	[values: 1?BALL]
- 28:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state 2)	[chRefToPs?BALL]
+114:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
 		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 29:	proc  2 (Player1:1) BrokenPingPong.pml:55 (state 3)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
 
-P1 receives ball from ref 30:	proc  2 (Player1:1) BrokenPingPong.pml:56 (state 5)	[printf('P1 receives ball from ref')]
-
- 31:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
-		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): 
-
- 32:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
-balls 1 
- 33:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
-P1 receives from P2, send ball ... P1 -> P2 34:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
- 35:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
- 35:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
-		queue 3 (chP1ToP2): [BALL]
- 36:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
- 37:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state -)	[values: 3?BALL]
- 37:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state 6)	[chP1ToP2?BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 38:	proc  3 (Player2:1) BrokenPingPong.pml:84 (state 7)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
-
-P2 receives ball from P1 39:	proc  3 (Player2:1) BrokenPingPong.pml:85 (state 9)	[printf('P2 receives ball from P1')]
-
- 40:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-
-P2 receives from P1, send ball ... P2 -> P1 41:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-
- 42:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
- 42:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
-		queue 3 (chP1ToP2): 
+115:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+115:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
 		queue 1 (chRefToPs): 
- 43:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+116:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
- 44:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 2?BALL]
- 44:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 4)	[chP2ToP1?BALL]
+117:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+117:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+118:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2119:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 1 
+120:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
 		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+121:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+122:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+123:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+124:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+
+P1 receives from P2, send ball ... P1 -> P2125:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+126:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+
+127:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+128:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+129:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+129:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+		queue 1 (chRefToPs): 
+130:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+131:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 2 (chP2ToP1): 
+
+132:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
 
- 45:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state -)	[values: 1!BALL]
- 45:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state 5)	[chRefToPs!BALL]
+133:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+133:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
 		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): [BALL]
-
- 46:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state -)	[values: 1?BALL]
- 46:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state 2)	[chRefToPs?BALL]
+		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
- 47:	proc  3 (Player2:1) BrokenPingPong.pml:81 (state 3)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
+134:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1135:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
 
- 48:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
+136:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
 
-P2 receives ball from ref 49:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 5)	[printf('P2 receives ball from ref')]
+137:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
 
- 50:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
+138:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
 
-P2 receives from P1, send ball ... P2 -> P1 51:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+P2 receives from P1, send ball ... P2 -> P1139:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
 
- 52:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
- 52:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
+140:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+140:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
- 53:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+141:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
- 54:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state -)	[values: 2?BALL]
- 54:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state 6)	[chP2ToP1?BALL]
+142:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+142:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
- 55:	proc  2 (Player1:1) BrokenPingPong.pml:58 (state 7)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
-
-P1 receives from P2 56:	proc  2 (Player1:1) BrokenPingPong.pml:59 (state 9)	[printf('P1 receives from P2')]
-
- 57:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
- 58:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
+143:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2144:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
 
 balls 1 
- 59:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
+145:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
 		queue 3 (chP1ToP2): 
 		queue 1 (chRefToPs): 
 
-P1 receives from P2, send ball ... P1 -> P2 60:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+146:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+147:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+148:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+149:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
 
- 61:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
- 61:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
+P1 receives from P2, send ball ... P1 -> P2150:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+151:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+
+152:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+152:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
 		queue 3 (chP1ToP2): [BALL]
- 62:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+153:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
- 63:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state -)	[values: 3?BALL]
- 63:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[chP1ToP2?BALL]
+154:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+154:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
 		queue 3 (chP1ToP2): 
+155:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1156:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
 
- 64:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state -)	[values: 1!BALL]
- 64:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 3)	[chRefToPs!BALL]
-		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): [BALL]
+157:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
 
- 65:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
+158:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
 
- 66:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
+P2 receives from P1, send ball ... P2 -> P1159:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
 
- 67:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state -)	[values: 1?BALL]
- 67:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state 2)	[chRefToPs?BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 68:	proc  3 (Player2:1) BrokenPingPong.pml:81 (state 3)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
-
-P2 receives ball from ref 69:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 5)	[printf('P2 receives ball from ref')]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
- 70:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
-P2 receives from P1, send ball ... P2 -> P1 71:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
- 72:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
- 72:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
-		queue 2 (chP2ToP1): [BALL]
- 73:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
- 74:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state -)	[values: 2?BALL]
- 74:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state 6)	[chP2ToP1?BALL]
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 75:	proc  2 (Player1:1) BrokenPingPong.pml:58 (state 7)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
-
-P1 receives from P2 76:	proc  2 (Player1:1) BrokenPingPong.pml:59 (state 9)	[printf('P1 receives from P2')]
-
- 77:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
-
-balls 1 
- 78:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
-P1 receives from P2, send ball ... P1 -> P2 79:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
-
- 80:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
- 80:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
-		queue 3 (chP1ToP2): [BALL]
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 81:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
- 82:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state -)	[values: 3?BALL]
- 82:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[chP1ToP2?BALL]
-		queue 3 (chP1ToP2): 
-
- 83:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state -)	[values: 1!BALL]
- 83:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 3)	[chRefToPs!BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): [BALL]
-
- 84:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state -)	[values: 1?BALL]
- 84:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state 2)	[chRefToPs?BALL]
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 85:	proc  2 (Player1:1) BrokenPingPong.pml:55 (state 3)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
-
- 86:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
-
-P1 receives ball from ref 87:	proc  2 (Player1:1) BrokenPingPong.pml:56 (state 5)	[printf('P1 receives ball from ref')]
-
- 88:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
-
-balls 1 
- 89:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
-
- 90:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
-P1 receives from P2, send ball ... P1 -> P2 91:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
- 92:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
- 92:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
-		queue 3 (chP1ToP2): [BALL]
-		queue 1 (chRefToPs): 
- 93:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
- 94:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state -)	[values: 3?BALL]
- 94:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[chP1ToP2?BALL]
-		queue 3 (chP1ToP2): 
-
- 95:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state -)	[values: 1!BALL]
- 95:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 3)	[chRefToPs!BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): [BALL]
-
- 96:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state -)	[values: 1?BALL]
- 96:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state 2)	[chRefToPs?BALL]
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
- 97:	proc  2 (Player1:1) BrokenPingPong.pml:55 (state 3)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
-
-P1 receives ball from ref 98:	proc  2 (Player1:1) BrokenPingPong.pml:56 (state 5)	[printf('P1 receives ball from ref')]
-
- 99:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
-
-100:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
-
-balls 1 
-101:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
-		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): 
-
-P1 receives from P2, send ball ... P1 -> P2102:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
-
-103:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
-103:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
-		queue 3 (chP1ToP2): [BALL]
-104:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
-105:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state -)	[values: 3?BALL]
-105:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state 6)	[chP1ToP2?BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-106:	proc  3 (Player2:1) BrokenPingPong.pml:84 (state 7)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
-
-P2 receives ball from P1107:	proc  3 (Player2:1) BrokenPingPong.pml:85 (state 9)	[printf('P2 receives ball from P1')]
-
-108:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
-109:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
-P2 receives from P1, send ball ... P2 -> P1110:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-
-111:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
-111:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
+160:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+160:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
 		queue 1 (chRefToPs): 
-112:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+161:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
-113:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state -)	[values: 2?BALL]
-113:	proc  2 (Player1:1) BrokenPingPong.pml:57 (state 6)	[chP2ToP1?BALL]
+162:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+162:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
-114:	proc  2 (Player1:1) BrokenPingPong.pml:58 (state 7)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
+163:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2164:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
 
-P1 receives from P2115:	proc  2 (Player1:1) BrokenPingPong.pml:59 (state 9)	[printf('P1 receives from P2')]
-
-116:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
+165:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
 
 balls 1 
-117:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
+166:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
 
-P1 receives from P2, send ball ... P1 -> P2118:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+167:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
 		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
 
-119:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
-119:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
+168:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+P1 receives from P2, send ball ... P1 -> P2169:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+170:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+171:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 2 (chP2ToP1): 
+
+172:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+172:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
 		queue 3 (chP1ToP2): [BALL]
-120:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+173:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
-121:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state -)	[values: 3?BALL]
-121:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state 6)	[chP1ToP2?BALL]
+174:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+174:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
 		queue 3 (chP1ToP2): 
 		queue 1 (chRefToPs): 
-122:	proc  3 (Player2:1) BrokenPingPong.pml:84 (state 7)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
+175:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1176:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
 
-P2 receives ball from P1123:	proc  3 (Player2:1) BrokenPingPong.pml:85 (state 9)	[printf('P2 receives ball from P1')]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
+177:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
 
-124:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
+178:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
 
-P2 receives from P1, send ball ... P2 -> P1125:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
+P2 receives from P1, send ball ... P2 -> P1179:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
 
-126:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
-126:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
+180:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+180:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
-127:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+181:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
-128:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 2?BALL]
-128:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 4)	[chP2ToP1?BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
+182:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
 
-129:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state -)	[values: 1!BALL]
-129:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state 5)	[chRefToPs!BALL]
-		queue 3 (chP1ToP2): 
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): [BALL]
+183:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
 
-130:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state -)	[values: 1?BALL]
-130:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state 2)	[chRefToPs?BALL]
+184:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
 		queue 3 (chP1ToP2): 
 		queue 1 (chRefToPs): 
-131:	proc  3 (Player2:1) BrokenPingPong.pml:81 (state 3)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
 
-132:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
-
-P2 receives ball from ref133:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 5)	[printf('P2 receives ball from ref')]
-
-134:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-
-P2 receives from P1, send ball ... P2 -> P1135:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-
-136:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
-136:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
-		queue 2 (chP2ToP1): [BALL]
-137:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
-138:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
-139:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 2?BALL]
-139:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 4)	[chP2ToP1?BALL]
-		queue 3 (chP1ToP2): 
+185:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+185:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
 		queue 2 (chP2ToP1): 
 		queue 1 (chRefToPs): 
+186:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2187:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
 
-140:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state -)	[values: 1!BALL]
-140:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state 5)	[chRefToPs!BALL]
-		queue 1 (chRefToPs): [BALL]
-
-141:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state -)	[values: 1?BALL]
-141:	proc  3 (Player2:1) BrokenPingPong.pml:80 (state 2)	[chRefToPs?BALL]
-		queue 3 (chP1ToP2): 
-		queue 1 (chRefToPs): 
-142:	proc  3 (Player2:1) BrokenPingPong.pml:81 (state 3)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
-
-P2 receives ball from ref143:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 5)	[printf('P2 receives ball from ref')]
-
-144:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-
-P2 receives from P1, send ball ... P2 -> P1145:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-
-146:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
-146:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
-		queue 2 (chP2ToP1): [BALL]
-147:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
-148:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
-
-149:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
-
-150:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 2?BALL]
-150:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 4)	[chP2ToP1?BALL]
-		queue 2 (chP2ToP1): 
-
-151:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state -)	[values: 1!BALL]
-151:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state 5)	[chRefToPs!BALL]
-		queue 1 (chRefToPs): [BALL]
-
-152:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state -)	[values: 1?BALL]
-152:	proc  2 (Player1:1) BrokenPingPong.pml:54 (state 2)	[chRefToPs?BALL]
-		queue 2 (chP2ToP1): 
-		queue 1 (chRefToPs): 
-153:	proc  2 (Player1:1) BrokenPingPong.pml:55 (state 3)	[pActiveBalls[0] = 1]
-		pActiveBalls[0] = 1
-		pActiveBalls[1] = 0
-
-P1 receives ball from ref154:	proc  2 (Player1:1) BrokenPingPong.pml:56 (state 5)	[printf('P1 receives ball from ref')]
-
-155:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 7)	[.(goto)]
-
-156:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 11)	[.(goto)]
-
-157:	proc  1 (Referee:1) BrokenPingPong.pml:43 (state 9)	[.(goto)]
+188:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
 
 balls 1 
-158:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 12)	[printf('balls %d \\n',(((len(chP1ToP2)+len(chP2ToP1))+pActiveBalls[0])+pActiveBalls[1]))]
+189:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+190:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+191:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+
+P1 receives from P2, send ball ... P1 -> P2192:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+193:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+193:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+194:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+195:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+195:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+196:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1197:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
 
-P1 receives from P2, send ball ... P1 -> P2159:	proc  2 (Player1:1) BrokenPingPong.pml:63 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+P2 receives from P1, send ball ... P2 -> P1198:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
 
-160:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state -)	[values: 3!BALL]
-160:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 14)	[chP1ToP2!BALL]
-		queue 3 (chP1ToP2): [BALL]
-161:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 15)	[pActiveBalls[0] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
-
-162:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state -)	[values: 3?BALL]
-162:	proc  3 (Player2:1) BrokenPingPong.pml:83 (state 6)	[chP1ToP2?BALL]
-		queue 3 (chP1ToP2): 
-163:	proc  3 (Player2:1) BrokenPingPong.pml:84 (state 7)	[pActiveBalls[1] = 1]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 1
-
-P2 receives ball from P1164:	proc  3 (Player2:1) BrokenPingPong.pml:85 (state 9)	[printf('P2 receives ball from P1')]
-
-165:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 11)	[.(goto)]
-
-P2 receives from P1, send ball ... P2 -> P1166:	proc  3 (Player2:1) BrokenPingPong.pml:89 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
-
-167:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state -)	[values: 2!BALL]
-167:	proc  3 (Player2:1) BrokenPingPong.pml:91 (state 13)	[chP2ToP1!BALL]
-		queue 3 (chP1ToP2): 
+199:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+199:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
 		queue 2 (chP2ToP1): [BALL]
 		queue 1 (chRefToPs): 
-168:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 14)	[pActiveBalls[1] = 0]
-		pActiveBalls[0] = 0
-		pActiveBalls[1] = 0
+200:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
 
-169:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 2?BALL]
-169:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 4)	[chP2ToP1?BALL]
+201:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+202:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+203:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+204:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+204:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+205:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2206:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 1 
+207:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+208:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+P1 receives from P2, send ball ... P1 -> P2209:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+210:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+
+211:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+211:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+		queue 1 (chRefToPs): 
+212:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+213:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+214:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+215:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+215:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+216:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1217:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+218:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+
+P2 receives from P1, send ball ... P2 -> P1219:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+220:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+221:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+222:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+222:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+223:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+224:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+225:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+225:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
 		queue 3 (chP1ToP2): 
 		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+226:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2227:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
 
-170:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state -)	[values: 1!BALL]
+228:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+
+balls 1 
+229:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+P1 receives from P2, send ball ... P1 -> P2230:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+231:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+232:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+232:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+		queue 1 (chRefToPs): 
+233:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+234:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+234:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+235:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P2 receives ball from P1236:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+P2 receives from P1, send ball ... P2 -> P1237:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+
+238:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+239:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+239:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+240:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+241:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+241:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+242:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 1
+P1 receives from P2243:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 1 
+244:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+P1 receives from P2, send ball ... P1 -> P2245:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+246:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+247:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+248:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+249:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+249:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+250:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = 0
+
+251:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+252:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+253:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 3?BALL]
+253:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+254:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state 7)	[ballCount = (ballCount-1)]
+		ballCount = -1
+
+255:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state -)	[values: 1!BALL]
+255:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 9)	[chRefToPs!BALL]
+		queue 1 (chRefToPs): [BALL]
+
+256:	proc  2 (Player1:1) BrokenPingPong.pml:60 (state -)	[values: 1?BALL]
+256:	proc  2 (Player1:1) BrokenPingPong.pml:60 (state 2)	[chRefToPs?BALL]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+257:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 3)	[ballCount = (ballCount+1)]
+		ballCount = 0
+P1 receives ball from ref258:	proc  2 (Player1:1) BrokenPingPong.pml:62 (state 4)	[printf('P1 receives ball from ref')]
+
+259:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+260:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+balls 0 
+261:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+P1 receives from P2, send ball ... P1 -> P2262:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+263:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+263:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+		queue 1 (chRefToPs): 
+264:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = -1
+
+265:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+266:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+267:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+268:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+268:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+269:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 0
+P2 receives ball from P1270:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+271:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+P2 receives from P1, send ball ... P2 -> P1272:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+
+273:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+274:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+
+275:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+275:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+276:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = -1
+
+277:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+277:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 3 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+278:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 0
+P1 receives from P2279:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 0 
+280:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+281:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+282:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+P1 receives from P2, send ball ... P1 -> P2283:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+284:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 2 (chP2ToP1): 
+
+285:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+285:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+286:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = -1
+
+287:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+288:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+288:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+289:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 0
+P2 receives ball from P1290:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+P2 receives from P1, send ball ... P2 -> P1291:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+292:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+292:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+293:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = -1
+
+294:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state -)	[values: 2?BALL]
+294:	proc  2 (Player1:1) BrokenPingPong.pml:64 (state 6)	[chP2ToP1?BALL]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+295:	proc  2 (Player1:1) BrokenPingPong.pml:65 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = 0
+P1 receives from P2296:	proc  2 (Player1:1) BrokenPingPong.pml:66 (state 8)	[printf('P1 receives from P2')]
+
+balls 0 
+297:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+
+P1 receives from P2, send ball ... P1 -> P2298:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+299:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+300:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+300:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+301:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = -1
+
+302:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+303:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state -)	[values: 3?BALL]
+303:	proc  1 (Referee:1) BrokenPingPong.pml:37 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+304:	proc  1 (Referee:1) BrokenPingPong.pml:38 (state 7)	[ballCount = (ballCount-1)]
+		ballCount = -2
+
+305:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state -)	[values: 1!BALL]
+305:	proc  1 (Referee:1) BrokenPingPong.pml:40 (state 9)	[chRefToPs!BALL]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): [BALL]
+
+306:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+307:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+308:	proc  2 (Player1:1) BrokenPingPong.pml:60 (state -)	[values: 1?BALL]
+308:	proc  2 (Player1:1) BrokenPingPong.pml:60 (state 2)	[chRefToPs?BALL]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+309:	proc  2 (Player1:1) BrokenPingPong.pml:61 (state 3)	[ballCount = (ballCount+1)]
+		ballCount = -1
+P1 receives ball from ref310:	proc  2 (Player1:1) BrokenPingPong.pml:62 (state 4)	[printf('P1 receives ball from ref')]
+
+balls -1 
+311:	proc  2 (Player1:1) BrokenPingPong.pml:69 (state 12)	[printf('balls %d \\n',((len(chP1ToP2)+len(chP2ToP1))+ballCount))]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+312:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+313:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+P1 receives from P2, send ball ... P1 -> P2314:	proc  2 (Player1:1) BrokenPingPong.pml:71 (state 13)	[printf('P1 receives from P2, send ball ... P1 -> P2')]
+
+315:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state -)	[values: 3!BALL]
+315:	proc  2 (Player1:1) BrokenPingPong.pml:73 (state 14)	[chP1ToP2!BALL]
+		queue 3 (chP1ToP2): [BALL]
+		queue 1 (chRefToPs): 
+316:	proc  2 (Player1:1) BrokenPingPong.pml:74 (state 15)	[ballCount = (ballCount-1)]
+		ballCount = -2
+
+317:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+
+318:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+
+319:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 4)	[(1)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+320:	proc  1 (Referee:1) BrokenPingPong.pml:36 (state 5)	[(1)]
+
+321:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state -)	[values: 3?BALL]
+321:	proc  3 (Player2:1) BrokenPingPong.pml:92 (state 6)	[chP1ToP2?BALL]
+		queue 3 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+322:	proc  3 (Player2:1) BrokenPingPong.pml:93 (state 7)	[ballCount = (ballCount+1)]
+		ballCount = -1
+P2 receives ball from P1323:	proc  3 (Player2:1) BrokenPingPong.pml:94 (state 8)	[printf('P2 receives ball from P1')]
+
+324:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+325:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+326:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+		queue 2 (chP2ToP1): 
+		queue 1 (chRefToPs): 
+
+P2 receives from P1, send ball ... P2 -> P1327:	proc  3 (Player2:1) BrokenPingPong.pml:99 (state 12)	[printf('P2 receives from P1, send ball ... P2 -> P1')]
+
+328:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state -)	[values: 2!BALL]
+328:	proc  3 (Player2:1) BrokenPingPong.pml:101 (state 13)	[chP2ToP1!BALL]
+		queue 2 (chP2ToP1): [BALL]
+		queue 1 (chRefToPs): 
+329:	proc  3 (Player2:1) BrokenPingPong.pml:102 (state 14)	[ballCount = (ballCount-1)]
+		ballCount = -2
+
+330:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+331:	proc  1 (Referee:1) BrokenPingPong.pml:46 (state 15)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 
+
+332:	proc  1 (Referee:1) BrokenPingPong.pml:49 (state 17)	[.(goto)]
+		queue 3 (chP1ToP2): 
+		queue 1 (chRefToPs): 

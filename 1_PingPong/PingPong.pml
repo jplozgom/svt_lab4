@@ -5,10 +5,10 @@ mtype = { BALL }
 chan chP1ToP2 = [1] of {mtype}
 chan chP2ToP1 = [1] of {mtype}
 chan chRefToPs = [1] of {mtype}
-int pActiveBalls[2];
+int ballCount;
 
-/* macros for the property interface -- needed for reference properties */ 
-#define  allBalls (len(chP1ToP2) + len(chP2ToP1) + pActiveBalls[0] + pActiveBalls[1])
+/* macros for the property interface -- needed for reference properties */
+#define  allBalls (len(chP1ToP2) + len(chP2ToP1) + len(chRefToPs) + ballCount)
 
 
 /* Your LTL properties */
@@ -24,42 +24,44 @@ ltl allBallsCannotBeConstantMustNotFailForCredit { ![](allBalls == 0) && ![](all
 
 /* proctypes */
 
-/* comment your code only if necessary, 
-   explaining what each proctype is supposed to be 
+/* comment your code only if necessary,
+   explaining what each proctype is supposed to be
 */
 
 /**
 
 */
 proctype Referee() {
-	chRefToPs!BALL;	
+	chRefToPs!BALL;
 }
 
 
 proctype Player1() {
 	printf("hi I am player 1");
-	
+
 	do
-	:: 	
-		
+	::
+
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
-			:: d_step{chRefToPs?BALL  ->
-				pActiveBalls[0] = 1;}
+			:: d_step { chRefToPs?BALL  ->
+				ballCount++;
 				printf("P1 receives ball from ref");
-			:: d_step{chP2ToP1?BALL  -> 
-				pActiveBalls[0] = 1;}
+				}
+			:: d_step { chP2ToP1?BALL  ->
+				ballCount++;
 				printf("P1 receives from P2");
+				}
 		fi
 		printf("balls %d \n",allBalls);
-								
+
 		printf("P1 receives from P2, send ball ... P1 -> P2");
 		d_step{
 			chP1ToP2!BALL;
-			pActiveBalls[0] = 0;
-		}			
-		
-					
+			ballCount--;
+		}
+
+
 	od
 }
 
@@ -67,23 +69,25 @@ proctype Player2() {
 	printf("hi I am player 2");
 
 	do
-	::		
+	::
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
-			:: 	d_step{chRefToPs?BALL->
-				pActiveBalls[1] = 1};
+			:: 	d_step { chRefToPs?BALL->
+				ballCount++;
 				printf("P2 receives ball from ref");
-			::	d_step{chP1ToP2?BALL ->
-				pActiveBalls[1] = 1};
+				}
+			::	d_step { chP1ToP2?BALL ->
+				ballCount++;
 				printf("P2 receives ball from P1");
+				}
 		fi
-	
-		
+
+
 		printf("P2 receives from P1, send ball ... P2 -> P1");
 		d_step{
-			chP2ToP1!BALL;			
-			pActiveBalls[1] = 0;
-		}	
+			chP2ToP1!BALL;
+			ballCount--;
+		}
 	od
 }
 
@@ -95,13 +99,13 @@ init {
 	run Referee();
 	run Player1();
 	run Player2();
-	
+
 }
 
 /* monitor processes for invariants (optional) */
 /* explain what this does if you use it */
 /*active proctype myPropertyMonitor() {
- 
+
 }*/
 
 /***********************************************************************
@@ -110,6 +114,6 @@ init {
 
 REPORT
 
-Your report goes here if required. 
+Your report goes here if required.
 
 */
