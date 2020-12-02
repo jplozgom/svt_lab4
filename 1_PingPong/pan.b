@@ -2,7 +2,7 @@
 	default: Uerror("bad return move");
 	case  0: goto R999; /* nothing to undo */
 
-		 /* CLAIM allBallsCannotBeConstantMustNotFailForCredit */
+		 /* CLAIM sanityCheckForAllBallsMustNotFailForCredit */
 ;
 		;
 		;
@@ -31,28 +31,13 @@
 		;
 		goto R999;
 
-		 /* CLAIM initiallyNoBallsMustNotFailForCredit */
+		 /* CLAIM alwaysAtMostOneBall */
 ;
 		
 	case 12: // STATE 1
 		goto R999;
-;
-		
-	case 13: // STATE 9
-		goto R999;
 
-	case 14: // STATE 18
-		;
-		p_restor(II);
-		;
-		;
-		goto R999;
-
-		 /* CLAIM singleBallForever */
-;
-		;
-		
-	case 16: // STATE 13
+	case 13: // STATE 10
 		;
 		p_restor(II);
 		;
@@ -61,76 +46,52 @@
 
 		 /* PROC :init: */
 
-	case 17: // STATE 1
+	case 14: // STATE 1
 		;
 		;
 		delproc(0, now._nr_pr-1);
 		;
 		goto R999;
 
-	case 18: // STATE 2
+	case 15: // STATE 2
 		;
 		;
 		delproc(0, now._nr_pr-1);
 		;
 		goto R999;
 
-	case 19: // STATE 3
+	case 16: // STATE 3
 		;
 		;
 		delproc(0, now._nr_pr-1);
 		;
 		goto R999;
 
-	case 20: // STATE 4
+	case 17: // STATE 4
 		;
 		p_restor(II);
 		;
 		;
 		goto R999;
 
-		 /* PROC Player2 */
+		 /* PROC Player */
 ;
 		;
-			case 22: // STATE 5
+			case 19: // STATE 5
 		sv_restor();
 		goto R999;
-	case 23: // STATE 9
+	case 20: // STATE 9
 		sv_restor();
 		goto R999;
 ;
-		
-	case 24: // STATE 12
-		goto R999;
-	case 25: // STATE 15
+		;
+		;
+		;
+			case 23: // STATE 16
 		sv_restor();
 		goto R999;
 
-	case 26: // STATE 19
-		;
-		p_restor(II);
-		;
-		;
-		goto R999;
-
-		 /* PROC Player1 */
-;
-		;
-			case 28: // STATE 5
-		sv_restor();
-		goto R999;
-	case 29: // STATE 9
-		sv_restor();
-		goto R999;
-;
-		;
-		;
-		;
-			case 32: // STATE 16
-		sv_restor();
-		goto R999;
-
-	case 33: // STATE 20
+	case 24: // STATE 20
 		;
 		p_restor(II);
 		;
@@ -139,13 +100,41 @@
 
 		 /* PROC Referee */
 
-	case 34: // STATE 1
+	case 25: // STATE 1
 		;
 		_m = unsend(now.chRefToPs);
 		;
 		goto R999;
 
-	case 35: // STATE 2
+	case 26: // STATE 6
+		;
+		XX = 1;
+		unrecv(now.chP1ToP2, XX-1, 0, 1, 1);
+		;
+		;
+		goto R999;
+
+	case 27: // STATE 7
+		;
+		_m = unsend(now.chRefToPs);
+		;
+		goto R999;
+
+	case 28: // STATE 8
+		;
+		XX = 1;
+		unrecv(now.chP2ToP1, XX-1, 0, 1, 1);
+		;
+		;
+		goto R999;
+
+	case 29: // STATE 9
+		;
+		_m = unsend(now.chRefToPs);
+		;
+		goto R999;
+
+	case 30: // STATE 15
 		;
 		p_restor(II);
 		;

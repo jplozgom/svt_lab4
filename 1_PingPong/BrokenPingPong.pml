@@ -2,9 +2,9 @@
 mtype = { BALL }
 
 /* global variables and channels */
-chan chP1ToP2 = [1] of {mtype}
-chan chP2ToP1 = [1] of {mtype}
-chan chRefToPs = [1] of {mtype}
+chan chP1ToP2 = [2] of {mtype}
+chan chP2ToP1 = [2] of {mtype}
+chan chRefToPs = [2] of {mtype}
 int ballCount = 0;
 
 /* macros for the property interface -- needed for reference properties */
@@ -40,33 +40,30 @@ proctype Referee() {
 			chRefToPs!BALL;
 		fi
 	od
-
-
 }
 
 
-proctype Player1() {
-	printf("hi I am player 1");
+proctype Player(int playerNumber; chan receiving; chan sending) {
+	printf("hi I am player %d", playerNumber);
 
 	do
 	::
-
 		if
 			/* if ball from ref or ball from players then send a ball to the other side */
 			:: d_step { chRefToPs?BALL  ->
 				ballCount++;
-				printf("P1 receives ball from ref");
+				printf("P%d receives ball from ref", playerNumber);
 				}
-			:: d_step { chP2ToP1?BALL  ->
+			:: d_step { receiving?BALL  ->
 				ballCount++;
-				printf("P1 receives from P2");
+				printf("P%d receives from other player", playerNumber);
 				}
 		fi
 		printf("balls %d \n",allBalls);
 
-		printf("P1 receives from P2, send ball ... P1 -> P2");
+		printf("P%d receives from other, send ball to other", playerNumber);
 		d_step{
-			chP1ToP2!BALL;
+			sending!BALL;
 			ballCount--;
 		}
 
@@ -74,40 +71,17 @@ proctype Player1() {
 	od
 }
 
-proctype Player2() {
-	printf("hi I am player 2");
 
-	do
-	::
-		if
-			/* if ball from ref or ball from players then send a ball to the other side */
-			:: 	d_step { chRefToPs?BALL->
-				ballCount++;
-				printf("P2 receives ball from ref");
-				}
-			::	d_step { chP1ToP2?BALL ->
-				ballCount++;
-				printf("P2 receives ball from P1");
-				}
-		fi
-
-
-		printf("P2 receives from P1, send ball ... P2 -> P1");
-		d_step{
-			chP2ToP1!BALL;
-			ballCount--;
-		}
-	od
-}
 
 
 
 init {
 	run Referee();
-	run Player1();
-	run Player2();
+	run Player(1, chP2ToP1, chP1ToP2);
+	run Player(2, chP1ToP2, chP2ToP1);
 
 }
+
 
 /* monitor processes for invariants (optional) */
 /* explain what this does if you use it */

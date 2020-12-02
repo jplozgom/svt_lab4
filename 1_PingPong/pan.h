@@ -2,7 +2,7 @@
 #define PAN_H
 
 #define SpinVersion	"Spin Version 6.5.2 -- 6 December 2019"
-#define PanSource	"PingPong.pml"
+#define PanSource	"BrokenPingPong.pml"
 
 #define G_long	8
 #define G_int	4
@@ -121,15 +121,15 @@
 #endif
 #ifdef NP
 	#define HAS_NP	2
-	#define VERI	7	/* np_ */
+	#define VERI	5	/* np_ */
 #endif
 #if defined(NOCLAIM) && defined(NP)
 	#undef NOCLAIM
 #endif
 #ifndef NOCLAIM
-	#define NCLAIMS	3
+	#define NCLAIMS	2
 	#ifndef NP
-		#define VERI	6
+		#define VERI	4
 	#endif
 #endif
 
@@ -139,50 +139,36 @@ typedef struct S_F_MAP {
 	int upto;
 } S_F_MAP;
 
-#define _nstates6	40	/* allBallsCannotBeConstantMustNotFailForCredit */
-#define minseq6	76
-#define maxseq6	114
-#define _endstate6	39
+#define _nstates4	40	/* sanityCheckForAllBallsMustNotFailForCredit */
+#define minseq4	49
+#define maxseq4	87
+#define _endstate4	39
 
-#define _nstates5	19	/* initiallyNoBallsMustNotFailForCredit */
-#define minseq5	58
-#define maxseq5	75
-#define _endstate5	18
+#define _nstates3	11	/* alwaysAtMostOneBall */
+#define minseq3	39
+#define maxseq3	48
+#define _endstate3	10
 
-#define _nstates4	14	/* singleBallForever */
-#define minseq4	45
-#define maxseq4	57
-#define _endstate4	13
+#define _nstates2	5	/* :init: */
+#define minseq2	35
+#define maxseq2	38
+#define _endstate2	4
 
-#define _nstates3	5	/* :init: */
-#define minseq3	41
-#define maxseq3	44
-#define _endstate3	4
-
-#define _nstates2	20	/* Player2 */
-#define minseq2	22
-#define maxseq2	40
-#define _endstate2	19
-
-#define _nstates1	21	/* Player1 */
-#define minseq1	2
-#define maxseq1	21
+#define _nstates1	21	/* Player */
+#define minseq1	15
+#define maxseq1	34
 #define _endstate1	20
 
-#define _nstates0	3	/* Referee */
+#define _nstates0	16	/* Referee */
 #define minseq0	0
-#define maxseq0	1
-#define _endstate0	2
+#define maxseq0	14
+#define _endstate0	15
 
-extern short src_ln6[];
-extern short src_ln5[];
 extern short src_ln4[];
 extern short src_ln3[];
 extern short src_ln2[];
 extern short src_ln1[];
 extern short src_ln0[];
-extern S_F_MAP src_file6[];
-extern S_F_MAP src_file5[];
 extern S_F_MAP src_file4[];
 extern S_F_MAP src_file3[];
 extern S_F_MAP src_file2[];
@@ -190,8 +176,8 @@ extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	36
-#define _T2	37
+#define _T5	31
+#define _T2	32
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	3
@@ -206,27 +192,7 @@ extern S_F_MAP src_file0[];
 	#endif
 #endif
 
-typedef struct P6 { /* allBallsCannotBeConstantMustNotFailForCredit */
-	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 7; /* state    */
-#ifdef HAS_PRIORITY
-	unsigned _priority : 8; /* 0..255 */
-#endif
-} P6;
-#define Air6	(sizeof(P6) - 3)
-
-typedef struct P5 { /* initiallyNoBallsMustNotFailForCredit */
-	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 7; /* state    */
-#ifdef HAS_PRIORITY
-	unsigned _priority : 8; /* 0..255 */
-#endif
-} P5;
-#define Air5	(sizeof(P5) - 3)
-
-typedef struct P4 { /* singleBallForever */
+typedef struct P4 { /* sanityCheckForAllBallsMustNotFailForCredit */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
@@ -236,8 +202,7 @@ typedef struct P4 { /* singleBallForever */
 } P4;
 #define Air4	(sizeof(P4) - 3)
 
-#define Pinit	((P3 *)_this)
-typedef struct P3 { /* :init: */
+typedef struct P3 { /* alwaysAtMostOneBall */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
@@ -247,8 +212,8 @@ typedef struct P3 { /* :init: */
 } P3;
 #define Air3	(sizeof(P3) - 3)
 
-#define PPlayer2	((P2 *)_this)
-typedef struct P2 { /* Player2 */
+#define Pinit	((P2 *)_this)
+typedef struct P2 { /* :init: */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
@@ -258,16 +223,19 @@ typedef struct P2 { /* Player2 */
 } P2;
 #define Air2	(sizeof(P2) - 3)
 
-#define PPlayer1	((P1 *)_this)
-typedef struct P1 { /* Player1 */
+#define PPlayer	((P1 *)_this)
+typedef struct P1 { /* Player */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
+	uchar receiving;
+	uchar sending;
+	int playerNumber;
 } P1;
-#define Air1	(sizeof(P1) - 3)
+#define Air1	(sizeof(P1) - Offsetof(P1, playerNumber) - 1*sizeof(int))
 
 #define PReferee	((P0 *)_this)
 typedef struct P0 { /* Referee */
@@ -280,32 +248,32 @@ typedef struct P0 { /* Referee */
 } P0;
 #define Air0	(sizeof(P0) - 3)
 
-typedef struct P7 { /* np_ */
+typedef struct P5 { /* np_ */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
-} P7;
-#define Air7	(sizeof(P7) - 3)
+} P5;
+#define Air5	(sizeof(P5) - 3)
 
 
 #ifndef NOCLAIM
  #ifndef NP
 	#undef VERI
-	#define VERI	8
+	#define VERI	6
  #endif
-	#define Pclaim	P8
+	#define Pclaim	P6
 
-typedef struct P8 {
+typedef struct P6 {
 	unsigned _pid : 8; /* always zero */
 	unsigned _t   : 4; /* active-claim type  */
 	unsigned _p   : 7; /* active-claim state */
-	unsigned _n   : 3; /* active-claim index */
+	unsigned _n   : 2; /* active-claim index */
 	uchar c_cur[NCLAIMS]; /* claim-states */
-} P8;
-	#define Air8	(0)
+} P6;
+	#define Air6	(0)
 
 #endif
 #if defined(BFS) && defined(REACH)
@@ -522,22 +490,20 @@ typedef struct TRIX_v6 {
 #define FORWARD_MOVES	"pan.m"
 #define BACKWARD_MOVES	"pan.b"
 #define TRANSITIONS	"pan.t"
-#define _NP_	7
-#define _nstates7	3 /* np_ */
-#define _endstate7	2 /* np_ */
+#define _NP_	5
+#define _nstates5	3 /* np_ */
+#define _endstate5	2 /* np_ */
 
-#define _start7	0 /* np_ */
-#define _start6	12
-#define _start5	6
-#define _start4	5
-#define _start3	1
+#define _start5	0 /* np_ */
+#define _start4	12
+#define _start3	6
 #define _start2	1
 #define _start1	1
 #define _start0	1
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
-	#define ACCEPT_LAB	6 /* user-defined accept labels */
+	#define ACCEPT_LAB	5 /* user-defined accept labels */
 #endif
 #ifdef MEMCNT
 	#ifdef MEMLIM
@@ -572,21 +538,21 @@ typedef struct Q3 {
 	uchar _t;	/* q_type */
 	struct {
 		uchar fld0;
-	} contents[1];
+	} contents[2];
 } Q3;
 typedef struct Q2 {
 	uchar Qlen;	/* q_size */
 	uchar _t;	/* q_type */
 	struct {
 		uchar fld0;
-	} contents[1];
+	} contents[2];
 } Q2;
 typedef struct Q1 {
 	uchar Qlen;	/* q_size */
 	uchar _t;	/* q_type */
 	struct {
 		uchar fld0;
-	} contents[1];
+	} contents[2];
 } Q1;
 typedef struct Q0 {	/* generic q */
 	uchar Qlen;	/* q_size */
@@ -904,7 +870,7 @@ typedef struct BFS_State {
 
 void qsend(int, int, int, int);
 
-#define Addproc(x,y)	addproc(256, y, x)
+#define Addproc(x,y)	addproc(256, y, x, 0, 0, 0)
 #define LOCAL	1
 #define Q_FULL_F	2
 #define Q_EMPT_F	3
@@ -914,7 +880,7 @@ void qsend(int, int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	38
+#define NTRANS	33
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);

@@ -1,53 +1,37 @@
-never singleBallForever {    /* !(<> ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1)))) */
+never alwaysAtMostOneBall {    /* !([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)<=1))) */
 T0_init:
 	do
-	:: (! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1)))) -> goto accept_S9
+	:: atomic { (! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)<=1)))) -> assert(!(! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)<=1))))) }
 	:: (1) -> goto T0_init
-	od;
-accept_S9:
-	do
-	:: (1) -> goto T0_init
-	od;
-}
-never initiallyNoBallsMustNotFailForCredit {    /* !((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)) && ([] (1))) */
-T0_init:
-	do
-	:: atomic { (((! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)))) || (! ((1))))) -> assert(!(((! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)))) || (! ((1)))))) }
-	:: (1) -> goto T0_S2
-	od;
-T0_S2:
-	do
-	:: atomic { (! ((1))) -> assert(!(! ((1)))) }
-	:: (1) -> goto T0_S2
 	od;
 accept_all:
 	skip
 }
-never allBallsCannotBeConstantMustNotFailForCredit {    /* !((((! ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)))) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1))))) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==2))))) && ([] (1))) */
+never sanityCheckForAllBallsMustNotFailForCredit {    /* !(((((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0))))) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1))))) && (! ([] (((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==2))))) && ([] (1))) */
 T0_init:
 	do
-	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==2))) -> goto accept_S6
-	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1))) -> goto accept_S11
-	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0))) -> goto accept_S14
+	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==2))) -> goto accept_S7
+	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1))) -> goto accept_S12
+	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0))) -> goto accept_S17
+	:: atomic { (((! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)))) || (! ((1))))) -> assert(!(((! ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0)))) || (! ((1)))))) }
+	:: (1) -> goto T0_S22
+	od;
+accept_S7:
+	do
+	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==2))) -> goto accept_S7
+	od;
+accept_S12:
+	do
+	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1))) -> goto accept_S12
+	od;
+accept_S17:
+	do
+	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0))) -> goto accept_S17
+	od;
+T0_S22:
+	do
 	:: atomic { (! ((1))) -> assert(!(! ((1)))) }
-	:: (1) -> goto T0_S17
-	od;
-accept_S6:
-	do
-	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==2))) -> goto accept_S6
-	od;
-accept_S11:
-	do
-	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==1))) -> goto accept_S11
-	od;
-accept_S14:
-	do
-	:: ((((((len(chP1ToP2)+len(chP2ToP1))+len(chRefToPs))+ballCount)==0))) -> goto accept_S14
-	od;
-T0_S17:
-	do
-	:: atomic { (! ((1))) -> assert(!(! ((1)))) }
-	:: (1) -> goto T0_S17
+	:: (1) -> goto T0_S22
 	od;
 accept_all:
 	skip
