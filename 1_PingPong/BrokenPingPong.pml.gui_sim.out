@@ -1,0 +1,64 @@
+spin: BrokenPingPong.pml:35, redundant skip
+spin: BrokenPingPong.pml:36, redundant skip
+ltl alwaysAtMostOneBall: [] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)<=1))
+ltl sanityCheckForAllBallsMustNotFailForCredit: (((! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0)))) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==1))))) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==2))))) && ([] (1))
+starting claim 5
+using statement merging
+MSC: ~G line 14
+  1:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:14 (state 5)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+		queue 1 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+
+Never claim moves to line 14	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+Starting Referee with pid 2
+  2:	proc  0 (:init::1) BrokenPingPong.pml:110 (state 1)	[(run Referee())]
+
+MSC: ~G line 28
+  3:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+Never claim moves to line 28	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+Starting Player1 with pid 3
+  4:	proc  0 (:init::1) BrokenPingPong.pml:111 (state 2)	[(run Player1())]
+
+  5:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+hi I am player 1  6:	proc  2 (Player1:1) BrokenPingPong.pml:53 (state 1)	[printf('hi I am player 1')]
+
+  7:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+Starting Player2 with pid 4
+  8:	proc  0 (:init::1) BrokenPingPong.pml:112 (state 3)	[(run Player2())]
+
+  9:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+hi I am player 2 10:	proc  3 (Player2:1) BrokenPingPong.pml:82 (state 1)	[printf('hi I am player 2')]
+
+ 11:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+ 12:	proc  1 (Referee:1) BrokenPingPong.pml:31 (state -)	[values: 3!BALL]
+ 12:	proc  1 (Referee:1) BrokenPingPong.pml:31 (state 1)	[chRefToPs!BALL]
+		queue 3 (chRefToPs): [BALL]
+
+<<<<<START OF CYCLE>>>>>
+ 13:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+ 14:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 2)	[(1)]
+
+ 15:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:28 (state 25)	[((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))]
+
+ 16:	proc  1 (Referee:1) BrokenPingPong.pml:35 (state 3)	[(1)]
+
+spin: trail ends after 16 steps
+#processes: 4
+		queue 1 (chP1ToP2): 
+		queue 2 (chP2ToP1): 
+		queue 3 (chRefToPs): [BALL]
+		ballCount = 0
+ 16:	proc  3 (Player2:1) BrokenPingPong.pml:84 (state 16)
+ 16:	proc  2 (Player1:1) BrokenPingPong.pml:55 (state 17)
+ 16:	proc  1 (Referee:1) BrokenPingPong.pml:32 (state 16)
+ 16:	proc  0 (:init::1) BrokenPingPong.pml:114 (state 4)
+MSC: ~G line 27
+ 16:	proc  - (sanityCheckForAllBallsMustNotFailForCredit:1) _spin_nvr.tmp:27 (state 27)
+4 processes created
+Exit-Status 0

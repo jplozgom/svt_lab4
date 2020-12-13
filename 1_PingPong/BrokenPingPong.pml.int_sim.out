@@ -1,0 +1,10 @@
+spin: BrokenPingPong.pml:36, redundant skip
+spin: BrokenPingPong.pml:37, redundant skip
+  0:	proc  - (:root:) creates proc  0 (:init:)
+ltl alwaysAtMostOneBall: [] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)<=1))
+ltl sanityCheckForAllBallsMustNotFailForCredit: (((((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0)) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==0))))) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==1))))) && (! ([] ((((len(chP1ToP2)+len(chP2ToP1))+ballCount)==2))))) && ([] (1))
+Starting Referee with pid 1
+  1:	proc  0 (:init::1) creates proc  1 (Referee)
+  1:	proc  0 (:init::1) BrokenPingPong.pml:109 (state 1)	[(run Referee())]
+
+Selected: q
