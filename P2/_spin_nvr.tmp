@@ -1,0 +1,22 @@
+never allSeatsAlwaysAssigned {    /* !([] (<> ((crs:assignedSeats==3)))) */
+T0_init:
+	do
+	:: (! (((crs:assignedSeats==3)))) -> goto accept_S4
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! (((crs:assignedSeats==3)))) -> goto accept_S4
+	od;
+}
+never ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero {    /* !([] ((! ((4>3))) || (<> ((crs:flightFullMessageCount==(4-3)))))) */
+T0_init:
+	do
+	:: (! ((! ((4>3)))) && ! (((crs:flightFullMessageCount==(4-3))))) -> goto accept_S4
+	:: (1) -> goto T0_init
+	od;
+accept_S4:
+	do
+	:: (! (((crs:flightFullMessageCount==(4-3))))) -> goto accept_S4
+	od;
+}

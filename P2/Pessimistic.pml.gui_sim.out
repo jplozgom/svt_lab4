@@ -1,0 +1,671 @@
+spin: Pessimistic.pml:89, redundant skip
+ltl allSeatsAlwaysAssigned: [] (<> ((crs:assignedSeats==3)))
+ltl ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero: [] ((! ((4>3))) || (<> ((crs:flightFullMessageCount==(4-3)))))
+spin: Pessimistic.pml:0, warning, proctype crs, 'int   flightFullMessageCount' variable is never used (other than in print stmnts)
+spin: Pessimistic.pml:0, warning, proctype crs, 'int   assignedSeats' variable is never used (other than in print stmnts)
+starting claim 3
+MSC: ~G line 3
+  1:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:3 (state 1)	[(!((crs.assignedSeats==3)))]
+
+Never claim moves to line 3	[(!((crs.assignedSeats==3)))]
+Starting crs with pid 2
+  2:	proc  0 (:init::1) Pessimistic.pml:123 (state 1)	[(run crs())]
+
+MSC: ~G line 8
+  3:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+Never claim moves to line 8	[(!((crs.assignedSeats==3)))]
+  4:	proc  1 (crs:1) Pessimistic.pml:54 (state 1)	[((i<3))]
+
+  5:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+  6:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+
+  7:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+Starting client with pid 3
+  8:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
+
+  9:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 10:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
+		:init:(0):idClient = 1
+
+ 11:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 12:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+
+ 13:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+Starting client with pid 4
+ 14:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
+
+ 15:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 16:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
+		:init:(0):idClient = 2
+
+ 17:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 18:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+
+ 19:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+Starting client with pid 5
+ 20:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
+
+ 21:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 22:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
+		:init:(0):idClient = 3
+
+ 23:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 24:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+
+ 25:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+Starting client with pid 6
+ 26:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
+
+ 27:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 28:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
+		:init:(0):idClient = 4
+
+ 29:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 30:	proc  0 (:init::1) Pessimistic.pml:128 (state 5)	[((idClient==4))]
+
+ 31:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 32:	proc  5 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,0,3]
+ 32:	proc  5 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+
+ 33:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 34:	proc  1 (crs:1) Pessimistic.pml:55 (state 2)	[seats[i].seatStatus = EMPTY]
+
+ 35:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 36:	proc  1 (crs:1) Pessimistic.pml:56 (state 3)	[seats[i].customerId = -(1)]
+
+ 37:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+status 3 38:	proc  1 (crs:1) Pessimistic.pml:57 (state 4)	[printf('status %d',seats[i].seatStatus)]
+
+ 39:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+customerId -1 40:	proc  1 (crs:1) Pessimistic.pml:58 (state 5)	[printf('customerId %d',seats[i].customerId)]
+
+ 41:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 42:	proc  1 (crs:1) Pessimistic.pml:59 (state 6)	[i = (i+1)]
+		crs(1):i = 1
+
+ 43:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 44:	proc  1 (crs:1) Pessimistic.pml:54 (state 1)	[((i<3))]
+
+ 45:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 46:	proc  1 (crs:1) Pessimistic.pml:55 (state 2)	[seats[i].seatStatus = EMPTY]
+
+ 47:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 48:	proc  1 (crs:1) Pessimistic.pml:56 (state 3)	[seats[i].customerId = -(1)]
+
+ 49:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+status 3 50:	proc  1 (crs:1) Pessimistic.pml:57 (state 4)	[printf('status %d',seats[i].seatStatus)]
+
+ 51:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+customerId -1 52:	proc  1 (crs:1) Pessimistic.pml:58 (state 5)	[printf('customerId %d',seats[i].customerId)]
+
+ 53:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 54:	proc  1 (crs:1) Pessimistic.pml:59 (state 6)	[i = (i+1)]
+		crs(1):i = 2
+
+ 55:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 56:	proc  1 (crs:1) Pessimistic.pml:54 (state 1)	[((i<3))]
+
+ 57:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 58:	proc  1 (crs:1) Pessimistic.pml:55 (state 2)	[seats[i].seatStatus = EMPTY]
+
+ 59:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 60:	proc  1 (crs:1) Pessimistic.pml:56 (state 3)	[seats[i].customerId = -(1)]
+
+ 61:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+status 3 62:	proc  1 (crs:1) Pessimistic.pml:57 (state 4)	[printf('status %d',seats[i].seatStatus)]
+
+ 63:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+customerId -1 64:	proc  1 (crs:1) Pessimistic.pml:58 (state 5)	[printf('customerId %d',seats[i].customerId)]
+
+ 65:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 66:	proc  1 (crs:1) Pessimistic.pml:59 (state 6)	[i = (i+1)]
+		crs(1):i = 3
+
+ 67:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 68:	proc  1 (crs:1) Pessimistic.pml:60 (state 7)	[((i>=3))]
+
+ 69:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 70:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,0,3]
+ 70:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 0
+		crs(1):receivedClientId = 3
+
+ 71:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 0, received seat 0, received client 3
+ 72:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+ 73:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 74:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+ 75:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 76:	proc  4 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,0,2]
+ 76:	proc  4 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,2]
+
+ 77:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 78:	proc  1 (crs:1) Pessimistic.pml:70 (state 19)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus==EMPTY)))]
+
+ 78:	proc  1 (crs:1) Pessimistic.pml:71 (state 16)	[seats[receivedSeat].seatStatus = RESERVED]
+
+ 78:	proc  1 (crs:1) Pessimistic.pml:72 (state 17)	[seats[receivedSeat].customerId = receivedClientId]
+
+ 78:	proc  1 (crs:1) Pessimistic.pml:74 (state -)	[values: 5!RETURNING_SEAT,0,3]
+ 78:	proc  1 (crs:1) Pessimistic.pml:74 (state 18)	[crsToClient[receivedClientId]!RETURNING_SEAT,receivedSeat,receivedClientId]
+		queue 2 (crsToClient[0]): 
+		queue 3 (crsToClient[1]): 
+		queue 4 (crsToClient[2]): 
+		queue 5 (crsToClient[3]): [RETURNING_SEAT,0,3]
+
+ 79:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 80:	proc  5 (client:1) Pessimistic.pml:101 (state -)	[values: 5?RETURNING_SEAT,0,3]
+ 80:	proc  5 (client:1) Pessimistic.pml:101 (state 2)	[crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId]
+		queue 5 (crsToClient[3]): 
+		client(5):seatNumber = 0
+		client(5):clientId = 3
+
+ 81:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 82:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,0,2]
+ 82:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 0
+		crs(1):receivedClientId = 2
+
+ 83:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 0, received seat 0, received client 2
+ 84:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+ 85:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 86:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+ 87:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 88:	proc  5 (client:1) Pessimistic.pml:103 (state -)	[values: 1!PAYMENT_SEAT,0,3]
+ 88:	proc  5 (client:1) Pessimistic.pml:103 (state 3)	[clientToCrs!PAYMENT_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,3]
+
+ 89:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 90:	proc  1 (crs:1) Pessimistic.pml:76 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+ 91:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 92:	proc  1 (crs:1) Pessimistic.pml:78 (state -)	[values: 4!NOT_AVAILABLE_SEAT,0,2]
+ 92:	proc  1 (crs:1) Pessimistic.pml:78 (state 21)	[crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId]
+		queue 4 (crsToClient[2]): [NOT_AVAILABLE_SEAT,0,2]
+
+ 93:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 94:	proc  4 (client:1) Pessimistic.pml:106 (state -)	[values: 4?NOT_AVAILABLE_SEAT,0,2]
+ 94:	proc  4 (client:1) Pessimistic.pml:106 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 4 (crsToClient[2]): 
+		client(4):seatNumber = 0
+		client(4):clientId = 2
+
+ 95:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 96:	proc  4 (client:1) Pessimistic.pml:108 (state 7)	[seatNumber = (seatNumber+1)]
+		client(4):seatNumber = 1
+
+ 97:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+ 98:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?PAYMENT_SEAT,0,3]
+ 98:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = PAYMENT_SEAT
+		crs(1):receivedSeat = 0
+		crs(1):receivedClientId = 3
+
+ 99:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 0, received seat 0, received client 3
+100:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+101:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+102:	proc  1 (crs:1) Pessimistic.pml:83 (state 27)	[((message==PAYMENT_SEAT))]
+
+103:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+104:	proc  4 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,1,2]
+104:	proc  4 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+
+105:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+106:	proc  1 (crs:1) Pessimistic.pml:85 (state 28)	[seats[receivedSeat].seatStatus = ASSIGNED]
+
+107:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+108:	proc  1 (crs:1) Pessimistic.pml:86 (state -)	[values: 5!SUCCESS_SEAT,0,3]
+108:	proc  1 (crs:1) Pessimistic.pml:86 (state 29)	[crsToClient[receivedClientId]!SUCCESS_SEAT,receivedSeat,receivedClientId]
+		queue 5 (crsToClient[3]): [SUCCESS_SEAT,0,3]
+
+109:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+110:	proc  1 (crs:1) Pessimistic.pml:87 (state 30)	[assignedSeats = (assignedSeats+1)]
+		crs(1):assignedSeats = 1
+
+111:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+112:	proc  5 (client:1) Pessimistic.pml:104 (state -)	[values: 5?SUCCESS_SEAT,0,3]
+112:	proc  5 (client:1) Pessimistic.pml:104 (state 4)	[crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId]
+		queue 5 (crsToClient[3]): 
+		client(5):seatNumber = 0
+		client(5):clientId = 3
+
+113:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+114: proc 5 terminates
+115:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+116:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,1,2]
+116:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 1
+		crs(1):receivedClientId = 2
+
+117:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 1, received seat 1, received client 2
+118:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+119:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+120:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+121:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+122:	proc  3 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,0,1]
+122:	proc  3 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,1]
+
+123:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+124:	proc  1 (crs:1) Pessimistic.pml:70 (state 19)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus==EMPTY)))]
+
+124:	proc  1 (crs:1) Pessimistic.pml:71 (state 16)	[seats[receivedSeat].seatStatus = RESERVED]
+
+124:	proc  1 (crs:1) Pessimistic.pml:72 (state 17)	[seats[receivedSeat].customerId = receivedClientId]
+
+124:	proc  1 (crs:1) Pessimistic.pml:74 (state -)	[values: 4!RETURNING_SEAT,1,2]
+124:	proc  1 (crs:1) Pessimistic.pml:74 (state 18)	[crsToClient[receivedClientId]!RETURNING_SEAT,receivedSeat,receivedClientId]
+		queue 4 (crsToClient[2]): [RETURNING_SEAT,1,2]
+
+125:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+126:	proc  4 (client:1) Pessimistic.pml:101 (state -)	[values: 4?RETURNING_SEAT,1,2]
+126:	proc  4 (client:1) Pessimistic.pml:101 (state 2)	[crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId]
+		queue 4 (crsToClient[2]): 
+		client(4):seatNumber = 1
+		client(4):clientId = 2
+
+127:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+128:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,0,1]
+128:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 0
+		crs(1):receivedClientId = 1
+
+129:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 1, received seat 0, received client 1
+130:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+131:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+132:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+133:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+134:	proc  4 (client:1) Pessimistic.pml:103 (state -)	[values: 1!PAYMENT_SEAT,1,2]
+134:	proc  4 (client:1) Pessimistic.pml:103 (state 3)	[clientToCrs!PAYMENT_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,2]
+
+135:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+136:	proc  1 (crs:1) Pessimistic.pml:76 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+137:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+138:	proc  1 (crs:1) Pessimistic.pml:78 (state -)	[values: 3!NOT_AVAILABLE_SEAT,0,1]
+138:	proc  1 (crs:1) Pessimistic.pml:78 (state 21)	[crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId]
+		queue 3 (crsToClient[1]): [NOT_AVAILABLE_SEAT,0,1]
+
+139:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+140:	proc  3 (client:1) Pessimistic.pml:106 (state -)	[values: 3?NOT_AVAILABLE_SEAT,0,1]
+140:	proc  3 (client:1) Pessimistic.pml:106 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 3 (crsToClient[1]): 
+		client(3):seatNumber = 0
+		client(3):clientId = 1
+
+141:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+142:	proc  3 (client:1) Pessimistic.pml:108 (state 7)	[seatNumber = (seatNumber+1)]
+		client(3):seatNumber = 1
+
+143:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+144:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?PAYMENT_SEAT,1,2]
+144:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = PAYMENT_SEAT
+		crs(1):receivedSeat = 1
+		crs(1):receivedClientId = 2
+
+145:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 1, received seat 1, received client 2
+146:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+147:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+148:	proc  1 (crs:1) Pessimistic.pml:83 (state 27)	[((message==PAYMENT_SEAT))]
+
+149:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+150:	proc  3 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,1,1]
+150:	proc  3 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+
+151:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+152:	proc  1 (crs:1) Pessimistic.pml:85 (state 28)	[seats[receivedSeat].seatStatus = ASSIGNED]
+
+153:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+154:	proc  1 (crs:1) Pessimistic.pml:86 (state -)	[values: 4!SUCCESS_SEAT,1,2]
+154:	proc  1 (crs:1) Pessimistic.pml:86 (state 29)	[crsToClient[receivedClientId]!SUCCESS_SEAT,receivedSeat,receivedClientId]
+		queue 4 (crsToClient[2]): [SUCCESS_SEAT,1,2]
+
+155:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+156:	proc  1 (crs:1) Pessimistic.pml:87 (state 30)	[assignedSeats = (assignedSeats+1)]
+		crs(1):assignedSeats = 2
+
+157:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+158:	proc  4 (client:1) Pessimistic.pml:104 (state -)	[values: 4?SUCCESS_SEAT,1,2]
+158:	proc  4 (client:1) Pessimistic.pml:104 (state 4)	[crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId]
+		queue 4 (crsToClient[2]): 
+		client(4):seatNumber = 1
+		client(4):clientId = 2
+
+159:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+160: proc 4 terminates
+161:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+162:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,1,1]
+162:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 1
+		crs(1):receivedClientId = 1
+
+163:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 2, received seat 1, received client 1
+164:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+165:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+166:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+167:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+168:	proc  2 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,0,0]
+168:	proc  2 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,0]
+
+169:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+170:	proc  1 (crs:1) Pessimistic.pml:76 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+171:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+172:	proc  1 (crs:1) Pessimistic.pml:78 (state -)	[values: 3!NOT_AVAILABLE_SEAT,1,1]
+172:	proc  1 (crs:1) Pessimistic.pml:78 (state 21)	[crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId]
+		queue 3 (crsToClient[1]): [NOT_AVAILABLE_SEAT,1,1]
+
+173:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+174:	proc  3 (client:1) Pessimistic.pml:106 (state -)	[values: 3?NOT_AVAILABLE_SEAT,1,1]
+174:	proc  3 (client:1) Pessimistic.pml:106 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 3 (crsToClient[1]): 
+		client(3):seatNumber = 1
+		client(3):clientId = 1
+
+175:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+176:	proc  3 (client:1) Pessimistic.pml:108 (state 7)	[seatNumber = (seatNumber+1)]
+		client(3):seatNumber = 2
+
+177:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+178:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,0,0]
+178:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 0
+		crs(1):receivedClientId = 0
+
+179:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 2, received seat 0, received client 0
+180:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+181:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+182:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+183:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+184:	proc  3 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,2,1]
+184:	proc  3 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,2,1]
+
+185:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+186:	proc  1 (crs:1) Pessimistic.pml:76 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+187:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+188:	proc  1 (crs:1) Pessimistic.pml:78 (state -)	[values: 2!NOT_AVAILABLE_SEAT,0,0]
+188:	proc  1 (crs:1) Pessimistic.pml:78 (state 21)	[crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId]
+		queue 2 (crsToClient[0]): [NOT_AVAILABLE_SEAT,0,0]
+
+189:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+190:	proc  2 (client:1) Pessimistic.pml:106 (state -)	[values: 2?NOT_AVAILABLE_SEAT,0,0]
+190:	proc  2 (client:1) Pessimistic.pml:106 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 2 (crsToClient[0]): 
+		client(2):seatNumber = 0
+		client(2):clientId = 0
+
+191:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+192:	proc  2 (client:1) Pessimistic.pml:108 (state 7)	[seatNumber = (seatNumber+1)]
+		client(2):seatNumber = 1
+
+193:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+194:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,2,1]
+194:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 2
+		crs(1):receivedClientId = 1
+
+195:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 2, received seat 2, received client 1
+196:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+197:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+198:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+199:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+200:	proc  2 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,1,0]
+200:	proc  2 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,1,0]
+
+201:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+202:	proc  1 (crs:1) Pessimistic.pml:70 (state 19)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus==EMPTY)))]
+
+202:	proc  1 (crs:1) Pessimistic.pml:71 (state 16)	[seats[receivedSeat].seatStatus = RESERVED]
+
+202:	proc  1 (crs:1) Pessimistic.pml:72 (state 17)	[seats[receivedSeat].customerId = receivedClientId]
+
+202:	proc  1 (crs:1) Pessimistic.pml:74 (state -)	[values: 3!RETURNING_SEAT,2,1]
+202:	proc  1 (crs:1) Pessimistic.pml:74 (state 18)	[crsToClient[receivedClientId]!RETURNING_SEAT,receivedSeat,receivedClientId]
+		queue 3 (crsToClient[1]): [RETURNING_SEAT,2,1]
+
+203:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+204:	proc  3 (client:1) Pessimistic.pml:101 (state -)	[values: 3?RETURNING_SEAT,2,1]
+204:	proc  3 (client:1) Pessimistic.pml:101 (state 2)	[crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId]
+		queue 3 (crsToClient[1]): 
+		client(3):seatNumber = 2
+		client(3):clientId = 1
+
+205:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+206:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,1,0]
+206:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+		queue 1 (clientToCrs): 
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 1
+		crs(1):receivedClientId = 0
+
+207:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+*******assigned seat 2, received seat 1, received client 0
+208:	proc  1 (crs:1) Pessimistic.pml:65 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedClientId)]
+
+209:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+210:	proc  1 (crs:1) Pessimistic.pml:67 (state 14)	[((message==GET_SEAT))]
+
+211:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+212:	proc  3 (client:1) Pessimistic.pml:103 (state -)	[values: 1!PAYMENT_SEAT,2,1]
+212:	proc  3 (client:1) Pessimistic.pml:103 (state 3)	[clientToCrs!PAYMENT_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,1]
+
+213:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+214:	proc  1 (crs:1) Pessimistic.pml:76 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+215:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+216:	proc  1 (crs:1) Pessimistic.pml:78 (state -)	[values: 2!NOT_AVAILABLE_SEAT,1,0]
+216:	proc  1 (crs:1) Pessimistic.pml:78 (state 21)	[crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId]
+		queue 2 (crsToClient[0]): [NOT_AVAILABLE_SEAT,1,0]
+
+217:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+218:	proc  2 (client:1) Pessimistic.pml:106 (state -)	[values: 2?NOT_AVAILABLE_SEAT,1,0]
+218:	proc  2 (client:1) Pessimistic.pml:106 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 2 (crsToClient[0]): 
+		client(2):seatNumber = 1
+		client(2):clientId = 0
+
+219:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+220:	proc  2 (client:1) Pessimistic.pml:108 (state 7)	[seatNumber = (seatNumber+1)]
+		client(2):seatNumber = 2
+
+<<<<<START OF CYCLE>>>>>
+221:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+222:	proc  1 (crs:1) Pessimistic.pml:89 (state 33)	[(1)]
+
+223:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:8 (state 8)	[(!((crs.assignedSeats==3)))]
+
+224:	proc  1 (crs:1) Pessimistic.pml:89 (state 34)	[(1)]
+
+spin: trail ends after 224 steps
+#processes: 4
+		seats[0].seatStatus = ASSIGNED
+		seats[0].customerId = 3
+		seats[1].seatStatus = ASSIGNED
+		seats[1].customerId = 2
+		seats[2].seatStatus = RESERVED
+		seats[2].customerId = 1
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,1]
+		queue 2 (crsToClient[0]): 
+		queue 3 (crsToClient[1]): 
+		queue 4 (crsToClient[2]): 
+		queue 5 (crsToClient[3]): 
+224:	proc  3 (client:1) Pessimistic.pml:104 (state 4)
+		client(3):seatNumber = 2
+		client(3):clientId = 1
+224:	proc  2 (client:1) Pessimistic.pml:98 (state 12)
+		client(2):seatNumber = 2
+		client(2):clientId = 0
+224:	proc  1 (crs:1) Pessimistic.pml:63 (state 35)
+		crs(1):i = 3
+		crs(1):message = GET_SEAT
+		crs(1):receivedSeat = 1
+		crs(1):receivedClientId = 0
+		crs(1):assignedSeats = 2
+		crs(1):flightFullMessageCount = 0
+224:	proc  0 (:init::1) Pessimistic.pml:130 (state 10)
+		:init:(0):idClient = 4
+MSC: ~G line 7
+224:	proc  - (allSeatsAlwaysAssigned:1) _spin_nvr.tmp:7 (state 10)
+6 processes created
+Exit-Status 0
