@@ -59,30 +59,44 @@ chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, client
 
  	do 		 
  		 ::clientToCrs?message,receivedSeat,receivedClientId ->
- 		 	printf("*******assigned seat %d, received seat %d, received client %d\n", assignedSeats,receivedSeat,receivedClientId);
-	 		 if
-		 	 :: message == GET_SEAT ->
-		 	 	
-				if
-				:: d_step{  (receivedSeat < N_SEATS) && seats[receivedSeat].seatStatus == EMPTY ->
-						seats[receivedSeat].seatStatus = RESERVED;
-						seats[receivedSeat].customerId = receivedClientId;
-						//returning to client, seat number and client id
-						crsToClient[receivedClientId]!RETURNING_SEAT,receivedSeat,receivedClientId;
-					}
-				:: (receivedSeat < N_SEATS) && seats[receivedSeat].seatStatus != EMPTY ->
-					//Seat not Available
-					crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId; 
-				::( receivedSeat > (N_SEATS - 1) ) ->
-					crsToClient[receivedClientId]!FLIGHT_FULL,receivedSeat,receivedClientId; 	
-		 		fi;
-		 	:: message == PAYMENT_SEAT ->
-		 		//Assigining seat and confirming
-		 		seats[receivedSeat].seatStatus = ASSIGNED;
-		 		assignedSeats++;
-		 		crsToClient[receivedClientId]!SUCCESS_SEAT,receivedSeat,receivedClientId;
-		 	fi;
-		 :: true -> skip;
+ 		 
+ 		 	if
+			::( receivedSeat > (N_SEATS - 1) ) ->
+				if 
+				:: 	 assignedSeats == N_SEATS ->
+					crsToClient[receivedClientId]!FLIGHT_FULL,receivedSeat,receivedClientId; 		
+					break; 
+				::else ->
+					crsToClient[receivedClientId]!FLIGHT_FULL,receivedSeat,receivedClientId; 	 
+				fi;
+			::else ->
+				 printf("*******assigned seat %d, received seat %d, received client %d\n", assignedSeats,receivedSeat,receivedClientId);
+		 		 if
+			 	 :: message == GET_SEAT ->
+			 	 	
+					if
+					:: d_step{ seats[receivedSeat].seatStatus == EMPTY ->
+							seats[receivedSeat].seatStatus = RESERVED;
+							seats[receivedSeat].customerId = receivedClientId;
+							//returning to client, seat number and client id
+							crsToClient[receivedClientId]!RETURNING_SEAT,receivedSeat,receivedClientId;
+						}
+					:: seats[receivedSeat].seatStatus != EMPTY ->
+						//Seat not Available
+						crsToClient[receivedClientId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedClientId; 
+		
+			 		fi;
+			 	:: message == PAYMENT_SEAT ->
+			 		//Assigining seat and confirming
+			 		seats[receivedSeat].seatStatus = ASSIGNED;
+			 		crsToClient[receivedClientId]!SUCCESS_SEAT,receivedSeat,receivedClientId;
+			 		assignedSeats++;
+			 	fi;
+			
+			fi;
+			
+ 	
+		 //:: true -> skip;*/
  	od
  	
  	
@@ -105,7 +119,6 @@ chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, client
  			//try another seat
  			seatNumber++;
  		:: crsToClient[clientId]?FLIGHT_FULL,seatNumber,clientId -> break;	
- 		
 	 	fi
 	 	
 		/*if
