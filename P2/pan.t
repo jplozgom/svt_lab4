@@ -24,267 +24,229 @@ settable(void)
 {	Trans *T;
 	Trans *settr(int, int, int, int, int, char *, int, int, int);
 
-	trans = (Trans ***) emalloc(8*sizeof(Trans **));
+	trans = (Trans ***) emalloc(7*sizeof(Trans **));
 
-	/* proctype 6: notAvailableCountEqualsToNthTriangleNumber */
+	/* proctype 5: notAvailableCountEqualsToNthTriangleNumber */
 
-	trans[6] = (Trans **) emalloc(7*sizeof(Trans *));
+	trans[5] = (Trans **) emalloc(7*sizeof(Trans *));
 
-	trans[6][4]	= settr(106,0,3,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][3] = settr(105,0,0,0,0,"DO", 0, 2, 0);
+	trans[5][4]	= settr(92,0,3,1,0,".(goto)", 0, 2, 0);
+	T = trans[5][3] = settr(91,0,0,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:25 */
-	    T->nxt	= settr(105,0,1,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(91,0,1,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:25 */
-	trans[6][1]	= settr(103,0,3,3,0,"(!((crs.notAvailableSeatCount==(((3*(3+1))/2)-1))))", 1, 2, 0);
+	trans[5][1]	= settr(89,0,3,3,0,"(!((crs.notAvailableSeatCount==(((3*(3+1))/2)-1))))", 1, 2, 0);
 		tr_2_src(3, "_spin_nvr.tmp", 26);
-	trans[6][2]	= settr(104,0,3,1,0,"goto T0_init", 0, 2, 0);
-	trans[6][5]	= settr(107,0,6,1,0,"break", 0, 2, 0);
-	trans[6][6]	= settr(108,0,0,4,4,"-end-", 0, 3500, 0);
+	trans[5][2]	= settr(90,0,3,1,0,"goto T0_init", 0, 2, 0);
+	trans[5][5]	= settr(93,0,6,1,0,"break", 0, 2, 0);
+	trans[5][6]	= settr(94,0,0,4,4,"-end-", 0, 3500, 0);
 		tr_2_src(4, "_spin_nvr.tmp", 28);
 
-	/* proctype 5: ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
-
-	trans[5] = (Trans **) emalloc(14*sizeof(Trans *));
-
-	trans[5][6]	= settr(95,0,5,1,0,".(goto)", 0, 2, 0);
-	T = trans[5][5] = settr(94,0,0,0,0,"DO", 0, 2, 0);
-		/* _spin_nvr.tmp:13 */
-	T = T->nxt	= settr(94,0,1,0,0,"DO", 0, 2, 0);
-		/* _spin_nvr.tmp:13 */
-	    T->nxt	= settr(94,0,3,0,0,"DO", 0, 2, 0);
-		/* _spin_nvr.tmp:13 */
-	trans[5][1]	= settr(90,0,10,5,0,"((!(!((5>3)))&&!((crs.flightFullMessageCount==(5-3)))))", 1, 2, 0);
-		tr_2_src(5, "_spin_nvr.tmp", 14);
-	trans[5][2]	= settr(91,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[5][3]	= settr(92,0,5,1,0,"(1)", 0, 2, 0);
-	trans[5][4]	= settr(93,0,5,1,0,"goto T0_init", 0, 2, 0);
-	trans[5][7]	= settr(96,0,10,1,0,"break", 0, 2, 0);
-	trans[5][11]	= settr(100,0,10,1,0,".(goto)", 0, 2, 0);
-	T = trans[5][10] = settr(99,0,0,0,0,"DO", 0, 2, 0);
-		/* _spin_nvr.tmp:18 */
-	    T->nxt	= settr(99,0,8,0,0,"DO", 0, 2, 0);
-		/* _spin_nvr.tmp:18 */
-	trans[5][8]	= settr(97,0,10,6,0,"(!((crs.flightFullMessageCount==(5-3))))", 1, 2, 0);
-		tr_2_src(6, "_spin_nvr.tmp", 19);
-	trans[5][9]	= settr(98,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[5][12]	= settr(101,0,13,1,0,"break", 0, 2, 0);
-	trans[5][13]	= settr(102,0,0,7,7,"-end-", 0, 3500, 0);
-		tr_2_src(7, "_spin_nvr.tmp", 21);
-
-	/* proctype 4: allSeatsAlwaysAssigned */
+	/* proctype 4: ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
 
 	trans[4] = (Trans **) emalloc(14*sizeof(Trans *));
 
-	trans[4][6]	= settr(82,0,5,1,0,".(goto)", 0, 2, 0);
-	T = trans[4][5] = settr(81,0,0,0,0,"DO", 0, 2, 0);
+	trans[4][6]	= settr(81,0,5,1,0,".(goto)", 0, 2, 0);
+	T = trans[4][5] = settr(80,0,0,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:13 */
+	T = T->nxt	= settr(80,0,1,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:13 */
+	    T->nxt	= settr(80,0,3,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:13 */
+	trans[4][1]	= settr(76,0,10,5,0,"((!(!((4>3)))&&!((crs.flightFullMessageCount==(4-3)))))", 1, 2, 0);
+		tr_2_src(5, "_spin_nvr.tmp", 14);
+	trans[4][2]	= settr(77,0,10,1,0,"goto accept_S4", 0, 2, 0);
+	trans[4][3]	= settr(78,0,5,1,0,"(1)", 0, 2, 0);
+	trans[4][4]	= settr(79,0,5,1,0,"goto T0_init", 0, 2, 0);
+	trans[4][7]	= settr(82,0,10,1,0,"break", 0, 2, 0);
+	trans[4][11]	= settr(86,0,10,1,0,".(goto)", 0, 2, 0);
+	T = trans[4][10] = settr(85,0,0,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:18 */
+	    T->nxt	= settr(85,0,8,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:18 */
+	trans[4][8]	= settr(83,0,10,6,0,"(!((crs.flightFullMessageCount==(4-3))))", 1, 2, 0);
+		tr_2_src(6, "_spin_nvr.tmp", 19);
+	trans[4][9]	= settr(84,0,10,1,0,"goto accept_S4", 0, 2, 0);
+	trans[4][12]	= settr(87,0,13,1,0,"break", 0, 2, 0);
+	trans[4][13]	= settr(88,0,0,7,7,"-end-", 0, 3500, 0);
+		tr_2_src(7, "_spin_nvr.tmp", 21);
+
+	/* proctype 3: allSeatsAlwaysAssigned */
+
+	trans[3] = (Trans **) emalloc(14*sizeof(Trans *));
+
+	trans[3][6]	= settr(68,0,5,1,0,".(goto)", 0, 2, 0);
+	T = trans[3][5] = settr(67,0,0,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:2 */
-	T = T->nxt	= settr(81,0,1,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(67,0,1,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:2 */
-	    T->nxt	= settr(81,0,3,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(67,0,3,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:2 */
-	trans[4][1]	= settr(77,0,10,8,0,"(!((crs.assignedSeats==3)))", 1, 2, 0);
+	trans[3][1]	= settr(63,0,10,8,0,"(!((crs.assignedSeats==3)))", 1, 2, 0);
 		tr_2_src(8, "_spin_nvr.tmp", 3);
-	trans[4][2]	= settr(78,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[4][3]	= settr(79,0,5,1,0,"(1)", 0, 2, 0);
-	trans[4][4]	= settr(80,0,5,1,0,"goto T0_init", 0, 2, 0);
-	trans[4][7]	= settr(83,0,10,1,0,"break", 0, 2, 0);
-	trans[4][11]	= settr(87,0,10,1,0,".(goto)", 0, 2, 0);
-	T = trans[4][10] = settr(86,0,0,0,0,"DO", 0, 2, 0);
+	trans[3][2]	= settr(64,0,10,1,0,"goto accept_S4", 0, 2, 0);
+	trans[3][3]	= settr(65,0,5,1,0,"(1)", 0, 2, 0);
+	trans[3][4]	= settr(66,0,5,1,0,"goto T0_init", 0, 2, 0);
+	trans[3][7]	= settr(69,0,10,1,0,"break", 0, 2, 0);
+	trans[3][11]	= settr(73,0,10,1,0,".(goto)", 0, 2, 0);
+	T = trans[3][10] = settr(72,0,0,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:7 */
-	    T->nxt	= settr(86,0,8,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(72,0,8,0,0,"DO", 0, 2, 0);
 		/* _spin_nvr.tmp:7 */
-	trans[4][8]	= settr(84,0,10,9,0,"(!((crs.assignedSeats==3)))", 1, 2, 0);
+	trans[3][8]	= settr(70,0,10,9,0,"(!((crs.assignedSeats==3)))", 1, 2, 0);
 		tr_2_src(9, "_spin_nvr.tmp", 8);
-	trans[4][9]	= settr(85,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[4][12]	= settr(88,0,13,1,0,"break", 0, 2, 0);
-	trans[4][13]	= settr(89,0,0,10,10,"-end-", 0, 3500, 0);
+	trans[3][9]	= settr(71,0,10,1,0,"goto accept_S4", 0, 2, 0);
+	trans[3][12]	= settr(74,0,13,1,0,"break", 0, 2, 0);
+	trans[3][13]	= settr(75,0,0,10,10,"-end-", 0, 3500, 0);
 		tr_2_src(10, "_spin_nvr.tmp", 10);
 
-	/* proctype 3: :init: */
-
-	trans[3] = (Trans **) emalloc(11*sizeof(Trans *));
-
-	trans[3][1]	= settr(67,0,7,11,11,"(run crs())", 0, 2, 0);
-		tr_2_src(11, "Pessimistic.pml", 136);
-	trans[3][8]	= settr(74,0,7,1,0,".(goto)", 0, 2, 0);
-	T = trans[3][7] = settr(73,0,0,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:137 */
-	T = T->nxt	= settr(73,0,2,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:137 */
-	    T->nxt	= settr(73,0,5,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:137 */
-	trans[3][2]	= settr(68,0,3,12,0,"((idClient<(5-1)))", 0, 2, 0);
-		tr_2_src(12, "Pessimistic.pml", 138);
-	trans[3][3]	= settr(69,0,4,13,13,"(run client(idClient))", 0, 2, 0);
-		tr_2_src(13, "Pessimistic.pml", 139);
-	trans[3][4]	= settr(70,0,7,14,14,"idClient = (idClient+1)", 0, 2, 0);
-		tr_2_src(14, "Pessimistic.pml", 140);
-	trans[3][5]	= settr(71,0,10,15,0,"((idClient==5))", 0, 2, 0);
-		tr_2_src(15, "Pessimistic.pml", 141);
-	trans[3][6]	= settr(72,0,10,1,0,"goto :b4", 0, 2, 0);
-	trans[3][9]	= settr(75,0,10,1,0,"break", 0, 2, 0);
-	trans[3][10]	= settr(76,0,0,16,16,"-end-", 0, 3500, 0);
-		tr_2_src(16, "Pessimistic.pml", 143);
-
-	/* proctype 2: hacker */
+	/* proctype 2: :init: */
 
 	trans[2] = (Trans **) emalloc(11*sizeof(Trans *));
 
-	trans[2][8]	= settr(64,0,7,1,0,".(goto)", 0, 2, 0);
-	T = trans[2][7] = settr(63,0,0,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:126 */
-	T = T->nxt	= settr(63,0,1,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:126 */
-	T = T->nxt	= settr(63,0,3,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:126 */
-	    T->nxt	= settr(63,0,5,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:126 */
-	trans[2][1]	= settr(57,0,2,17,17,"clientToCrs!PAYMENT_SEAT,0,4", 1, 3, 0);
-		tr_2_src(17, "Pessimistic.pml", 127);
-	trans[2][2]	= settr(58,0,7,18,18,"crsToClient[4]?INVALID_CUSTOMER,0,4", 1, 504, 0);
-		tr_2_src(18, "Pessimistic.pml", 127);
-	trans[2][3]	= settr(59,0,4,19,19,"clientToCrs!PAYMENT_SEAT,1,4", 1, 3, 0);
-		tr_2_src(19, "Pessimistic.pml", 128);
-	trans[2][4]	= settr(60,0,7,20,20,"crsToClient[4]?INVALID_CUSTOMER,1,4", 1, 504, 0);
-		tr_2_src(20, "Pessimistic.pml", 128);
-	trans[2][5]	= settr(61,0,6,21,21,"clientToCrs!PAYMENT_SEAT,2,4", 1, 3, 0);
-		tr_2_src(21, "Pessimistic.pml", 129);
-	trans[2][6]	= settr(62,0,7,22,22,"crsToClient[4]?INVALID_CUSTOMER,2,4", 1, 504, 0);
-		tr_2_src(22, "Pessimistic.pml", 129);
-	trans[2][9]	= settr(65,0,10,1,0,"break", 0, 2, 0);
-	trans[2][10]	= settr(66,0,0,23,23,"-end-", 0, 3500, 0);
-		tr_2_src(23, "Pessimistic.pml", 131);
+	trans[2][1]	= settr(53,0,7,11,11,"(run crs())", 0, 2, 0);
+		tr_2_src(11, "Pessimistic.pml", 126);
+	trans[2][8]	= settr(60,0,7,1,0,".(goto)", 0, 2, 0);
+	T = trans[2][7] = settr(59,0,0,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:127 */
+	T = T->nxt	= settr(59,0,2,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:127 */
+	    T->nxt	= settr(59,0,5,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:127 */
+	trans[2][2]	= settr(54,0,3,12,0,"((idClient<4))", 0, 2, 0);
+		tr_2_src(12, "Pessimistic.pml", 128);
+	trans[2][3]	= settr(55,0,4,13,13,"(run client(idClient))", 0, 2, 0);
+		tr_2_src(13, "Pessimistic.pml", 129);
+	trans[2][4]	= settr(56,0,7,14,14,"idClient = (idClient+1)", 0, 2, 0);
+		tr_2_src(14, "Pessimistic.pml", 130);
+	trans[2][5]	= settr(57,0,10,15,0,"((idClient==4))", 0, 2, 0);
+		tr_2_src(15, "Pessimistic.pml", 131);
+	trans[2][6]	= settr(58,0,10,1,0,"goto :b3", 0, 2, 0);
+	trans[2][9]	= settr(61,0,10,1,0,"break", 0, 2, 0);
+	trans[2][10]	= settr(62,0,0,16,16,"-end-", 0, 3500, 0);
+		tr_2_src(16, "Pessimistic.pml", 133);
 
 	/* proctype 1: client */
 
 	trans[1] = (Trans **) emalloc(16*sizeof(Trans *));
 
-	trans[1][13]	= settr(54,0,12,1,0,".(goto)", 0, 2, 0);
-	T = trans[1][12] = settr(53,0,0,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:106 */
-	    T->nxt	= settr(53,0,1,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:106 */
-	trans[1][1]	= settr(42,0,10,24,24,"clientToCrs!GET_SEAT,seatNumber,clientId", 1, 3, 0);
-		tr_2_src(24, "Pessimistic.pml", 107);
-	T = trans[1][10] = settr(51,0,0,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:108 */
-	T = T->nxt	= settr(51,0,2,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:108 */
-	T = T->nxt	= settr(51,0,6,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:108 */
-	    T->nxt	= settr(51,0,8,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:108 */
-	trans[1][2]	= settr(43,0,3,25,25,"crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId", 1, 504, 0);
-		tr_2_src(25, "Pessimistic.pml", 109);
-	trans[1][3]	= settr(44,0,4,26,26,"clientToCrs!PAYMENT_SEAT,seatNumber,clientId", 1, 3, 0);
-		tr_2_src(26, "Pessimistic.pml", 111);
-	trans[1][4]	= settr(45,0,15,27,27,"crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId", 1, 504, 0);
-		tr_2_src(27, "Pessimistic.pml", 112);
-	trans[1][5]	= settr(46,0,15,1,0,"goto :b2", 0, 2, 0);
-	trans[1][11]	= settr(52,0,12,1,0,".(goto)", 0, 2, 0);
-	trans[1][6]	= settr(47,0,7,28,28,"crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId", 1, 504, 0);
-		tr_2_src(28, "Pessimistic.pml", 114);
-	trans[1][7]	= settr(48,0,12,29,29,"seatNumber = (seatNumber+1)", 0, 2, 0);
-		tr_2_src(29, "Pessimistic.pml", 116);
-	trans[1][8]	= settr(49,0,15,30,30,"crsToClient[clientId]?FLIGHT_FULL,seatNumber,clientId", 1, 504, 0);
-		tr_2_src(30, "Pessimistic.pml", 117);
-	trans[1][9]	= settr(50,0,15,1,0,"goto :b2", 0, 2, 0);
-	trans[1][14]	= settr(55,0,15,1,0,"break", 0, 2, 0);
-	trans[1][15]	= settr(56,0,0,31,31,"-end-", 0, 3500, 0);
-		tr_2_src(31, "Pessimistic.pml", 122);
+	trans[1][13]	= settr(50,0,12,1,0,".(goto)", 0, 2, 0);
+	T = trans[1][12] = settr(49,0,0,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:96 */
+	    T->nxt	= settr(49,0,1,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:96 */
+	trans[1][1]	= settr(38,0,10,17,17,"clientToCrs!GET_SEAT,seatNumber,clientId", 1, 3, 0);
+		tr_2_src(17, "Pessimistic.pml", 97);
+	T = trans[1][10] = settr(47,0,0,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:98 */
+	T = T->nxt	= settr(47,0,2,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:98 */
+	T = T->nxt	= settr(47,0,6,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:98 */
+	    T->nxt	= settr(47,0,8,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:98 */
+	trans[1][2]	= settr(39,0,3,18,18,"crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId", 1, 504, 0);
+		tr_2_src(18, "Pessimistic.pml", 99);
+	trans[1][3]	= settr(40,0,4,19,19,"clientToCrs!PAYMENT_SEAT,seatNumber,clientId", 1, 3, 0);
+		tr_2_src(19, "Pessimistic.pml", 101);
+	trans[1][4]	= settr(41,0,15,20,20,"crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId", 1, 504, 0);
+		tr_2_src(20, "Pessimistic.pml", 102);
+	trans[1][5]	= settr(42,0,15,1,0,"goto :b2", 0, 2, 0);
+	trans[1][11]	= settr(48,0,12,1,0,".(goto)", 0, 2, 0);
+	trans[1][6]	= settr(43,0,7,21,21,"crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId", 1, 504, 0);
+		tr_2_src(21, "Pessimistic.pml", 104);
+	trans[1][7]	= settr(44,0,12,22,22,"seatNumber = (seatNumber+1)", 0, 2, 0);
+		tr_2_src(22, "Pessimistic.pml", 106);
+	trans[1][8]	= settr(45,0,15,23,23,"crsToClient[clientId]?FLIGHT_FULL,seatNumber,clientId", 1, 504, 0);
+		tr_2_src(23, "Pessimistic.pml", 107);
+	trans[1][9]	= settr(46,0,15,1,0,"goto :b2", 0, 2, 0);
+	trans[1][14]	= settr(51,0,15,1,0,"break", 0, 2, 0);
+	trans[1][15]	= settr(52,0,0,24,24,"-end-", 0, 3500, 0);
+		tr_2_src(24, "Pessimistic.pml", 112);
 
 	/* proctype 0: crs */
 
-	trans[0] = (Trans **) emalloc(43*sizeof(Trans *));
+	trans[0] = (Trans **) emalloc(39*sizeof(Trans *));
 
 	trans[0][10]	= settr(9,0,9,1,0,".(goto)", 0, 2, 0);
 	T = trans[0][9] = settr(8,0,0,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:56 */
+		/* Pessimistic.pml:48 */
 	T = T->nxt	= settr(8,0,1,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:56 */
+		/* Pessimistic.pml:48 */
 	    T->nxt	= settr(8,0,7,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:56 */
-	trans[0][1]	= settr(0,0,2,32,0,"((i<3))", 0, 2, 0);
-		tr_2_src(32, "Pessimistic.pml", 57);
-	trans[0][2]	= settr(1,0,3,33,33,"seats[i].seatStatus = EMPTY", 1, 2, 0);
-		tr_2_src(33, "Pessimistic.pml", 58);
-	trans[0][3]	= settr(2,0,4,34,34,"seats[i].customerId = -(1)", 1, 2, 0);
-		tr_2_src(34, "Pessimistic.pml", 59);
-	trans[0][4]	= settr(3,0,5,35,0,"printf('status %d',seats[i].seatStatus)", 1, 2, 0);
-		tr_2_src(35, "Pessimistic.pml", 60);
-	trans[0][5]	= settr(4,0,6,36,0,"printf('customerId %d',seats[i].customerId)", 1, 2, 0);
-		tr_2_src(36, "Pessimistic.pml", 61);
-	trans[0][6]	= settr(5,0,9,37,37,"i = (i+1)", 0, 2, 0);
-		tr_2_src(37, "Pessimistic.pml", 62);
-	trans[0][7]	= settr(6,0,39,38,0,"((i>=3))", 0, 2, 0);
-		tr_2_src(38, "Pessimistic.pml", 63);
-	trans[0][8]	= settr(7,0,39,1,0,"goto :b0", 0, 2, 0);
-	trans[0][11]	= settr(10,0,39,1,0,"break", 0, 2, 0);
-	trans[0][40]	= settr(39,0,39,1,0,".(goto)", 0, 2, 0);
-	T = trans[0][39] = settr(38,0,0,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:66 */
-	    T->nxt	= settr(38,0,12,0,0,"DO", 0, 2, 0);
-		/* Pessimistic.pml:66 */
-	trans[0][12]	= settr(11,0,13,39,39,"clientToCrs?message,receivedSeat,receivedCustomerId", 1, 503, 0);
-		tr_2_src(39, "Pessimistic.pml", 67);
-	trans[0][13]	= settr(12,0,37,40,0,"printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)", 0, 2, 0);
-		tr_2_src(40, "Pessimistic.pml", 68);
-	T = trans[0][37] = settr(36,0,0,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:69 */
-	T = T->nxt	= settr(36,0,14,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:69 */
-	    T->nxt	= settr(36,0,28,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:69 */
-	trans[0][14]	= settr(13,0,26,41,0,"((message==GET_SEAT))", 0, 2, 0);
-		tr_2_src(41, "Pessimistic.pml", 70);
+		/* Pessimistic.pml:48 */
+	trans[0][1]	= settr(0,0,2,25,0,"((i<3))", 0, 2, 0);
+		tr_2_src(25, "Pessimistic.pml", 49);
+	trans[0][2]	= settr(1,0,3,26,26,"seats[i].seatStatus = EMPTY", 1, 2, 0);
+		tr_2_src(26, "Pessimistic.pml", 50);
+	trans[0][3]	= settr(2,0,4,27,27,"seats[i].customerId = -(1)", 1, 2, 0);
+		tr_2_src(27, "Pessimistic.pml", 51);
+	trans[0][4]	= settr(3,0,5,28,0,"printf('status %d',seats[i].seatStatus)", 1, 2, 0);
+		tr_2_src(28, "Pessimistic.pml", 52);
+	trans[0][5]	= settr(4,0,6,29,0,"printf('customerId %d',seats[i].customerId)", 1, 2, 0);
+		tr_2_src(29, "Pessimistic.pml", 53);
+	trans[0][6]	= settr(5,0,9,30,30,"i = (i+1)", 0, 2, 0);
+		tr_2_src(30, "Pessimistic.pml", 54);
+	trans[0][7]	= settr(6,0,35,31,0,"((i>=3))", 0, 2, 0);
+		tr_2_src(31, "Pessimistic.pml", 55);
+	trans[0][8]	= settr(7,0,35,1,0,"goto :b0", 0, 2, 0);
+	trans[0][11]	= settr(10,0,35,1,0,"break", 0, 2, 0);
+	trans[0][36]	= settr(35,0,35,1,0,".(goto)", 0, 2, 0);
+	T = trans[0][35] = settr(34,0,0,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:58 */
+	    T->nxt	= settr(34,0,12,0,0,"DO", 0, 2, 0);
+		/* Pessimistic.pml:58 */
+	trans[0][12]	= settr(11,0,13,32,32,"clientToCrs?message,receivedSeat,receivedCustomerId", 1, 503, 0);
+		tr_2_src(32, "Pessimistic.pml", 59);
+	trans[0][13]	= settr(12,0,33,33,0,"printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)", 0, 2, 0);
+		tr_2_src(33, "Pessimistic.pml", 60);
+	T = trans[0][33] = settr(32,0,0,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:61 */
+	T = T->nxt	= settr(32,0,14,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:61 */
+	T = T->nxt	= settr(32,0,28,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:61 */
+	    T->nxt	= settr(32,0,29,0,0,"IF", 0, 2, 0);
+		/* Pessimistic.pml:61 */
+	trans[0][14]	= settr(13,0,26,34,0,"((message==GET_SEAT))", 0, 2, 0);
+		tr_2_src(34, "Pessimistic.pml", 62);
 	T = trans[0][26] = settr(25,0,0,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:72 */
+		/* Pessimistic.pml:64 */
 	T = T->nxt	= settr(25,0,19,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:72 */
+		/* Pessimistic.pml:64 */
 	T = T->nxt	= settr(25,0,20,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:72 */
+		/* Pessimistic.pml:64 */
 	    T->nxt	= settr(25,0,23,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:72 */
-		tr_2_src(42, "Pessimistic.pml", 73);
-/*->*/	trans[0][19]	= settr(18,32,39,42,42,"D_STEP73", 1, 4, 0);
-	trans[0][27]	= settr(26,0,39,1,0,".(goto)", 0, 2, 0);
-	trans[0][20]	= settr(19,0,21,43,0,"(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))", 1, 2, 0);
-		tr_2_src(43, "Pessimistic.pml", 79);
-	trans[0][21]	= settr(20,0,22,44,44,"crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId", 1, 4, 0);
-		tr_2_src(44, "Pessimistic.pml", 81);
-	trans[0][22]	= settr(21,0,39,45,45,"notAvailableSeatCount = (notAvailableSeatCount+1)", 0, 2, 0);
-		tr_2_src(45, "Pessimistic.pml", 82);
-	trans[0][23]	= settr(22,0,24,46,0,"((receivedSeat>(3-1)))", 0, 2, 0);
-		tr_2_src(46, "Pessimistic.pml", 83);
-	trans[0][24]	= settr(23,0,25,47,47,"crsToClient[receivedCustomerId]!FLIGHT_FULL,receivedSeat,receivedCustomerId", 1, 4, 0);
-		tr_2_src(47, "Pessimistic.pml", 84);
-	trans[0][25]	= settr(24,0,39,48,48,"flightFullMessageCount = (flightFullMessageCount+1)", 0, 2, 0);
-		tr_2_src(48, "Pessimistic.pml", 85);
-	trans[0][38]	= settr(37,0,39,1,0,".(goto)", 0, 2, 0);
-	trans[0][28]	= settr(27,0,35,49,0,"((message==PAYMENT_SEAT))", 0, 2, 0);
-		tr_2_src(49, "Pessimistic.pml", 87);
-	T = trans[0][35] = settr(34,0,0,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:88 */
-	T = T->nxt	= settr(34,0,29,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:88 */
-	    T->nxt	= settr(34,0,33,0,0,"IF", 0, 2, 0);
-		/* Pessimistic.pml:88 */
-	trans[0][29]	= settr(28,0,30,50,0,"((receivedCustomerId==seats[receivedSeat].customerId))", 1, 2, 0);
-		tr_2_src(50, "Pessimistic.pml", 89);
-	trans[0][30]	= settr(29,0,31,51,51,"seats[receivedSeat].seatStatus = ASSIGNED", 1, 2, 0);
-		tr_2_src(51, "Pessimistic.pml", 91);
-	trans[0][31]	= settr(30,0,32,52,52,"crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId", 1, 4, 0);
-		tr_2_src(52, "Pessimistic.pml", 92);
-	trans[0][32]	= settr(31,0,39,53,53,"assignedSeats = (assignedSeats+1)", 0, 2, 0);
-		tr_2_src(53, "Pessimistic.pml", 93);
-	trans[0][36]	= settr(35,0,39,1,0,".(goto)", 0, 2, 0);
-	trans[0][33]	= settr(32,0,34,54,0,"((receivedCustomerId!=seats[receivedSeat].customerId))", 1, 2, 0);
-		tr_2_src(54, "Pessimistic.pml", 94);
-	trans[0][34]	= settr(33,0,39,55,55,"crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId", 1, 4, 0);
-		tr_2_src(55, "Pessimistic.pml", 94);
-	trans[0][41]	= settr(40,0,42,1,0,"break", 0, 2, 0);
-	trans[0][42]	= settr(41,0,0,56,56,"-end-", 0, 3500, 0);
-		tr_2_src(56, "Pessimistic.pml", 100);
+		/* Pessimistic.pml:64 */
+		tr_2_src(35, "Pessimistic.pml", 65);
+/*->*/	trans[0][19]	= settr(18,32,35,35,35,"D_STEP65", 1, 4, 0);
+	trans[0][27]	= settr(26,0,35,1,0,".(goto)", 0, 2, 0);
+	trans[0][20]	= settr(19,0,21,36,0,"(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))", 1, 2, 0);
+		tr_2_src(36, "Pessimistic.pml", 71);
+	trans[0][21]	= settr(20,0,22,37,37,"crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId", 1, 4, 0);
+		tr_2_src(37, "Pessimistic.pml", 73);
+	trans[0][22]	= settr(21,0,35,38,38,"notAvailableSeatCount = (notAvailableSeatCount+1)", 0, 2, 0);
+		tr_2_src(38, "Pessimistic.pml", 74);
+	trans[0][23]	= settr(22,0,24,39,0,"((receivedSeat>(3-1)))", 0, 2, 0);
+		tr_2_src(39, "Pessimistic.pml", 75);
+	trans[0][24]	= settr(23,0,25,40,40,"crsToClient[receivedCustomerId]!FLIGHT_FULL,receivedSeat,receivedCustomerId", 1, 4, 0);
+		tr_2_src(40, "Pessimistic.pml", 76);
+	trans[0][25]	= settr(24,0,35,41,41,"flightFullMessageCount = (flightFullMessageCount+1)", 0, 2, 0);
+		tr_2_src(41, "Pessimistic.pml", 77);
+	trans[0][34]	= settr(33,0,35,1,0,".(goto)", 0, 2, 0);
+	trans[0][28]	= settr(27,0,35,42,0,"((message==PAYMENT_SEAT))", 0, 2, 0);
+		tr_2_src(42, "Pessimistic.pml", 79);
+	trans[0][29]	= settr(28,0,30,43,0,"((receivedCustomerId==seats[receivedSeat].customerId))", 1, 2, 0);
+		tr_2_src(43, "Pessimistic.pml", 81);
+	trans[0][30]	= settr(29,0,31,44,44,"seats[receivedSeat].seatStatus = ASSIGNED", 1, 2, 0);
+		tr_2_src(44, "Pessimistic.pml", 83);
+	trans[0][31]	= settr(30,0,32,45,45,"crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId", 1, 4, 0);
+		tr_2_src(45, "Pessimistic.pml", 84);
+	trans[0][32]	= settr(31,0,35,46,46,"assignedSeats = (assignedSeats+1)", 0, 2, 0);
+		tr_2_src(46, "Pessimistic.pml", 85);
+	trans[0][37]	= settr(36,0,38,1,0,"break", 0, 2, 0);
+	trans[0][38]	= settr(37,0,0,47,47,"-end-", 0, 3500, 0);
+		tr_2_src(47, "Pessimistic.pml", 90);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(3*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);

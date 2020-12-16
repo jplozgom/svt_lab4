@@ -1,5 +1,5 @@
 //CONSTANTS AND MACROS
-#define N_CUSTOMERS 5
+#define N_CUSTOMERS 4
 #define N_SEATS 3
 #define ASSIGNED_SEATS crs:assignedSeats
 #define FLIGHT_FULL_COUNTER crs:flightFullMessageCount
@@ -15,17 +15,9 @@ mtype = { GET_SEAT, RETURNING_SEAT, PAYMENT_SEAT, NOT_AVAILABLE_SEAT, FLIGHT_FUL
 ltl allSeatsAlwaysAssigned { []<>(ASSIGNED_SEATS == N_SEATS) }
 ltl ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero { [](N_CUSTOMERS > N_SEATS -> <>(FLIGHT_FULL_COUNTER == (N_CUSTOMERS - N_SEATS))) }
 
-ltl notAvailableCountEqualsToNthTriangleNumber { <>( NOT_AVAILABLE_MSGS_COUNTER == ((N_SEATS * (N_SEATS + 1) / 2) - 1)) }
-
-/*clients cant have more than two seats
-
-clients always have different seats.???
-
-Client get a seat and always eventually reserve it
-
-
-*/
-
+// NOT AVAILABLE SEAT RESPONSES EQUALS 3 FOR SEAT_0, 2 FOR SEAT_1, 1 FOR SEAT_2 MINUS 1 FULL FLIGHT MESSAGE
+// verifies that seats are blocked and remaining customers asking for a seat receive either a NOT_AVAILABLE_SEAT or a FLIGHT_FULL message
+ltl notAvailableCountEqualsToNthTriangleNumber { <>( NOT_AVAILABLE_MSGS_COUNTER == ((N_SEATS * (N_SEATS + 1) / 2) - 1) ) }
 
 /*
 	TYPEDEF RECEIVED FROM CLIENTS TO CRS
@@ -85,14 +77,12 @@ chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, client
 							flightFullMessageCount++;
 					fi;
 				:: message == PAYMENT_SEAT ->
-					/*if*/
-						:: receivedCustomerId == seats[receivedSeat].customerId ->
-							//Assigining seat and confirming
-							seats[receivedSeat].seatStatus = ASSIGNED;
-							crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId;
-							assignedSeats++;
-						/*:: receivedCustomerId != seats[receivedSeat].customerId -> crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId;*/
-					/*fi;*/
+					// to assign seat customer Id must match
+					:: receivedCustomerId == seats[receivedSeat].customerId ->
+						//Assigining seat and confirming
+						seats[receivedSeat].seatStatus = ASSIGNED;
+						crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId;
+						assignedSeats++;
 			fi;
 	od
 
@@ -135,7 +125,7 @@ init{
  	int idClient = 0;
  	run crs();
  	do
- 	:: idClient < N_CUSTOMERS - 1 ->
+ 	:: idClient < N_CUSTOMERS ->
  		run client(idClient);
  		idClient++;
  	:: idClient == N_CUSTOMERS -> break

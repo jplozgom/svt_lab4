@@ -73,10 +73,6 @@ globinit(void)
 #endif
 	*proc_offset, *q_offset;
 void
-locinit6(int h)
-{
-}
-void
 locinit5(int h)
 {
 }
@@ -506,34 +502,21 @@ int _;	/* predefined write-only variable */
 	#define Index(x, y)	x
 #endif
 
-short src_ln6 [] = {
+short src_ln5 [] = {
 	  0,  26,  26,  25,  28,  25,  28,   0, };
-S_F_MAP src_file6 [] = {
+S_F_MAP src_file5 [] = {
 	{ "-", 0, 0 },
 	{ "_spin_nvr.tmp", 1, 6 },
 	{ "-", 7, 8 }
 };
 short *src_claim;
-uchar reached6 [] = {
-	  0,   1,   1,   0,   1,   1,   0,   0, };
-uchar *loopstate6;
-
-short src_ln5 [] = {
-	  0,  14,  14,  15,  15,  13,  17,  13, 
-	 19,  19,  18,  21,  18,  21,   0, };
-S_F_MAP src_file5 [] = {
-	{ "-", 0, 0 },
-	{ "_spin_nvr.tmp", 1, 13 },
-	{ "-", 14, 15 }
-};
 uchar reached5 [] = {
-	  0,   1,   1,   1,   1,   0,   1,   1, 
-	  1,   1,   0,   1,   1,   0,   0, };
+	  0,   1,   1,   0,   1,   1,   0,   0, };
 uchar *loopstate5;
 
 short src_ln4 [] = {
-	  0,   3,   3,   4,   4,   2,   6,   2, 
-	  8,   8,   7,  10,   7,  10,   0, };
+	  0,  14,  14,  15,  15,  13,  17,  13, 
+	 19,  19,  18,  21,  18,  21,   0, };
 S_F_MAP src_file4 [] = {
 	{ "-", 0, 0 },
 	{ "_spin_nvr.tmp", 1, 13 },
@@ -545,34 +528,34 @@ uchar reached4 [] = {
 uchar *loopstate4;
 
 short src_ln3 [] = {
-	  0, 136, 138, 139, 140, 141, 141, 137, 
-	143, 137, 143,   0, };
+	  0,   3,   3,   4,   4,   2,   6,   2, 
+	  8,   8,   7,  10,   7,  10,   0, };
 S_F_MAP src_file3 [] = {
 	{ "-", 0, 0 },
-	{ "Pessimistic.pml", 1, 10 },
-	{ "-", 11, 12 }
+	{ "_spin_nvr.tmp", 1, 13 },
+	{ "-", 14, 15 }
 };
 uchar reached3 [] = {
-	  0,   0,   1,   0,   0,   1,   1,   0, 
-	  1,   1,   0,   0, };
+	  0,   1,   1,   1,   1,   0,   1,   1, 
+	  1,   1,   0,   1,   1,   0,   0, };
 uchar *loopstate3;
 
 short src_ln2 [] = {
-	  0, 127, 127, 128, 128, 129, 129, 126, 
-	131, 126, 131,   0, };
+	  0, 126, 128, 129, 130, 131, 131, 127, 
+	133, 127, 133,   0, };
 S_F_MAP src_file2 [] = {
 	{ "-", 0, 0 },
 	{ "Pessimistic.pml", 1, 10 },
 	{ "-", 11, 12 }
 };
 uchar reached2 [] = {
-	  0,   1,   0,   1,   0,   1,   0,   0, 
+	  0,   0,   1,   0,   0,   1,   1,   0, 
 	  1,   1,   0,   0, };
 uchar *loopstate2;
 
 short src_ln1 [] = {
-	  0, 107, 109, 111, 112, 113, 114, 116, 
-	117, 117, 108, 120, 106, 122, 106, 122, 
+	  0,  97,  99, 101, 102, 103, 104, 106, 
+	107, 107,  98, 110,  96, 112,  96, 112, 
 	  0, };
 S_F_MAP src_file1 [] = {
 	{ "-", 0, 0 },
@@ -586,33 +569,30 @@ uchar reached1 [] = {
 uchar *loopstate1;
 
 short src_ln0 [] = {
-	  0,  57,  58,  59,  60,  61,  62,  63, 
-	 63,  56,  66,  56,  67,  68,  70,   0, 
-	  0,   0,   0,  73,  79,  81,  82,  83, 
-	 84,  85,  72,  87,  87,  89,  91,  92, 
-	 93,  94,  94,  88,  96,  69,  97,  66, 
-	100,  66, 100,   0, };
+	  0,  49,  50,  51,  52,  53,  54,  55, 
+	 55,  48,  58,  48,  59,  60,  62,   0, 
+	  0,   0,   0,  65,  71,  73,  74,  75, 
+	 76,  77,  64,  79,  79,  81,  83,  84, 
+	 85,  61,  87,  58,  90,  58,  90,   0, };
 S_F_MAP src_file0 [] = {
 	{ "-", 0, 0 },
 	{ "Pessimistic.pml", 1, 14 },
 	{ "-", 15, 18 },
-	{ "Pessimistic.pml", 19, 42 },
-	{ "-", 43, 44 }
+	{ "Pessimistic.pml", 19, 38 },
+	{ "-", 39, 40 }
 };
 uchar reached0 [] = {
 	  0,   1,   0,   0,   0,   0,   0,   1, 
 	  1,   0,   1,   1,   1,   0,   1,   0, 
 	  1,   1,   1,   1,   1,   0,   0,   1, 
 	  0,   0,   0,   1,   1,   1,   0,   0, 
-	  0,   1,   0,   0,   1,   0,   1,   0, 
-	  1,   1,   0,   0, };
+	  0,   0,   1,   0,   1,   1,   0,   0, };
 uchar *loopstate0;
-uchar reached7[3];  /* np_ */
-uchar *loopstate7;  /* np_ */
+uchar reached6[3];  /* np_ */
+uchar *loopstate6;  /* np_ */
 struct {
 	int tp; short *src;
 } src_all[] = {
-	{ 6, &src_ln6[0] },
 	{ 5, &src_ln5[0] },
 	{ 4, &src_ln4[0] },
 	{ 3, &src_ln3[0] },
@@ -622,7 +602,6 @@ struct {
 	{ 0, (short *) 0 }
 };
 S_F_MAP *flref[] = {
-	src_file6,
 	src_file5,
 	src_file4,
 	src_file3,
@@ -637,15 +616,14 @@ struct {
 	{ (char *) 0, "" }
 };
 
-short Air[] = {  (short) Air0, (short) Air1, (short) Air2, (short) Air3, (short) Air4, (short) Air5, (short) Air6, (short) Air7
+short Air[] = {  (short) Air0, (short) Air1, (short) Air2, (short) Air3, (short) Air4, (short) Air5, (short) Air6
 #ifndef NOCLAIM
-	, (short) Air8
+	, (short) Air7
 #endif
 	 };
 char *procname[] = {
    "crs",
    "client",
-   "hacker",
    ":init:",
    "allSeatsAlwaysAssigned",
    "ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero",
@@ -659,7 +637,6 @@ enum btypes { NONE=0, N_CLAIM=1, I_PROC=2, A_PROC=3, P_PROC=4, E_TRACE=5, N_TRAC
 int Btypes[] = {
    4,	/* crs */
    4,	/* client */
-   4,	/* hacker */
    2,	/* :init: */
    1,	/* allSeatsAlwaysAssigned */
    1,	/* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
@@ -670,15 +647,15 @@ int Btypes[] = {
 #ifndef NOCLAIM
 uchar spin_c_typ[NCLAIMS]; /* claim-types */
 #endif
-uchar *accpstate[8];
-uchar *progstate[8];
-uchar *loopstate[8];
-uchar *reached[8];
-uchar *stopstate[8];
-uchar *visstate[8];
-short *mapstate[8];
+uchar *accpstate[7];
+uchar *progstate[7];
+uchar *loopstate[7];
+uchar *reached[7];
+uchar *stopstate[7];
+uchar *visstate[7];
+short *mapstate[7];
 #ifdef HAS_CODE
-	int NrStates[8];
+	int NrStates[7];
 #endif
 #ifdef TRIX
 int what_p_size(int);
@@ -840,9 +817,8 @@ addproc(int calling_pid, int priority, int n, int par0)
 	case 4: j = sizeof(P4); break;
 	case 5: j = sizeof(P5); break;
 	case 6: j = sizeof(P6); break;
-	case 7: j = sizeof(P7); break;
 #ifndef NOCLAIM
-	case 8: j = sizeof(P8); break;
+	case 7: j = sizeof(P7); break;
 #endif
 	default: Uerror("bad proc - addproc");
 	}
@@ -937,20 +913,20 @@ addproc(int calling_pid, int priority, int n, int par0)
 	}
 	switch (n) {
 #ifndef NOCLAIM
-	case 8:	/* claim select */
-		spin_c_typ[0] = 6; /* notAvailableCountEqualsToNthTriangleNumber */
-		((P8 *)pptr(h))->c_cur[0] = 3;
-		reached6[3]=1;
-		spin_c_typ[1] = 5; /* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
-		((P8 *)pptr(h))->c_cur[1] = 5;
-		reached5[5]=1;
-		spin_c_typ[2] = 4; /* allSeatsAlwaysAssigned */
-		((P8 *)pptr(h))->c_cur[2] = 5;
+	case 7:	/* claim select */
+		spin_c_typ[0] = 5; /* notAvailableCountEqualsToNthTriangleNumber */
+		((P7 *)pptr(h))->c_cur[0] = 3;
+		reached5[3]=1;
+		spin_c_typ[1] = 4; /* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
+		((P7 *)pptr(h))->c_cur[1] = 5;
 		reached4[5]=1;
-		((P8 *)pptr(h))->_t = 4;
-		((P8 *)pptr(h))->_p = 5;
-		((P8 *)pptr(h))->_n = 2; /* allSeatsAlwaysAssigned */
-		src_claim = src_ln4;
+		spin_c_typ[2] = 3; /* allSeatsAlwaysAssigned */
+		((P7 *)pptr(h))->c_cur[2] = 5;
+		reached3[5]=1;
+		((P7 *)pptr(h))->_t = 3;
+		((P7 *)pptr(h))->_p = 5;
+		((P7 *)pptr(h))->_n = 2; /* allSeatsAlwaysAssigned */
+		src_claim = src_ln3;
 #ifndef BFS
 		if (whichclaim == -1 && claimname == NULL)
 			printf("pan: ltl formula allSeatsAlwaysAssigned\n");
@@ -961,38 +937,22 @@ addproc(int calling_pid, int priority, int n, int par0)
 		break;
 
 #endif
-	case 7:	/* np_ */
-		((P7 *)pptr(h))->_t = 7;
-		((P7 *)pptr(h))->_p = 0;
-#ifdef HAS_PRIORITY
-		((P7 *)pptr(h))->_priority = priority;
-#endif
-		reached7[0] = 1;
-		accpstate[7][1] = 1;
-		break;
-	case 6:	/* notAvailableCountEqualsToNthTriangleNumber */
+	case 6:	/* np_ */
 		((P6 *)pptr(h))->_t = 6;
-		((P6 *)pptr(h))->_p = 3;
+		((P6 *)pptr(h))->_p = 0;
 #ifdef HAS_PRIORITY
-		((P6 *)pptr(h))->_priority = priority; /* was: 1 */
+		((P6 *)pptr(h))->_priority = priority;
 #endif
-		reached6[3]=1;
-		src_claim = src_ln6;
-		/* params: */
-		/* locals: */
-#ifdef VAR_RANGES
-#endif
-#ifdef HAS_CODE
-		locinit6(h);
-#endif
+		reached6[0] = 1;
+		accpstate[6][1] = 1;
 		break;
-	case 5:	/* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
+	case 5:	/* notAvailableCountEqualsToNthTriangleNumber */
 		((P5 *)pptr(h))->_t = 5;
-		((P5 *)pptr(h))->_p = 5;
+		((P5 *)pptr(h))->_p = 3;
 #ifdef HAS_PRIORITY
 		((P5 *)pptr(h))->_priority = priority; /* was: 1 */
 #endif
-		reached5[5]=1;
+		reached5[3]=1;
 		src_claim = src_ln5;
 		/* params: */
 		/* locals: */
@@ -1002,7 +962,7 @@ addproc(int calling_pid, int priority, int n, int par0)
 		locinit5(h);
 #endif
 		break;
-	case 4:	/* allSeatsAlwaysAssigned */
+	case 4:	/* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
 		((P4 *)pptr(h))->_t = 4;
 		((P4 *)pptr(h))->_p = 5;
 #ifdef HAS_PRIORITY
@@ -1018,33 +978,34 @@ addproc(int calling_pid, int priority, int n, int par0)
 		locinit4(h);
 #endif
 		break;
-	case 3:	/* :init: */
+	case 3:	/* allSeatsAlwaysAssigned */
 		((P3 *)pptr(h))->_t = 3;
-		((P3 *)pptr(h))->_p = 1;
+		((P3 *)pptr(h))->_p = 5;
 #ifdef HAS_PRIORITY
 		((P3 *)pptr(h))->_priority = priority; /* was: 1 */
 #endif
-		reached3[1]=1;
+		reached3[5]=1;
+		src_claim = src_ln3;
 		/* params: */
 		/* locals: */
-		((P3 *)pptr(h))->idClient = 0;
 #ifdef VAR_RANGES
-		logval(":init::idClient", ((P3 *)pptr(h))->idClient);
 #endif
 #ifdef HAS_CODE
 		locinit3(h);
 #endif
 		break;
-	case 2:	/* hacker */
+	case 2:	/* :init: */
 		((P2 *)pptr(h))->_t = 2;
-		((P2 *)pptr(h))->_p = 7;
+		((P2 *)pptr(h))->_p = 1;
 #ifdef HAS_PRIORITY
 		((P2 *)pptr(h))->_priority = priority; /* was: 1 */
 #endif
-		reached2[7]=1;
+		reached2[1]=1;
 		/* params: */
 		/* locals: */
+		((P2 *)pptr(h))->idClient = 0;
 #ifdef VAR_RANGES
+		logval(":init::idClient", ((P2 *)pptr(h))->idClient);
 #endif
 #ifdef HAS_CODE
 		locinit2(h);
@@ -1130,7 +1091,6 @@ col_p(int i, char *z)
 	case 4: j = sizeof(P4); break;
 	case 5: j = sizeof(P5); break;
 	case 6: j = sizeof(P6); break;
-	case 7: j = sizeof(P7); break;
 	default: Uerror("bad proctype - collapse");
 	}
 	if (z) x = z; else x = scratch;
@@ -1215,7 +1175,6 @@ run(void)
 	Maxbody = max(Maxbody, ((int) sizeof(P4)));
 	Maxbody = max(Maxbody, ((int) sizeof(P5)));
 	Maxbody = max(Maxbody, ((int) sizeof(P6)));
-	Maxbody = max(Maxbody, ((int) sizeof(P7)));
 	reached[0] = reached0;
 	reached[1] = reached1;
 	reached[2] = reached2;
@@ -1223,7 +1182,6 @@ run(void)
 	reached[4] = reached4;
 	reached[5] = reached5;
 	reached[6] = reached6;
-	reached[7] = reached7;
 	accpstate[0] = (uchar *) emalloc(_nstates0);
 	accpstate[1] = (uchar *) emalloc(_nstates1);
 	accpstate[2] = (uchar *) emalloc(_nstates2);
@@ -1231,7 +1189,6 @@ run(void)
 	accpstate[4] = (uchar *) emalloc(_nstates4);
 	accpstate[5] = (uchar *) emalloc(_nstates5);
 	accpstate[6] = (uchar *) emalloc(_nstates6);
-	accpstate[7] = (uchar *) emalloc(_nstates7);
 	progstate[0] = (uchar *) emalloc(_nstates0);
 	progstate[1] = (uchar *) emalloc(_nstates1);
 	progstate[2] = (uchar *) emalloc(_nstates2);
@@ -1239,7 +1196,6 @@ run(void)
 	progstate[4] = (uchar *) emalloc(_nstates4);
 	progstate[5] = (uchar *) emalloc(_nstates5);
 	progstate[6] = (uchar *) emalloc(_nstates6);
-	progstate[7] = (uchar *) emalloc(_nstates7);
 	loopstate0 = loopstate[0] = (uchar *) emalloc(_nstates0);
 	loopstate1 = loopstate[1] = (uchar *) emalloc(_nstates1);
 	loopstate2 = loopstate[2] = (uchar *) emalloc(_nstates2);
@@ -1247,7 +1203,6 @@ run(void)
 	loopstate4 = loopstate[4] = (uchar *) emalloc(_nstates4);
 	loopstate5 = loopstate[5] = (uchar *) emalloc(_nstates5);
 	loopstate6 = loopstate[6] = (uchar *) emalloc(_nstates6);
-	loopstate7 = loopstate[7] = (uchar *) emalloc(_nstates7);
 	stopstate[0] = (uchar *) emalloc(_nstates0);
 	stopstate[1] = (uchar *) emalloc(_nstates1);
 	stopstate[2] = (uchar *) emalloc(_nstates2);
@@ -1255,7 +1210,6 @@ run(void)
 	stopstate[4] = (uchar *) emalloc(_nstates4);
 	stopstate[5] = (uchar *) emalloc(_nstates5);
 	stopstate[6] = (uchar *) emalloc(_nstates6);
-	stopstate[7] = (uchar *) emalloc(_nstates7);
 	visstate[0] = (uchar *) emalloc(_nstates0);
 	visstate[1] = (uchar *) emalloc(_nstates1);
 	visstate[2] = (uchar *) emalloc(_nstates2);
@@ -1263,7 +1217,6 @@ run(void)
 	visstate[4] = (uchar *) emalloc(_nstates4);
 	visstate[5] = (uchar *) emalloc(_nstates5);
 	visstate[6] = (uchar *) emalloc(_nstates6);
-	visstate[7] = (uchar *) emalloc(_nstates7);
 	mapstate[0] = (short *) emalloc(_nstates0 * sizeof(short));
 	mapstate[1] = (short *) emalloc(_nstates1 * sizeof(short));
 	mapstate[2] = (short *) emalloc(_nstates2 * sizeof(short));
@@ -1271,7 +1224,6 @@ run(void)
 	mapstate[4] = (short *) emalloc(_nstates4 * sizeof(short));
 	mapstate[5] = (short *) emalloc(_nstates5 * sizeof(short));
 	mapstate[6] = (short *) emalloc(_nstates6 * sizeof(short));
-	mapstate[7] = (short *) emalloc(_nstates7 * sizeof(short));
 	stopstate[0][_endstate0] = 1;
 	stopstate[1][_endstate1] = 1;
 	stopstate[2][_endstate2] = 1;
@@ -1279,7 +1231,6 @@ run(void)
 	stopstate[4][_endstate4] = 1;
 	stopstate[5][_endstate5] = 1;
 	stopstate[6][_endstate6] = 1;
-	stopstate[7][_endstate7] = 1;
 #ifdef HAS_CODE
 	NrStates[0] = _nstates0;
 	NrStates[1] = _nstates1;
@@ -1288,7 +1239,6 @@ run(void)
 	NrStates[4] = _nstates4;
 	NrStates[5] = _nstates5;
 	NrStates[6] = _nstates6;
-	NrStates[7] = _nstates7;
 #endif
 
 	Maxbody = max(Maxbody, ((int) sizeof(Q1)));
@@ -1297,16 +1247,15 @@ run(void)
 	if ((Maxbody % WS) != 0)
 		Maxbody += WS - (Maxbody % WS);
 
-	accpstate[6][3] = 1;
-	accpstate[5][10] = 1;
+	accpstate[5][3] = 1;
 	accpstate[4][10] = 1;
+	accpstate[3][10] = 1;
 	retrans(0, _nstates0, _start0, src_ln0, reached0, loopstate0);
 	retrans(1, _nstates1, _start1, src_ln1, reached1, loopstate1);
 	retrans(2, _nstates2, _start2, src_ln2, reached2, loopstate2);
 	retrans(3, _nstates3, _start3, src_ln3, reached3, loopstate3);
 	retrans(4, _nstates4, _start4, src_ln4, reached4, loopstate4);
 	retrans(5, _nstates5, _start5, src_ln5, reached5, loopstate5);
-	retrans(6, _nstates6, _start6, src_ln6, reached6, loopstate6);
 	if (state_tables)
 	{ if (dodot) exit(0);
 	  printf("\nTransition Type: ");
@@ -12652,7 +12601,6 @@ do_reach(void)
 	r_ck(reached3, _nstates3, 3, src_ln3, src_file3);
 	r_ck(reached4, _nstates4, 4, src_ln4, src_file4);
 	r_ck(reached5, _nstates5, 5, src_ln5, src_file5);
-	r_ck(reached6, _nstates6, 6, src_ln6, src_file6);
 }
 
 void
@@ -12663,7 +12611,6 @@ iniglobals(int calling_pid)
 		now.crsToClient[1] = addqueue(calling_pid, 3, 0);
 		now.crsToClient[2] = addqueue(calling_pid, 4, 0);
 		now.crsToClient[3] = addqueue(calling_pid, 5, 0);
-		now.crsToClient[4] = addqueue(calling_pid, 6, 0);
 		now.seats[0].seatStatus = 0;
 		now.seats[0].customerId = 0;
 		now.seats[1].seatStatus = 0;
@@ -12693,7 +12640,6 @@ addqueue(int calling_pid, int n, int is_rv)
 	printf("%4d: add queue %d\n", depth, i);
 #endif
 	switch (n) {
-	case 6: j = sizeof(Q6); q_flds[6] = 3; q_max[6] = 1; break;
 	case 5: j = sizeof(Q5); q_flds[5] = 3; q_max[5] = 1; break;
 	case 4: j = sizeof(Q4); q_flds[4] = 3; q_max[4] = 1; break;
 	case 3: j = sizeof(Q3); q_flds[3] = 3; q_max[3] = 1; break;
@@ -12768,7 +12714,6 @@ what_p_size(int t)
 	case 4: j = sizeof(P4); break;
 	case 5: j = sizeof(P5); break;
 	case 6: j = sizeof(P6); break;
-	case 7: j = sizeof(P7); break;
 	default: Uerror("bad proctype");
 	}
 	return j;
@@ -12784,7 +12729,6 @@ what_q_size(int t)
 	case 3: j = sizeof(Q3); break;
 	case 4: j = sizeof(Q4); break;
 	case 5: j = sizeof(Q5); break;
-	case 6: j = sizeof(Q6); break;
 	default: Uerror("bad qtype");
 	}
 	return j;
@@ -12819,21 +12763,6 @@ qsend(int into, int sorted, int fld0, int fld1, int fld2, int args_given)
 	z = qptr(into);
 	j = ((Q0 *)qptr(into))->Qlen;
 	switch (((Q0 *)qptr(into))->_t) {
-	case 6:
-#ifdef HAS_SORTED
-		(trpt+1)->ipt = j;
-#endif
-		((Q6 *)z)->Qlen = ((Q6 *)z)->Qlen + 1;
-		((Q6 *)z)->contents[j].fld0 = fld0;	/* mtype _unnamed_ */
-		((Q6 *)z)->contents[j].fld1 = fld1;
-		((Q6 *)z)->contents[j].fld2 = fld2;
-		if (args_given != 3)
-		{	if (args_given > 3)
-				uerror("too many parameters in send stmnt");
-			else
-				uerror("too few parameters in send stmnt");
-		}
-		break;
 	case 5:
 #ifdef HAS_SORTED
 		(trpt+1)->ipt = j;
@@ -12927,7 +12856,6 @@ q_zero(int from)
 		return 0;
 	}
 	switch(((Q0 *)qptr(from))->_t) {
-	case 6: return 0;
 	case 5: return 0;
 	case 4: return 0;
 	case 3: return 0;
@@ -13034,7 +12962,6 @@ q_full(int from)
 {	if (!from--)
 	uerror("ref to uninitialized chan name (qfull)");
 	switch(((Q0 *)qptr(from))->_t) {
-	case 6: return (q_sz(from) == 1);
 	case 5: return (q_sz(from) == 1);
 	case 4: return (q_sz(from) == 1);
 	case 3: return (q_sz(from) == 1);
@@ -13082,32 +13009,6 @@ qrecv(int from, int slot, int fld, int done)
 		require('r', from);
 #endif
 	switch (((Q0 *)qptr(from))->_t) {
-	case 6:
-		switch (fld) {
-		case 0: r = ((Q6 *)z)->contents[slot].fld0; break;
-		case 1: r = ((Q6 *)z)->contents[slot].fld1; break;
-		case 2: r = ((Q6 *)z)->contents[slot].fld2; break;
-		default: Uerror("too many fields in recv");
-		}
-		if (done)
-		{	j = ((Q6 *)z)->Qlen;
-			((Q6 *)z)->Qlen = --j;
-			for (k=slot; k<j; k++)
-			{
-				((Q6 *)z)->contents[k].fld0 = 
-					((Q6 *)z)->contents[k+1].fld0;
-				((Q6 *)z)->contents[k].fld1 = 
-					((Q6 *)z)->contents[k+1].fld1;
-				((Q6 *)z)->contents[k].fld2 = 
-					((Q6 *)z)->contents[k+1].fld2;
-			}
-			((Q6 *)z)->contents[j].fld0 = 0;
-			((Q6 *)z)->contents[j].fld1 = 0;
-			((Q6 *)z)->contents[j].fld2 = 0;
-			if (fld+1 != 3)
-				uerror("missing pars in receive");
-		}
-		break;
 	case 5:
 		switch (fld) {
 		case 0: r = ((Q5 *)z)->contents[slot].fld0; break;
@@ -13253,7 +13154,6 @@ col_q(int i, char *z)
 	char *x, *y;
 	Q0 *ptr = (Q0 *) qptr(i);
 	switch (ptr->_t) {
-	case 6: j = sizeof(Q6); break;
 	case 5: j = sizeof(Q5); break;
 	case 4: j = sizeof(Q4); break;
 	case 3: j = sizeof(Q3); break;
@@ -13310,12 +13210,6 @@ unsend(int into)
 	j = ((Q0 *)z)->Qlen;
 	((Q0 *)z)->Qlen = --j;
 	switch (((Q0 *)qptr(into))->_t) {
-	case 6:
-		((Q6 *)z)->contents[j].fld0 = 0;
-		((Q6 *)z)->contents[j].fld1 = 0;
-		((Q6 *)z)->contents[j].fld2 = 0;
-		_m = trpt->o_m;
-		break;
 	case 5:
 		((Q5 *)z)->contents[j].fld0 = 0;
 		((Q5 *)z)->contents[j].fld1 = 0;
@@ -13375,18 +13269,6 @@ unrecv(int from, int slot, int fld, int fldvar, int strt)
 	j = ((Q0 *)z)->Qlen;
 	if (strt) ((Q0 *)z)->Qlen = j+1;
 	switch (((Q0 *)qptr(from))->_t) {
-	case 6:
-		if (strt) {
-			((Q6 *)z)->contents[slot].fld0 = 0;
-			((Q6 *)z)->contents[slot].fld1 = 0;
-			((Q6 *)z)->contents[slot].fld2 = 0;
-		}
-		switch (fld) {
-		case 0:	((Q6 *)z)->contents[slot].fld0 = fldvar; break;
-		case 1:	((Q6 *)z)->contents[slot].fld1 = fldvar; break;
-		case 2:	((Q6 *)z)->contents[slot].fld2 = fldvar; break;
-		}
-		break;
 	case 5:
 		if (strt) {
 			((Q5 *)z)->contents[slot].fld0 = 0;
@@ -13471,23 +13353,19 @@ q_cond(short II, Trans *t)
 		case 2: if (	(t->ty[i] == Q_FULL_F && ( q_full((int) ( now.crsToClient[0]) )
 			 ||     q_full((int) ( now.crsToClient[1]) )
 			 ||     q_full((int) ( now.crsToClient[2]) )
-			 ||     q_full((int) ( now.crsToClient[3]) )
-			 ||     q_full((int) ( now.crsToClient[4]) )))
+			 ||     q_full((int) ( now.crsToClient[3]) )))
 			 || 	(t->ty[i] == Q_FULL_T && (!q_full((int) ( now.crsToClient[0]) )
 			 ||    !q_full((int) ( now.crsToClient[1]) )
 			 ||    !q_full((int) ( now.crsToClient[2]) )
-			 ||    !q_full((int) ( now.crsToClient[3]) )
-			 ||    !q_full((int) ( now.crsToClient[4]) )))
+			 ||    !q_full((int) ( now.crsToClient[3]) )))
 			 || 	(t->ty[i] == Q_EMPT_F && ( !q_len((int) ( now.crsToClient[0]) )
 			 ||     !q_len((int) ( now.crsToClient[1]) )
 			 ||     !q_len((int) ( now.crsToClient[2]) )
-			 ||     !q_len((int) ( now.crsToClient[3]) )
-			 ||     !q_len((int) ( now.crsToClient[4]) )))
+			 ||     !q_len((int) ( now.crsToClient[3]) )))
 			 || 	(t->ty[i] == Q_EMPT_T && (  q_len((int) ( now.crsToClient[0]) )
 			 ||      q_len((int) ( now.crsToClient[1]) )
 			 ||      q_len((int) ( now.crsToClient[2]) )
-			 ||      q_len((int) ( now.crsToClient[3]) )
-			 ||      q_len((int) ( now.crsToClient[4]) )))
+			 ||      q_len((int) ( now.crsToClient[3]) )))
 			    ) return 0; break;
 		default: Uerror("unknown qid - q_cond");
 				return 0;
@@ -13671,9 +13549,9 @@ void
 active_procs(void)
 {
 	if (reversing == 0) {
-		Addproc(3, 1);
+		Addproc(2, 1);
 	} else {
-		Addproc(3, 1);
+		Addproc(2, 1);
 	}
 }
 #ifdef MA
@@ -14815,16 +14693,11 @@ c_globals(void)
 	c_chandump(now.crsToClient[2]);
 	printf("	chan crsToClient[3] (=%d):	len %d:\t", now.crsToClient[3], q_len(now.crsToClient[3]));
 	c_chandump(now.crsToClient[3]);
-	printf("	chan crsToClient[4] (=%d):	len %d:\t", now.crsToClient[4], q_len(now.crsToClient[4]));
-	c_chandump(now.crsToClient[4]);
 }
 void
 c_locals(int pid, int tp)
 {	/* int i; */
 	switch(tp) {
-	case 6:
-		/* none */
-		break;
 	case 5:
 		/* none */
 		break;
@@ -14832,11 +14705,11 @@ c_locals(int pid, int tp)
 		/* none */
 		break;
 	case 3:
-		printf("local vars proc %d (:init:):\n", pid);
-	printf("	int    idClient:	%d\n", ((P3 *)pptr(pid))->idClient);
+		/* none */
 		break;
 	case 2:
-		/* none */
+		printf("local vars proc %d (:init:):\n", pid);
+	printf("	int    idClient:	%d\n", ((P2 *)pptr(pid))->idClient);
 		break;
 	case 1:
 		printf("local vars proc %d (client):\n", pid);
@@ -14884,15 +14757,6 @@ c_chandump(int from)
 	}
 	z = qptr(from);
 	switch (((Q0 *)z)->_t) {
-	case 6:
-		for (slot = 0; slot < ((Q6 *)z)->Qlen; slot++)
-		{	printf(" [");
-			printm(((Q6 *)z)->contents[slot].fld0, 0);
-			printf("%d,", ((Q6 *)z)->contents[slot].fld1);
-			printf("%d,", ((Q6 *)z)->contents[slot].fld2);
-			printf("],");
-		}
-		break;
 	case 5:
 		for (slot = 0; slot < ((Q5 *)z)->Qlen; slot++)
 		{	printf(" [");
@@ -14942,7 +14806,7 @@ c_chandump(int from)
 	printf("\n");
 }
 
-Trans *t_id_lkup[109];
+Trans *t_id_lkup[95];
 
 
 #ifdef BFS_PAR

@@ -59,7 +59,7 @@
 
 	case 14: // STATE 4
 		;
-		((P3 *)_this)->idClient = trpt->bup.oval;
+		((P2 *)_this)->idClient = trpt->bup.oval;
 		;
 		goto R999;
 ;
@@ -72,7 +72,7 @@
 		;
 		goto R999;
 
-		 /* PROC hacker */
+		 /* PROC client */
 
 	case 17: // STATE 1
 		;
@@ -83,11 +83,14 @@
 	case 18: // STATE 2
 		;
 		XX = 1;
-		unrecv(now.crsToClient[4], XX-1, 0, 4, 1);
-		unrecv(now.crsToClient[4], XX-1, 1, 0, 0);
-		unrecv(now.crsToClient[4], XX-1, 2, 4, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 0, 9, 1);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
+		((P1 *)_this)->seatNumber = trpt->bup.ovals[0];
+		((P1 *)_this)->clientId = trpt->bup.ovals[1];
 		;
 		;
+		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
 	case 19: // STATE 3
@@ -99,50 +102,9 @@
 	case 20: // STATE 4
 		;
 		XX = 1;
-		unrecv(now.crsToClient[4], XX-1, 0, 4, 1);
-		unrecv(now.crsToClient[4], XX-1, 1, 1, 0);
-		unrecv(now.crsToClient[4], XX-1, 2, 4, 0);
-		;
-		;
-		goto R999;
-
-	case 21: // STATE 5
-		;
-		_m = unsend(now.clientToCrs);
-		;
-		goto R999;
-
-	case 22: // STATE 6
-		;
-		XX = 1;
-		unrecv(now.crsToClient[4], XX-1, 0, 4, 1);
-		unrecv(now.crsToClient[4], XX-1, 1, 2, 0);
-		unrecv(now.crsToClient[4], XX-1, 2, 4, 0);
-		;
-		;
-		goto R999;
-
-	case 23: // STATE 10
-		;
-		p_restor(II);
-		;
-		;
-		goto R999;
-
-		 /* PROC client */
-
-	case 24: // STATE 1
-		;
-		_m = unsend(now.clientToCrs);
-		;
-		goto R999;
-
-	case 25: // STATE 2
-		;
-		XX = 1;
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 0, 9, 1);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 0, 5, 1);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
 		((P1 *)_this)->seatNumber = trpt->bup.ovals[0];
 		((P1 *)_this)->clientId = trpt->bup.ovals[1];
 		;
@@ -150,18 +112,12 @@
 		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
-	case 26: // STATE 3
-		;
-		_m = unsend(now.clientToCrs);
-		;
-		goto R999;
-
-	case 27: // STATE 4
+	case 21: // STATE 6
 		;
 		XX = 1;
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 0, 5, 1);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 0, 7, 1);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
 		((P1 *)_this)->seatNumber = trpt->bup.ovals[0];
 		((P1 *)_this)->clientId = trpt->bup.ovals[1];
 		;
@@ -169,31 +125,18 @@
 		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
-	case 28: // STATE 6
-		;
-		XX = 1;
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 0, 7, 1);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
-		((P1 *)_this)->seatNumber = trpt->bup.ovals[0];
-		((P1 *)_this)->clientId = trpt->bup.ovals[1];
-		;
-		;
-		ungrab_ints(trpt->bup.ovals, 2);
-		goto R999;
-
-	case 29: // STATE 7
+	case 22: // STATE 7
 		;
 		((P1 *)_this)->seatNumber = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 30: // STATE 8
+	case 23: // STATE 8
 		;
 		XX = 1;
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 0, 6, 1);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
-		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 5) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 0, 6, 1);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 1, ((P1 *)_this)->seatNumber, 0);
+		unrecv(now.crsToClient[ Index(((P1 *)_this)->clientId, 4) ], XX-1, 2, ((P1 *)_this)->clientId, 0);
 		((P1 *)_this)->seatNumber = trpt->bup.ovals[0];
 		((P1 *)_this)->clientId = trpt->bup.ovals[1];
 		;
@@ -201,7 +144,7 @@
 		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
-	case 31: // STATE 15
+	case 24: // STATE 15
 		;
 		p_restor(II);
 		;
@@ -212,13 +155,13 @@
 ;
 		;
 		
-	case 33: // STATE 2
+	case 26: // STATE 2
 		;
 		now.seats[ Index(((P0 *)_this)->i, 3) ].seatStatus = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 34: // STATE 3
+	case 27: // STATE 3
 		;
 		now.seats[ Index(((P0 *)_this)->i, 3) ].customerId = trpt->bup.oval;
 		;
@@ -228,7 +171,7 @@
 		;
 		;
 		
-	case 37: // STATE 6
+	case 30: // STATE 6
 		;
 		((P0 *)_this)->i = trpt->bup.oval;
 		;
@@ -236,7 +179,7 @@
 ;
 		;
 		
-	case 39: // STATE 12
+	case 32: // STATE 12
 		;
 		XX = 1;
 		unrecv(now.clientToCrs, XX-1, 0, ((P0 *)_this)->message, 1);
@@ -253,19 +196,19 @@
 		;
 		;
 		;
-			case 42: // STATE 19
+			case 35: // STATE 19
 		sv_restor();
 		goto R999;
 ;
 		;
 		
-	case 44: // STATE 21
+	case 37: // STATE 21
 		;
-		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 5) ]);
+		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 4) ]);
 		;
 		goto R999;
 
-	case 45: // STATE 22
+	case 38: // STATE 22
 		;
 		((P0 *)_this)->notAvailableSeatCount = trpt->bup.oval;
 		;
@@ -273,13 +216,13 @@
 ;
 		;
 		
-	case 47: // STATE 24
+	case 40: // STATE 24
 		;
-		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 5) ]);
+		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 4) ]);
 		;
 		goto R999;
 
-	case 48: // STATE 25
+	case 41: // STATE 25
 		;
 		((P0 *)_this)->flightFullMessageCount = trpt->bup.oval;
 		;
@@ -289,33 +232,25 @@
 		;
 		;
 		
-	case 51: // STATE 30
+	case 44: // STATE 30
 		;
 		now.seats[ Index(((P0 *)_this)->receivedSeat, 3) ].seatStatus = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 52: // STATE 31
+	case 45: // STATE 31
 		;
-		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 5) ]);
+		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 4) ]);
 		;
 		goto R999;
 
-	case 53: // STATE 32
+	case 46: // STATE 32
 		;
 		((P0 *)_this)->assignedSeats = trpt->bup.oval;
 		;
 		goto R999;
-;
-		;
-		
-	case 55: // STATE 34
-		;
-		_m = unsend(now.crsToClient[ Index(((P0 *)_this)->receivedCustomerId, 5) ]);
-		;
-		goto R999;
 
-	case 56: // STATE 42
+	case 47: // STATE 38
 		;
 		p_restor(II);
 		;
