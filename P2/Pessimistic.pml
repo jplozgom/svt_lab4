@@ -18,6 +18,10 @@ ltl ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero { [](N_CUSTOMERS > N_
 // NOT AVAILABLE SEAT RESPONSES EQUALS 3 FOR SEAT_0, 2 FOR SEAT_1, 1 FOR SEAT_2 MINUS 1 FULL FLIGHT MESSAGE
 // verifies that seats are blocked and remaining customers asking for a seat receive either a NOT_AVAILABLE_SEAT or a FLIGHT_FULL message
 ltl notAvailableCountEqualsToNthTriangleNumber { <>( NOT_AVAILABLE_MSGS_COUNTER == ((N_SEATS * (N_SEATS + 1) / 2) - 1) ) }
+ltl alwaysEventuallyCustomersBuyingProcessDone{ <> ( done[0] && done[1] &&  done[2] &&  done[3] ) }
+
+/*ltl alwaysLastClientMessageIsSuccesfulOrFlightFull { []<> }*/
+
 
 /*
 	TYPEDEF RECEIVED FROM CLIENTS TO CRS
@@ -33,7 +37,8 @@ Seat seats[N_SEATS];
 chan clientToCrs = [1] of {mtype,int, int};//_mtype, seat, clientId
 //CRS TO CLIENT CHANNEL
 chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, clientId
-
+// array to verify that customers eventually finish
+bool done[N_CUSTOMERS] = { false }
 
  //Central Reservation System process.
  proctype crs(){
@@ -55,7 +60,7 @@ chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, client
  	:: i >= N_SEATS -> break;
  	od
 
- 	do
+ 	end: do
  		 ::clientToCrs?message,receivedSeat,receivedCustomerId ->
  		 	printf("*******assigned seat %d, received seat %d, received client %d\n", assignedSeats,receivedSeat,receivedCustomerId);
 			if
@@ -78,11 +83,11 @@ chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, client
 					fi;
 				:: message == PAYMENT_SEAT ->
 					// to assign seat customer Id must match
-					:: receivedCustomerId == seats[receivedSeat].customerId ->
+					//:: receivedCustomerId == seats[receivedSeat].customerId ->
 						//Assigining seat and confirming
-						seats[receivedSeat].seatStatus = ASSIGNED;
-						crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId;
-						assignedSeats++;
+					seats[receivedSeat].seatStatus = ASSIGNED;
+					crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId;
+					assignedSeats++;
 			fi;
 	od
 
@@ -92,34 +97,27 @@ chan crsToClient[N_CUSTOMERS] = [1] of {mtype, int, int}; //_mtype, seat, client
 
 proctype client(int clientId){
  	int seatNumber = 0;
-
+	mtype messageType;
  	do
  	:: clientToCrs!GET_SEAT,seatNumber,clientId ->
+
+		crsToClient[clientId]?messageType,seatNumber,clientId;
  		if
-	 	::  crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId ->
+	 	::  messageType == RETURNING_SEAT ->
 	 		//confirm seat selection
 	 		clientToCrs!PAYMENT_SEAT,seatNumber,clientId;
 	 		crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId;
 	 		break;
-	 	:: crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId ->
+	 	:: messageType == NOT_AVAILABLE_SEAT ->
  			//try another seat
  			seatNumber++;
- 		:: crsToClient[clientId]?FLIGHT_FULL,seatNumber,clientId -> break;
+ 		:: messageType == FLIGHT_FULL -> break;
 
 	 	fi
  	od
-
+	done[clientId] = true;
  }
 
-/*
-proctype hacker(){
- 	do
- 		:: clientToCrs!PAYMENT_SEAT,0,4 -> crsToClient[4]?INVALID_CUSTOMER,0,4;
- 		:: clientToCrs!PAYMENT_SEAT,1,4 -> crsToClient[4]?INVALID_CUSTOMER,1,4;
- 		:: clientToCrs!PAYMENT_SEAT,2,4 -> crsToClient[4]?INVALID_CUSTOMER,2,4;
- 	od
-}
-*/
 
 init{
  	int idClient = 0;
