@@ -1,153 +1,1534 @@
-spin: Pessimistic.pml:89, redundant skip
-  0:	proc  - (:root:) creates proc  0 (:init:)
+  0:	proc  - (:root:) creates proc  0 (hacker)
+  0:	proc  - (:root:) creates proc  1 (:init:)
 ltl allSeatsAlwaysAssigned: [] (<> ((crs:assignedSeats==3)))
-ltl ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero: [] ((! ((4>3))) || (<> ((crs:flightFullMessageCount==(4-3)))))
+ltl ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero: [] ((! ((5>3))) || (<> ((crs:flightFullMessageCount==(5-3)))))
 spin: Pessimistic.pml:0, warning, proctype crs, 'int   flightFullMessageCount' variable is never used (other than in print stmnts)
 spin: Pessimistic.pml:0, warning, proctype crs, 'int   assignedSeats' variable is never used (other than in print stmnts)
-Starting crs with pid 1
-  1:	proc  0 (:init::1) creates proc  1 (crs)
-  1:	proc  0 (:init::1) Pessimistic.pml:123 (state 1)	[(run crs())]
+Starting crs with pid 2
+  1:	proc  1 (:init::1) creates proc  2 (crs)
+  1:	proc  1 (:init::1) Pessimistic.pml:130 (state 1)	[(run crs())]
 
-  2:	proc  0 (:init::1) Pessimistic.pml:130 (state 8)	[.(goto)]
+  2:	proc  2 (crs:1) Pessimistic.pml:53 (state 1)	[((i<3))]
 
-  3:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+  3:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+  3:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
 
-Starting client with pid 2
-  4:	proc  0 (:init::1) creates proc  2 (client)
-  4:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
-
-  5:	proc  2 (client:1) Pessimistic.pml:99 (state -)	[values: 1!GET_SEAT,0,0]
-  5:	proc  2 (client:1) Pessimistic.pml:99 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-
-  6:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
-		:init:(0):idClient = 1
-
-  7:	proc  1 (crs:1) Pessimistic.pml:54 (state 1)	[((i<3))]
+  4:	proc  2 (crs:1) Pessimistic.pml:54 (state 2)	[seats[i].seatStatus = EMPTY]
 		queue 2 (crsToClient[0]): 
 		queue 3 (crsToClient[1]): 
 		queue 4 (crsToClient[2]): 
 		queue 5 (crsToClient[3]): 
+		queue 6 (crsToClient[4]): 
 
-  8:	proc  0 (:init::1) Pessimistic.pml:130 (state 8)	[.(goto)]
+  5:	proc  1 (:init::1) Pessimistic.pml:137 (state 8)	[.(goto)]
 
-  9:	proc  1 (crs:1) Pessimistic.pml:55 (state 2)	[seats[i].seatStatus = EMPTY]
-		queue 2 (crsToClient[0]): 
+  6:	proc  2 (crs:1) Pessimistic.pml:55 (state 3)	[seats[i].customerId = -(1)]
 
- 10:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+  7:	proc  1 (:init::1) Pessimistic.pml:132 (state 2)	[((idClient<(5-1)))]
 
- 11:	proc  1 (crs:1) Pessimistic.pml:56 (state 3)	[seats[i].customerId = -(1)]
-
-status 3 12:	proc  1 (crs:1) Pessimistic.pml:57 (state 4)	[printf('status %d',seats[i].seatStatus)]
+status 3  8:	proc  2 (crs:1) Pessimistic.pml:56 (state 4)	[printf('status %d',seats[i].seatStatus)]
 
 Starting client with pid 3
- 13:	proc  0 (:init::1) creates proc  3 (client)
- 13:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
+  9:	proc  1 (:init::1) creates proc  3 (client)
+  9:	proc  1 (:init::1) Pessimistic.pml:133 (state 3)	[(run client(idClient))]
 
- 14:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-		:init:(0):idClient = 2
+customerId -1 10:	proc  2 (crs:1) Pessimistic.pml:57 (state 5)	[printf('customerId %d',seats[i].customerId)]
 
-customerId -1 15:	proc  1 (crs:1) Pessimistic.pml:58 (state 5)	[printf('customerId %d',seats[i].customerId)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
+ 11:	proc  1 (:init::1) Pessimistic.pml:134 (state 4)	[idClient = (idClient+1)]
+		:init:(1):idClient = 1
 
- 16:	proc  0 (:init::1) Pessimistic.pml:130 (state 8)	[.(goto)]
-		queue 2 (crsToClient[0]): 
+ 12:	proc  2 (crs:1) Pessimistic.pml:58 (state 6)	[i = (i+1)]
+		queue 6 (crsToClient[4]): 
+		crs(2):i = 1
 
- 17:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+ 13:	proc  2 (crs:1) Pessimistic.pml:62 (state 10)	[.(goto)]
+
+ 14:	proc  2 (crs:1) Pessimistic.pml:53 (state 1)	[((i<3))]
+		queue 6 (crsToClient[4]): 
+
+ 15:	proc  2 (crs:1) Pessimistic.pml:54 (state 2)	[seats[i].seatStatus = EMPTY]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+
+ 16:	proc  2 (crs:1) Pessimistic.pml:55 (state 3)	[seats[i].customerId = -(1)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+
+ 17:	proc  1 (:init::1) Pessimistic.pml:137 (state 8)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+
+ 18:	proc  1 (:init::1) Pessimistic.pml:132 (state 2)	[((idClient<(5-1)))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
 Starting client with pid 4
- 18:	proc  0 (:init::1) creates proc  4 (client)
- 18:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
+ 19:	proc  1 (:init::1) creates proc  4 (client)
+ 19:	proc  1 (:init::1) Pessimistic.pml:133 (state 3)	[(run client(idClient))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
- 19:	proc  1 (crs:1) Pessimistic.pml:59 (state 6)	[i = (i+1)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		crs(1):i = 1
+status 3 20:	proc  2 (crs:1) Pessimistic.pml:56 (state 4)	[printf('status %d',seats[i].seatStatus)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
- 20:	proc  1 (crs:1) Pessimistic.pml:63 (state 10)	[.(goto)]
+customerId -1 21:	proc  2 (crs:1) Pessimistic.pml:57 (state 5)	[printf('customerId %d',seats[i].customerId)]
 
- 21:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
-		:init:(0):idClient = 3
+ 22:	proc  2 (crs:1) Pessimistic.pml:58 (state 6)	[i = (i+1)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		crs(2):i = 2
 
- 22:	proc  0 (:init::1) Pessimistic.pml:130 (state 8)	[.(goto)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
+ 23:	proc  1 (:init::1) Pessimistic.pml:134 (state 4)	[idClient = (idClient+1)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+		:init:(1):idClient = 2
 
- 23:	proc  0 (:init::1) Pessimistic.pml:125 (state 2)	[((idClient<4))]
+ 24:	proc  2 (crs:1) Pessimistic.pml:62 (state 10)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+
+ 25:	proc  1 (:init::1) Pessimistic.pml:137 (state 8)	[.(goto)]
+
+ 26:	proc  2 (crs:1) Pessimistic.pml:53 (state 1)	[((i<3))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+ 27:	proc  2 (crs:1) Pessimistic.pml:54 (state 2)	[seats[i].seatStatus = EMPTY]
+		queue 6 (crsToClient[4]): 
+
+ 28:	proc  2 (crs:1) Pessimistic.pml:55 (state 3)	[seats[i].customerId = -(1)]
+
+status 3 29:	proc  2 (crs:1) Pessimistic.pml:56 (state 4)	[printf('status %d',seats[i].seatStatus)]
+
+ 30:	proc  1 (:init::1) Pessimistic.pml:132 (state 2)	[((idClient<(5-1)))]
 
 Starting client with pid 5
- 24:	proc  0 (:init::1) creates proc  5 (client)
- 24:	proc  0 (:init::1) Pessimistic.pml:126 (state 3)	[(run client(idClient))]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
+ 31:	proc  1 (:init::1) creates proc  5 (client)
+ 31:	proc  1 (:init::1) Pessimistic.pml:133 (state 3)	[(run client(idClient))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
 
- 25:	proc  1 (crs:1) Pessimistic.pml:54 (state 1)	[((i<3))]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
+ 32:	proc  1 (:init::1) Pessimistic.pml:134 (state 4)	[idClient = (idClient+1)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+		:init:(1):idClient = 3
 
- 26:	proc  1 (crs:1) Pessimistic.pml:55 (state 2)	[seats[i].seatStatus = EMPTY]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
+customerId -1 33:	proc  2 (crs:1) Pessimistic.pml:57 (state 5)	[printf('customerId %d',seats[i].customerId)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
- 27:	proc  0 (:init::1) Pessimistic.pml:127 (state 4)	[idClient = (idClient+1)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-		:init:(0):idClient = 4
+ 34:	proc  2 (crs:1) Pessimistic.pml:58 (state 6)	[i = (i+1)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+		crs(2):i = 3
 
- 28:	proc  0 (:init::1) Pessimistic.pml:130 (state 8)	[.(goto)]
+ 35:	proc  2 (crs:1) Pessimistic.pml:62 (state 10)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
 
- 29:	proc  1 (crs:1) Pessimistic.pml:56 (state 3)	[seats[i].customerId = -(1)]
+ 36:	proc  2 (crs:1) Pessimistic.pml:59 (state 7)	[((i>=3))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
- 30:	proc  0 (:init::1) Pessimistic.pml:128 (state 5)	[((idClient==4))]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
+ 37:	proc  1 (:init::1) Pessimistic.pml:137 (state 8)	[.(goto)]
 
-status 3 31:	proc  1 (crs:1) Pessimistic.pml:57 (state 4)	[printf('status %d',seats[i].seatStatus)]
+ 38:	proc  1 (:init::1) Pessimistic.pml:132 (state 2)	[((idClient<(5-1)))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
- 32:	proc  0 (:init::1) Pessimistic.pml:128 (state 6)	[goto :b3]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
+ 39:	proc  2 (crs:1) Pessimistic.pml:59 (state 8)	[goto :b0]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
 
-customerId -1 33:	proc  1 (crs:1) Pessimistic.pml:58 (state 5)	[printf('customerId %d',seats[i].customerId)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-
- 34:	proc  1 (crs:1) Pessimistic.pml:59 (state 6)	[i = (i+1)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		crs(1):i = 2
-
- 35:	proc  1 (crs:1) Pessimistic.pml:63 (state 10)	[.(goto)]
-
- 36:	proc  1 (crs:1) Pessimistic.pml:54 (state 1)	[((i<3))]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-
- 37:	proc  1 (crs:1) Pessimistic.pml:55 (state 2)	[seats[i].seatStatus = EMPTY]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-
- 38:	proc  1 (crs:1) Pessimistic.pml:56 (state 3)	[seats[i].customerId = -(1)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-
-status 3 39:	proc  1 (crs:1) Pessimistic.pml:57 (state 4)	[printf('status %d',seats[i].seatStatus)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-
-customerId -1 40:	proc  1 (crs:1) Pessimistic.pml:58 (state 5)	[printf('customerId %d',seats[i].customerId)]
-
- 41:	proc  1 (crs:1) Pessimistic.pml:59 (state 6)	[i = (i+1)]
-		crs(1):i = 3
-
- 42:	proc  1 (crs:1) Pessimistic.pml:63 (state 10)	[.(goto)]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-
- 43:	proc  1 (crs:1) Pessimistic.pml:60 (state 7)	[((i>=3))]
-		queue 1 (clientToCrs): [GET_SEAT,0,0]
-		queue 2 (crsToClient[0]): 
-
- 44:	proc  1 (crs:1) Pessimistic.pml:60 (state 8)	[goto :b0]
-
- 45:	proc  1 (crs:1) Pessimistic.pml:64 (state -)	[values: 1?GET_SEAT,0,0]
- 45:	proc  1 (crs:1) Pessimistic.pml:64 (state 12)	[clientToCrs?message,receivedSeat,receivedClientId]
+ 40:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+ 40:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
 		queue 1 (clientToCrs): 
-		crs(1):message = GET_SEAT
-		crs(1):receivedSeat = 0
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+Starting client with pid 6
+ 41:	proc  1 (:init::1) creates proc  6 (client)
+ 41:	proc  1 (:init::1) Pessimistic.pml:133 (state 3)	[(run client(idClient))]
+		queue 6 (crsToClient[4]): 
+
+ 42:	proc  6 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,0,3]
+ 42:	proc  6 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+
+*******assigned seat 0, received seat 1, received client 4
+ 43:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+ 44:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+
+ 45:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+		queue 5 (crsToClient[3]): 
+		queue 6 (crsToClient[4]): 
+
+ 46:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+ 46:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+ 47:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+ 47:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 6 (crsToClient[4]): 
+
+ 48:	proc  1 (:init::1) Pessimistic.pml:134 (state 4)	[idClient = (idClient+1)]
+		:init:(1):idClient = 4
+
+ 49:	proc  1 (:init::1) Pessimistic.pml:137 (state 8)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+		queue 5 (crsToClient[3]): 
+
+ 50:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+
+ 51:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+ 52:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+
+ 53:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,0,3]
+
+ 54:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,0,3]
+ 54:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 3
+
+ 55:	proc  3 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,0,0]
+ 55:	proc  3 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,0]
+		queue 5 (crsToClient[3]): 
+
+*******assigned seat 0, received seat 0, received client 3
+ 56:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+ 57:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,0,0]
+		queue 2 (crsToClient[0]): 
+		queue 5 (crsToClient[3]): 
+
+ 58:	proc  2 (crs:1) Pessimistic.pml:69 (state 15)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus==EMPTY)))]
+		queue 1 (clientToCrs): [GET_SEAT,0,0]
+		queue 2 (crsToClient[0]): 
+		queue 5 (crsToClient[3]): 
+ 59:	proc  2 (crs:1) Pessimistic.pml:70 (state 16)	[seats[receivedSeat].seatStatus = RESERVED]
+ 60:	proc  2 (crs:1) Pessimistic.pml:71 (state 17)	[seats[receivedSeat].customerId = receivedCustomerId]
+ 61:	proc  2 (crs:1) Pessimistic.pml:73 (state -)	[values: 5!RETURNING_SEAT,0,3]
+ 61:	proc  2 (crs:1) Pessimistic.pml:73 (state 18)	[crsToClient[receivedCustomerId]!RETURNING_SEAT,receivedSeat,receivedCustomerId]
+		queue 5 (crsToClient[3]): [RETURNING_SEAT,0,3]
+
+ 62:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,0,0]
+ 62:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 2 (crsToClient[0]): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 0
+
+ 63:	proc  4 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,0,1]
+ 63:	proc  4 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,1]
+
+*******assigned seat 0, received seat 0, received client 0
+ 64:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+ 65:	proc  6 (client:1) Pessimistic.pml:103 (state -)	[values: 5?RETURNING_SEAT,0,3]
+ 65:	proc  6 (client:1) Pessimistic.pml:103 (state 2)	[crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId]
+		queue 5 (crsToClient[3]): 
+		client(6):seatNumber = 0
+		client(6):clientId = 3
+
+ 66:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,0,1]
+		queue 3 (crsToClient[1]): 
+
+ 67:	proc  2 (crs:1) Pessimistic.pml:75 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+ 68:	proc  2 (crs:1) Pessimistic.pml:77 (state -)	[values: 2!NOT_AVAILABLE_SEAT,0,0]
+ 68:	proc  2 (crs:1) Pessimistic.pml:77 (state 21)	[crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [GET_SEAT,0,1]
+		queue 2 (crsToClient[0]): [NOT_AVAILABLE_SEAT,0,0]
+		queue 3 (crsToClient[1]): 
+
+ 69:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,0,1]
+
+ 70:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,0,1]
+
+ 71:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 3 (crsToClient[1]): 
+
+ 72:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,0,1]
+ 72:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 3 (crsToClient[1]): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 1
+
+ 73:	proc  6 (client:1) Pessimistic.pml:105 (state -)	[values: 1!PAYMENT_SEAT,0,3]
+ 73:	proc  6 (client:1) Pessimistic.pml:105 (state 3)	[clientToCrs!PAYMENT_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,3]
+
+*******assigned seat 0, received seat 0, received client 1
+ 74:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+ 75:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 3 (crsToClient[1]): 
+		queue 5 (crsToClient[3]): 
+
+ 76:	proc  3 (client:1) Pessimistic.pml:108 (state -)	[values: 2?NOT_AVAILABLE_SEAT,0,0]
+ 76:	proc  3 (client:1) Pessimistic.pml:108 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 2 (crsToClient[0]): 
+		client(3):seatNumber = 0
+		client(3):clientId = 0
+
+ 77:	proc  2 (crs:1) Pessimistic.pml:75 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,3]
+		queue 3 (crsToClient[1]): 
+		queue 5 (crsToClient[3]): 
+
+ 78:	proc  3 (client:1) Pessimistic.pml:110 (state 7)	[seatNumber = (seatNumber+1)]
+		queue 3 (crsToClient[1]): 
+		queue 5 (crsToClient[3]): 
+		client(3):seatNumber = 1
+
+ 79:	proc  3 (client:1) Pessimistic.pml:114 (state 11)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,3]
+		queue 3 (crsToClient[1]): 
+
+ 80:	proc  2 (crs:1) Pessimistic.pml:77 (state -)	[values: 3!NOT_AVAILABLE_SEAT,0,1]
+ 80:	proc  2 (crs:1) Pessimistic.pml:77 (state 21)	[crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId]
+		queue 3 (crsToClient[1]): [NOT_AVAILABLE_SEAT,0,1]
+		queue 5 (crsToClient[3]): 
+
+ 81:	proc  3 (client:1) Pessimistic.pml:116 (state 13)	[.(goto)]
+
+ 82:	proc  4 (client:1) Pessimistic.pml:108 (state -)	[values: 3?NOT_AVAILABLE_SEAT,0,1]
+ 82:	proc  4 (client:1) Pessimistic.pml:108 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 3 (crsToClient[1]): 
+		client(4):seatNumber = 0
+		client(4):clientId = 1
+
+ 83:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,3]
+
+ 84:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+ 85:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,3]
+		queue 5 (crsToClient[3]): 
+
+ 86:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,3]
+ 86:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 5 (crsToClient[3]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 3
+
+ 87:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+ 87:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+*******assigned seat 0, received seat 0, received client 3
+ 88:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+ 89:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+ 90:	proc  4 (client:1) Pessimistic.pml:110 (state 7)	[seatNumber = (seatNumber+1)]
+		client(4):seatNumber = 1
+
+ 91:	proc  4 (client:1) Pessimistic.pml:114 (state 11)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 6 (crsToClient[4]): 
+
+ 92:	proc  4 (client:1) Pessimistic.pml:116 (state 13)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 5 (crsToClient[3]): 
+		queue 6 (crsToClient[4]): 
+
+ 93:	proc  2 (crs:1) Pessimistic.pml:84 (state 28)	[((receivedCustomerId==seats[receivedSeat].customerId))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 5 (crsToClient[3]): 
+		queue 6 (crsToClient[4]): 
+
+ 94:	proc  2 (crs:1) Pessimistic.pml:86 (state 29)	[seats[receivedSeat].seatStatus = ASSIGNED]
+
+ 95:	proc  2 (crs:1) Pessimistic.pml:87 (state -)	[values: 5!SUCCESS_SEAT,0,3]
+ 95:	proc  2 (crs:1) Pessimistic.pml:87 (state 30)	[crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 5 (crsToClient[3]): [SUCCESS_SEAT,0,3]
+		queue 6 (crsToClient[4]): 
+
+ 96:	proc  2 (crs:1) Pessimistic.pml:88 (state 31)	[assignedSeats = (assignedSeats+1)]
+		crs(2):assignedSeats = 1
+
+ 97:	proc  6 (client:1) Pessimistic.pml:106 (state -)	[values: 5?SUCCESS_SEAT,0,3]
+ 97:	proc  6 (client:1) Pessimistic.pml:106 (state 4)	[crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 5 (crsToClient[3]): 
+		queue 6 (crsToClient[4]): 
+		client(6):seatNumber = 0
+		client(6):clientId = 3
+
+ 98:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+ 99:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+100:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+101:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+101:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+102:	proc  4 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,1,1]
+102:	proc  4 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+
+103:	proc  6 (client:1) Pessimistic.pml:107 (state 5)	[goto :b2]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+
+*******assigned seat 1, received seat 1, received client 4
+104:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+
+105:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+		queue 6 (crsToClient[4]): 
+
+105:	proc  6 (client:1) terminates
+106:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+		queue 6 (crsToClient[4]): 
+
+107:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+107:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+108:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+
+109:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+109:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 6 (crsToClient[4]): 
+
+110:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+
+111:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,1]
+
+112:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+113:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,1,1]
+113:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 1
+
+114:	proc  5 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,0,2]
+114:	proc  5 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,0,2]
+
+*******assigned seat 1, received seat 1, received client 1
+115:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+116:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,0,2]
+		queue 3 (crsToClient[1]): 
+
+117:	proc  2 (crs:1) Pessimistic.pml:69 (state 15)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus==EMPTY)))]
+118:	proc  2 (crs:1) Pessimistic.pml:70 (state 16)	[seats[receivedSeat].seatStatus = RESERVED]
+119:	proc  2 (crs:1) Pessimistic.pml:71 (state 17)	[seats[receivedSeat].customerId = receivedCustomerId]
+120:	proc  2 (crs:1) Pessimistic.pml:73 (state -)	[values: 3!RETURNING_SEAT,1,1]
+120:	proc  2 (crs:1) Pessimistic.pml:73 (state 18)	[crsToClient[receivedCustomerId]!RETURNING_SEAT,receivedSeat,receivedCustomerId]
+		queue 3 (crsToClient[1]): [RETURNING_SEAT,1,1]
+
+121:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,0,2]
+121:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 2
+
+122:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+122:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 4 (crsToClient[2]): 
+
+123:	proc  4 (client:1) Pessimistic.pml:103 (state -)	[values: 3?RETURNING_SEAT,1,1]
+123:	proc  4 (client:1) Pessimistic.pml:103 (state 2)	[crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId]
+		queue 3 (crsToClient[1]): 
+		queue 4 (crsToClient[2]): 
+		queue 6 (crsToClient[4]): 
+		client(4):seatNumber = 1
+		client(4):clientId = 1
+
+*******assigned seat 1, received seat 0, received client 2
+124:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+125:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 4 (crsToClient[2]): 
+
+126:	proc  2 (crs:1) Pessimistic.pml:75 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+127:	proc  2 (crs:1) Pessimistic.pml:77 (state -)	[values: 4!NOT_AVAILABLE_SEAT,0,2]
+127:	proc  2 (crs:1) Pessimistic.pml:77 (state 21)	[crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+		queue 4 (crsToClient[2]): [NOT_AVAILABLE_SEAT,0,2]
+		queue 6 (crsToClient[4]): 
+
+128:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+129:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+130:	proc  5 (client:1) Pessimistic.pml:108 (state -)	[values: 4?NOT_AVAILABLE_SEAT,0,2]
+130:	proc  5 (client:1) Pessimistic.pml:108 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 4 (crsToClient[2]): 
+		queue 6 (crsToClient[4]): 
+		client(5):seatNumber = 0
+		client(5):clientId = 2
+
+131:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+132:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+132:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+133:	proc  4 (client:1) Pessimistic.pml:105 (state -)	[values: 1!PAYMENT_SEAT,1,1]
+133:	proc  4 (client:1) Pessimistic.pml:105 (state 3)	[clientToCrs!PAYMENT_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,1]
+
+*******assigned seat 1, received seat 1, received client 4
+134:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,1]
+		queue 6 (crsToClient[4]): 
+
+135:	proc  5 (client:1) Pessimistic.pml:110 (state 7)	[seatNumber = (seatNumber+1)]
+		client(5):seatNumber = 1
+
+136:	proc  5 (client:1) Pessimistic.pml:114 (state 11)	[.(goto)]
+		queue 3 (crsToClient[1]): 
+
+137:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 3 (crsToClient[1]): 
+		queue 6 (crsToClient[4]): 
+
+138:	proc  5 (client:1) Pessimistic.pml:116 (state 13)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+139:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+140:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+140:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+141:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+141:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 3 (crsToClient[1]): 
+		queue 6 (crsToClient[4]): 
+
+142:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+143:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,1]
+		queue 3 (crsToClient[1]): 
+
+144:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+145:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,1]
+
+146:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,1]
+146:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 1
+
+147:	proc  5 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,1,2]
+147:	proc  5 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 3 (crsToClient[1]): 
+
+*******assigned seat 1, received seat 1, received client 1
+148:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 3 (crsToClient[1]): 
+		queue 4 (crsToClient[2]): 
+
+149:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+
+150:	proc  2 (crs:1) Pessimistic.pml:84 (state 28)	[((receivedCustomerId==seats[receivedSeat].customerId))]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+
+151:	proc  2 (crs:1) Pessimistic.pml:86 (state 29)	[seats[receivedSeat].seatStatus = ASSIGNED]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 3 (crsToClient[1]): 
+		queue 4 (crsToClient[2]): 
+
+152:	proc  2 (crs:1) Pessimistic.pml:87 (state -)	[values: 3!SUCCESS_SEAT,1,1]
+152:	proc  2 (crs:1) Pessimistic.pml:87 (state 30)	[crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 3 (crsToClient[1]): [SUCCESS_SEAT,1,1]
+
+153:	proc  4 (client:1) Pessimistic.pml:106 (state -)	[values: 3?SUCCESS_SEAT,1,1]
+153:	proc  4 (client:1) Pessimistic.pml:106 (state 4)	[crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId]
+		queue 3 (crsToClient[1]): 
+		client(4):seatNumber = 1
+		client(4):clientId = 1
+
+154:	proc  2 (crs:1) Pessimistic.pml:88 (state 31)	[assignedSeats = (assignedSeats+1)]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 4 (crsToClient[2]): 
+		crs(2):assignedSeats = 2
+
+155:	proc  4 (client:1) Pessimistic.pml:107 (state 5)	[goto :b2]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 4 (crsToClient[2]): 
+
+156:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+		queue 4 (crsToClient[2]): 
+
+157:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+158:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,2]
+
+159:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,1,2]
+159:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 2
+
+160:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+160:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+*******assigned seat 2, received seat 1, received client 2
+161:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 4 (crsToClient[2]): 
+		queue 6 (crsToClient[4]): 
+
+162:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+
+163:	proc  2 (crs:1) Pessimistic.pml:75 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 6 (crsToClient[4]): 
+
+164:	proc  2 (crs:1) Pessimistic.pml:77 (state -)	[values: 4!NOT_AVAILABLE_SEAT,1,2]
+164:	proc  2 (crs:1) Pessimistic.pml:77 (state 21)	[crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 4 (crsToClient[2]): [NOT_AVAILABLE_SEAT,1,2]
+		queue 6 (crsToClient[4]): 
+
+165:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+
+166:	proc  5 (client:1) Pessimistic.pml:108 (state -)	[values: 4?NOT_AVAILABLE_SEAT,1,2]
+166:	proc  5 (client:1) Pessimistic.pml:108 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 4 (crsToClient[2]): 
+		queue 6 (crsToClient[4]): 
+		client(5):seatNumber = 1
+		client(5):clientId = 2
+
+167:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+168:	proc  5 (client:1) Pessimistic.pml:110 (state 7)	[seatNumber = (seatNumber+1)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		client(5):seatNumber = 2
+
+169:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+170:	proc  5 (client:1) Pessimistic.pml:114 (state 11)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 6 (crsToClient[4]): 
+
+171:	proc  5 (client:1) Pessimistic.pml:116 (state 13)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 6 (crsToClient[4]): 
+
+172:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+172:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 2, received seat 0, received client 4
+173:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+174:	proc  3 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,1,0]
+174:	proc  3 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,1,0]
+
+175:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 2 (crsToClient[0]): 
+
+176:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 1 (clientToCrs): [GET_SEAT,1,0]
+		queue 6 (crsToClient[4]): 
+
+177:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+177:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [GET_SEAT,1,0]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+178:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+178:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 2 (crsToClient[0]): 
+		queue 6 (crsToClient[4]): 
+
+179:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+180:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,0]
+		queue 2 (crsToClient[0]): 
+
+181:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 2 (crsToClient[0]): 
+
+182:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,1,0]
+		queue 2 (crsToClient[0]): 
+
+183:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,1,0]
+183:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 2 (crsToClient[0]): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 0
+
+184:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+184:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+*******assigned seat 2, received seat 1, received client 0
+185:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+186:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 6 (crsToClient[4]): 
+
+187:	proc  2 (crs:1) Pessimistic.pml:75 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+
+188:	proc  2 (crs:1) Pessimistic.pml:77 (state -)	[values: 2!NOT_AVAILABLE_SEAT,1,0]
+188:	proc  2 (crs:1) Pessimistic.pml:77 (state 21)	[crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 2 (crsToClient[0]): [NOT_AVAILABLE_SEAT,1,0]
+
+189:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 6 (crsToClient[4]): 
+
+190:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+		queue 6 (crsToClient[4]): 
+
+191:	proc  3 (client:1) Pessimistic.pml:108 (state -)	[values: 2?NOT_AVAILABLE_SEAT,1,0]
+191:	proc  3 (client:1) Pessimistic.pml:108 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 2 (crsToClient[0]): 
+		client(3):seatNumber = 1
+		client(3):clientId = 0
+
+192:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+193:	proc  3 (client:1) Pessimistic.pml:110 (state 7)	[seatNumber = (seatNumber+1)]
+		client(3):seatNumber = 2
+
+194:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+194:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+195:	proc  5 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,2,2]
+195:	proc  5 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,2,2]
+
+196:	proc  3 (client:1) Pessimistic.pml:114 (state 11)	[.(goto)]
+
+*******assigned seat 2, received seat 0, received client 4
+197:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 4 (crsToClient[2]): 
+
+198:	proc  3 (client:1) Pessimistic.pml:116 (state 13)	[.(goto)]
+
+199:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 4 (crsToClient[2]): 
+		queue 6 (crsToClient[4]): 
+
+200:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+201:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+201:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+202:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+202:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 6 (crsToClient[4]): 
+
+203:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,2,2]
+		queue 4 (crsToClient[2]): 
+
+204:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+205:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,2,2]
+		queue 4 (crsToClient[2]): 
+
+206:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,2,2]
+		queue 4 (crsToClient[2]): 
+
+207:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,2,2]
+207:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 2
+
+208:	proc  3 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,2,0]
+208:	proc  3 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,2,0]
+
+*******assigned seat 2, received seat 2, received client 2
+209:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 2 (crsToClient[0]): 
+		queue 4 (crsToClient[2]): 
+
+210:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,2,0]
+		queue 2 (crsToClient[0]): 
+
+211:	proc  2 (crs:1) Pessimistic.pml:69 (state 15)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus==EMPTY)))]
+		queue 1 (clientToCrs): [GET_SEAT,2,0]
+		queue 2 (crsToClient[0]): 
+212:	proc  2 (crs:1) Pessimistic.pml:70 (state 16)	[seats[receivedSeat].seatStatus = RESERVED]
+213:	proc  2 (crs:1) Pessimistic.pml:71 (state 17)	[seats[receivedSeat].customerId = receivedCustomerId]
+214:	proc  2 (crs:1) Pessimistic.pml:73 (state -)	[values: 4!RETURNING_SEAT,2,2]
+214:	proc  2 (crs:1) Pessimistic.pml:73 (state 18)	[crsToClient[receivedCustomerId]!RETURNING_SEAT,receivedSeat,receivedCustomerId]
+		queue 4 (crsToClient[2]): [RETURNING_SEAT,2,2]
+
+215:	proc  5 (client:1) Pessimistic.pml:103 (state -)	[values: 4?RETURNING_SEAT,2,2]
+215:	proc  5 (client:1) Pessimistic.pml:103 (state 2)	[crsToClient[clientId]?RETURNING_SEAT,seatNumber,clientId]
+		queue 4 (crsToClient[2]): 
+		client(5):seatNumber = 2
+		client(5):clientId = 2
+
+216:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,2,0]
+216:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 2 (crsToClient[0]): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 0
+
+217:	proc  5 (client:1) Pessimistic.pml:105 (state -)	[values: 1!PAYMENT_SEAT,2,2]
+217:	proc  5 (client:1) Pessimistic.pml:105 (state 3)	[clientToCrs!PAYMENT_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,2]
+
+*******assigned seat 2, received seat 2, received client 0
+218:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 2 (crsToClient[0]): 
+
+219:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+
+220:	proc  2 (crs:1) Pessimistic.pml:75 (state 20)	[(((receivedSeat<3)&&(seats[receivedSeat].seatStatus!=EMPTY)))]
+		queue 2 (crsToClient[0]): 
+
+221:	proc  2 (crs:1) Pessimistic.pml:77 (state -)	[values: 2!NOT_AVAILABLE_SEAT,2,0]
+221:	proc  2 (crs:1) Pessimistic.pml:77 (state 21)	[crsToClient[receivedCustomerId]!NOT_AVAILABLE_SEAT,receivedSeat,receivedCustomerId]
+		queue 2 (crsToClient[0]): [NOT_AVAILABLE_SEAT,2,0]
+		queue 4 (crsToClient[2]): 
+
+222:	proc  3 (client:1) Pessimistic.pml:108 (state -)	[values: 2?NOT_AVAILABLE_SEAT,2,0]
+222:	proc  3 (client:1) Pessimistic.pml:108 (state 6)	[crsToClient[clientId]?NOT_AVAILABLE_SEAT,seatNumber,clientId]
+		queue 2 (crsToClient[0]): 
+		queue 4 (crsToClient[2]): 
+		client(3):seatNumber = 2
+		client(3):clientId = 0
+
+223:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+
+224:	proc  3 (client:1) Pessimistic.pml:110 (state 7)	[seatNumber = (seatNumber+1)]
+		client(3):seatNumber = 3
+
+225:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,2]
+
+226:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 4 (crsToClient[2]): 
+
+227:	proc  3 (client:1) Pessimistic.pml:114 (state 11)	[.(goto)]
+
+228:	proc  3 (client:1) Pessimistic.pml:116 (state 13)	[.(goto)]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,2]
+		queue 4 (crsToClient[2]): 
+
+229:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,2]
+229:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 2
+
+230:	proc  3 (client:1) Pessimistic.pml:101 (state -)	[values: 1!GET_SEAT,3,0]
+230:	proc  3 (client:1) Pessimistic.pml:101 (state 1)	[clientToCrs!GET_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,3,0]
+
+*******assigned seat 2, received seat 2, received client 2
+231:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+232:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 1 (clientToCrs): [GET_SEAT,3,0]
+		queue 2 (crsToClient[0]): 
+		queue 4 (crsToClient[2]): 
+
+233:	proc  2 (crs:1) Pessimistic.pml:84 (state 28)	[((receivedCustomerId==seats[receivedSeat].customerId))]
+		queue 2 (crsToClient[0]): 
+		queue 4 (crsToClient[2]): 
+
+234:	proc  2 (crs:1) Pessimistic.pml:86 (state 29)	[seats[receivedSeat].seatStatus = ASSIGNED]
+		queue 1 (clientToCrs): [GET_SEAT,3,0]
+		queue 2 (crsToClient[0]): 
+		queue 4 (crsToClient[2]): 
+
+235:	proc  2 (crs:1) Pessimistic.pml:87 (state -)	[values: 4!SUCCESS_SEAT,2,2]
+235:	proc  2 (crs:1) Pessimistic.pml:87 (state 30)	[crsToClient[receivedCustomerId]!SUCCESS_SEAT,receivedSeat,receivedCustomerId]
+		queue 4 (crsToClient[2]): [SUCCESS_SEAT,2,2]
+
+236:	proc  2 (crs:1) Pessimistic.pml:88 (state 31)	[assignedSeats = (assignedSeats+1)]
+		crs(2):assignedSeats = 3
+
+237:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+238:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+239:	proc  5 (client:1) Pessimistic.pml:106 (state -)	[values: 4?SUCCESS_SEAT,2,2]
+239:	proc  5 (client:1) Pessimistic.pml:106 (state 4)	[crsToClient[clientId]?SUCCESS_SEAT,seatNumber,clientId]
+		queue 1 (clientToCrs): [GET_SEAT,3,0]
+		queue 2 (crsToClient[0]): 
+		queue 4 (crsToClient[2]): 
+		client(5):seatNumber = 2
+		client(5):clientId = 2
+
+240:	proc  5 (client:1) Pessimistic.pml:107 (state 5)	[goto :b2]
+
+240:	proc  5 (client:1) terminates
+240:	proc  4 (client:1) terminates
+241:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 1 (clientToCrs): [GET_SEAT,3,0]
+		queue 2 (crsToClient[0]): 
+
+242:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?GET_SEAT,3,0]
+242:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 2 (crsToClient[0]): 
+		crs(2):message = GET_SEAT
+		crs(2):receivedSeat = 3
+		crs(2):receivedCustomerId = 0
+
+243:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+243:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+*******assigned seat 3, received seat 3, received client 0
+244:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+245:	proc  2 (crs:1) Pessimistic.pml:66 (state 14)	[((message==GET_SEAT))]
+		queue 2 (crsToClient[0]): 
+		queue 6 (crsToClient[4]): 
+
+246:	proc  2 (crs:1) Pessimistic.pml:78 (state 22)	[((receivedSeat>(3-1)))]
+		queue 2 (crsToClient[0]): 
+
+247:	proc  2 (crs:1) Pessimistic.pml:79 (state -)	[values: 2!FLIGHT_FULL,3,0]
+247:	proc  2 (crs:1) Pessimistic.pml:79 (state 23)	[crsToClient[receivedCustomerId]!FLIGHT_FULL,receivedSeat,receivedCustomerId]
+		queue 2 (crsToClient[0]): [FLIGHT_FULL,3,0]
+		queue 6 (crsToClient[4]): 
+
+248:	proc  3 (client:1) Pessimistic.pml:111 (state -)	[values: 2?FLIGHT_FULL,3,0]
+248:	proc  3 (client:1) Pessimistic.pml:111 (state 8)	[crsToClient[clientId]?FLIGHT_FULL,seatNumber,clientId]
+		queue 2 (crsToClient[0]): 
+		client(3):seatNumber = 3
+		client(3):clientId = 0
+
+249:	proc  3 (client:1) Pessimistic.pml:111 (state 9)	[goto :b2]
+
+249:	proc  3 (client:1) terminates
+250:	proc  2 (crs:1) Pessimistic.pml:80 (state 24)	[flightFullMessageCount = (flightFullMessageCount+1)]
+		crs(2):flightFullMessageCount = 1
+
+251:	proc  2 (crs:1) Pessimistic.pml:82 (state 26)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+252:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+253:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+254:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+254:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 1, received client 4
+255:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+256:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+257:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 6 (crsToClient[4]): 
+
+258:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+258:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+259:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+259:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 6 (crsToClient[4]): 
+
+260:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+261:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+262:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+263:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+264:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+264:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+265:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+265:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 1, received client 4
+266:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+267:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+268:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+269:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+269:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+270:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+270:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 6 (crsToClient[4]): 
+
+271:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+272:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+272:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+273:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+274:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+275:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+276:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+276:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 0, received client 4
+277:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+278:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+279:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+280:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+280:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+281:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+281:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 6 (crsToClient[4]): 
+
+282:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+283:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+284:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 1!PAYMENT_SEAT,2,4]
+284:	proc  0 (hacker:1) Pessimistic.pml:123 (state 5)	[clientToCrs!PAYMENT_SEAT,2,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,4]
+
+285:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+286:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+287:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,4]
+287:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 2, received client 4
+288:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+289:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+290:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 6 (crsToClient[4]): 
+
+291:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,2,4]
+291:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,2,4]
+
+292:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 6?INVALID_CUSTOMER,2,4]
+292:	proc  0 (hacker:1) Pessimistic.pml:123 (state 6)	[crsToClient[4]?INVALID_CUSTOMER,2,4]
+		queue 6 (crsToClient[4]): 
+
+293:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+294:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+295:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+296:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+297:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+297:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+298:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+298:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 0, received client 4
+299:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+300:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+301:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+302:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+302:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+303:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+304:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+304:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 6 (crsToClient[4]): 
+
+305:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+306:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+307:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 1!PAYMENT_SEAT,2,4]
+307:	proc  0 (hacker:1) Pessimistic.pml:123 (state 5)	[clientToCrs!PAYMENT_SEAT,2,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,4]
+
+308:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+309:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,4]
+309:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 2, received client 4
+310:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+311:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+312:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+313:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,2,4]
+313:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,2,4]
+
+314:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+315:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 6?INVALID_CUSTOMER,2,4]
+315:	proc  0 (hacker:1) Pessimistic.pml:123 (state 6)	[crsToClient[4]?INVALID_CUSTOMER,2,4]
+		queue 6 (crsToClient[4]): 
+
+316:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+317:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+318:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+		queue 1 (clientToCrs): 
+
+319:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 1!PAYMENT_SEAT,2,4]
+319:	proc  0 (hacker:1) Pessimistic.pml:123 (state 5)	[clientToCrs!PAYMENT_SEAT,2,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,4]
+
+320:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,4]
+320:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 2, received client 4
+321:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+322:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+323:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+324:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,2,4]
+324:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,2,4]
+
+325:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+326:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+327:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 6?INVALID_CUSTOMER,2,4]
+327:	proc  0 (hacker:1) Pessimistic.pml:123 (state 6)	[crsToClient[4]?INVALID_CUSTOMER,2,4]
+		queue 6 (crsToClient[4]): 
+
+328:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+329:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+330:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 1!PAYMENT_SEAT,2,4]
+330:	proc  0 (hacker:1) Pessimistic.pml:123 (state 5)	[clientToCrs!PAYMENT_SEAT,2,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,4]
+
+331:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,4]
+331:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 2, received client 4
+332:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+333:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+334:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 6 (crsToClient[4]): 
+
+335:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,2,4]
+335:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,2,4]
+
+336:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 6?INVALID_CUSTOMER,2,4]
+336:	proc  0 (hacker:1) Pessimistic.pml:123 (state 6)	[crsToClient[4]?INVALID_CUSTOMER,2,4]
+		queue 6 (crsToClient[4]): 
+
+337:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+338:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+338:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+339:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+340:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+341:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+342:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+342:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 1, received client 4
+343:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+344:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+345:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 6 (crsToClient[4]): 
+
+346:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+346:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+347:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+347:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 6 (crsToClient[4]): 
+
+348:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+349:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+350:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+350:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+351:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+352:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+353:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+353:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 0, received client 4
+354:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+355:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+356:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+357:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+357:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+358:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+358:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 6 (crsToClient[4]): 
+
+359:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+360:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+361:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+361:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+362:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+363:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+364:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+364:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 0, received client 4
+365:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+366:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+367:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+368:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+368:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+369:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+370:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+371:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+372:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+372:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 6 (crsToClient[4]): 
+
+373:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+374:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 1!PAYMENT_SEAT,2,4]
+374:	proc  0 (hacker:1) Pessimistic.pml:123 (state 5)	[clientToCrs!PAYMENT_SEAT,2,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,4]
+
+375:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,4]
+375:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 2, received client 4
+376:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+377:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+378:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+379:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,2,4]
+379:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,2,4]
+
+380:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 6?INVALID_CUSTOMER,2,4]
+380:	proc  0 (hacker:1) Pessimistic.pml:123 (state 6)	[crsToClient[4]?INVALID_CUSTOMER,2,4]
+		queue 6 (crsToClient[4]): 
+
+381:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+382:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+383:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 1!PAYMENT_SEAT,0,4]
+383:	proc  0 (hacker:1) Pessimistic.pml:121 (state 1)	[clientToCrs!PAYMENT_SEAT,0,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,0,4]
+
+384:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+385:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+386:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,0,4]
+386:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 0
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 0, received client 4
+387:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+		queue 6 (crsToClient[4]): 
+
+388:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+
+389:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+390:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,0,4]
+390:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,0,4]
+
+391:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+392:	proc  0 (hacker:1) Pessimistic.pml:121 (state -)	[values: 6?INVALID_CUSTOMER,0,4]
+392:	proc  0 (hacker:1) Pessimistic.pml:121 (state 2)	[crsToClient[4]?INVALID_CUSTOMER,0,4]
+		queue 6 (crsToClient[4]): 
+
+393:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+394:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 1!PAYMENT_SEAT,1,4]
+394:	proc  0 (hacker:1) Pessimistic.pml:122 (state 3)	[clientToCrs!PAYMENT_SEAT,1,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,1,4]
+
+395:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+396:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+		queue 6 (crsToClient[4]): 
+
+397:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,1,4]
+397:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		queue 6 (crsToClient[4]): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 1
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 1, received client 4
+398:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+399:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+400:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+
+401:	proc  2 (crs:1) Pessimistic.pml:89 (state -)	[values: 6!INVALID_CUSTOMER,1,4]
+401:	proc  2 (crs:1) Pessimistic.pml:89 (state 33)	[crsToClient[receivedCustomerId]!INVALID_CUSTOMER,receivedSeat,receivedCustomerId]
+		queue 6 (crsToClient[4]): [INVALID_CUSTOMER,1,4]
+
+402:	proc  0 (hacker:1) Pessimistic.pml:122 (state -)	[values: 6?INVALID_CUSTOMER,1,4]
+402:	proc  0 (hacker:1) Pessimistic.pml:122 (state 4)	[crsToClient[4]?INVALID_CUSTOMER,1,4]
+		queue 6 (crsToClient[4]): 
+
+403:	proc  0 (hacker:1) Pessimistic.pml:125 (state 8)	[.(goto)]
+
+404:	proc  2 (crs:1) Pessimistic.pml:91 (state 35)	[.(goto)]
+
+405:	proc  0 (hacker:1) Pessimistic.pml:123 (state -)	[values: 1!PAYMENT_SEAT,2,4]
+405:	proc  0 (hacker:1) Pessimistic.pml:123 (state 5)	[clientToCrs!PAYMENT_SEAT,2,4]
+		queue 1 (clientToCrs): [PAYMENT_SEAT,2,4]
+
+406:	proc  2 (crs:1) Pessimistic.pml:92 (state 37)	[.(goto)]
+
+407:	proc  2 (crs:1) Pessimistic.pml:95 (state 39)	[.(goto)]
+
+408:	proc  2 (crs:1) Pessimistic.pml:63 (state -)	[values: 1?PAYMENT_SEAT,2,4]
+408:	proc  2 (crs:1) Pessimistic.pml:63 (state 12)	[clientToCrs?message,receivedSeat,receivedCustomerId]
+		queue 1 (clientToCrs): 
+		crs(2):message = PAYMENT_SEAT
+		crs(2):receivedSeat = 2
+		crs(2):receivedCustomerId = 4
+
+*******assigned seat 3, received seat 2, received client 4
+409:	proc  2 (crs:1) Pessimistic.pml:64 (state 13)	[printf('*******assigned seat %d, received seat %d, received client %d\\n',assignedSeats,receivedSeat,receivedCustomerId)]
+
+410:	proc  2 (crs:1) Pessimistic.pml:82 (state 27)	[((message==PAYMENT_SEAT))]
+		queue 6 (crsToClient[4]): 
+
+411:	proc  2 (crs:1) Pessimistic.pml:89 (state 32)	[((receivedCustomerId!=seats[receivedSeat].customerId))]
+		queue 6 (crsToClient[4]): 

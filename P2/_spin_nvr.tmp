@@ -9,14 +9,21 @@ accept_S4:
 	:: (! (((crs:assignedSeats==3)))) -> goto accept_S4
 	od;
 }
-never ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero {    /* !([] ((! ((4>3))) || (<> ((crs:flightFullMessageCount==(4-3)))))) */
+never ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero {    /* !([] ((! ((5>3))) || (<> ((crs:flightFullMessageCount==(5-3)))))) */
 T0_init:
 	do
-	:: (! ((! ((4>3)))) && ! (((crs:flightFullMessageCount==(4-3))))) -> goto accept_S4
+	:: (! ((! ((5>3)))) && ! (((crs:flightFullMessageCount==(5-3))))) -> goto accept_S4
 	:: (1) -> goto T0_init
 	od;
 accept_S4:
 	do
-	:: (! (((crs:flightFullMessageCount==(4-3))))) -> goto accept_S4
+	:: (! (((crs:flightFullMessageCount==(5-3))))) -> goto accept_S4
+	od;
+}
+never notAvailableCountEqualsToNthTriangleNumber {    /* !(<> ((crs:notAvailableSeatCount==(((3*(3+1))/2)-1)))) */
+accept_init:
+T0_init:
+	do
+	:: (! (((crs:notAvailableSeatCount==(((3*(3+1))/2)-1))))) -> goto T0_init
 	od;
 }

@@ -103,7 +103,7 @@
 	#define NFAIR	2	/* must be >= 2 */
 #endif
 #define REM_VARS	1
-#define REM_REFS	6
+#define REM_REFS	8
 #define HAS_LTL	1
 #define HAS_CODE	1
 #if defined(RANDSTORE) && !defined(RANDSTOR)
@@ -122,15 +122,15 @@
 #endif
 #ifdef NP
 	#define HAS_NP	2
-	#define VERI	5	/* np_ */
+	#define VERI	7	/* np_ */
 #endif
 #if defined(NOCLAIM) && defined(NP)
 	#undef NOCLAIM
 #endif
 #ifndef NOCLAIM
-	#define NCLAIMS	2
+	#define NCLAIMS	3
 	#ifndef NP
-		#define VERI	4
+		#define VERI	6
 	#endif
 #endif
 
@@ -140,36 +140,50 @@ typedef struct S_F_MAP {
 	int upto;
 } S_F_MAP;
 
-#define _nstates4	14	/* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
-#define minseq4	74
-#define maxseq4	86
+#define _nstates6	7	/* notAvailableCountEqualsToNthTriangleNumber */
+#define minseq6	103
+#define maxseq6	108
+#define _endstate6	6
+
+#define _nstates5	14	/* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
+#define minseq5	90
+#define maxseq5	102
+#define _endstate5	13
+
+#define _nstates4	14	/* allSeatsAlwaysAssigned */
+#define minseq4	77
+#define maxseq4	89
 #define _endstate4	13
 
-#define _nstates3	14	/* allSeatsAlwaysAssigned */
-#define minseq3	61
-#define maxseq3	73
-#define _endstate3	13
+#define _nstates3	11	/* :init: */
+#define minseq3	67
+#define maxseq3	76
+#define _endstate3	10
 
-#define _nstates2	11	/* :init: */
-#define minseq2	51
-#define maxseq2	60
+#define _nstates2	11	/* hacker */
+#define minseq2	57
+#define maxseq2	66
 #define _endstate2	10
 
 #define _nstates1	16	/* client */
-#define minseq1	36
-#define maxseq1	50
+#define minseq1	42
+#define maxseq1	56
 #define _endstate1	15
 
-#define _nstates0	37	/* crs */
+#define _nstates0	43	/* crs */
 #define minseq0	0
-#define maxseq0	35
-#define _endstate0	36
+#define maxseq0	41
+#define _endstate0	42
 
+extern short src_ln6[];
+extern short src_ln5[];
 extern short src_ln4[];
 extern short src_ln3[];
 extern short src_ln2[];
 extern short src_ln1[];
 extern short src_ln0[];
+extern S_F_MAP src_file6[];
+extern S_F_MAP src_file5[];
 extern S_F_MAP src_file4[];
 extern S_F_MAP src_file3[];
 extern S_F_MAP src_file2[];
@@ -177,8 +191,8 @@ extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	44
-#define _T2	45
+#define _T5	57
+#define _T2	58
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	2
@@ -197,7 +211,27 @@ struct Seat { /* user defined type */
 	uchar seatStatus;
 	int customerId;
 };
-typedef struct P4 { /* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
+typedef struct P6 { /* notAvailableCountEqualsToNthTriangleNumber */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 7; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
+} P6;
+#define Air6	(sizeof(P6) - 3)
+
+typedef struct P5 { /* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 7; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
+} P5;
+#define Air5	(sizeof(P5) - 3)
+
+typedef struct P4 { /* allSeatsAlwaysAssigned */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
@@ -207,18 +241,8 @@ typedef struct P4 { /* ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero */
 } P4;
 #define Air4	(sizeof(P4) - 3)
 
-typedef struct P3 { /* allSeatsAlwaysAssigned */
-	unsigned _pid : 8;  /* 0..255 */
-	unsigned _t   : 4; /* proctype */
-	unsigned _p   : 7; /* state    */
-#ifdef HAS_PRIORITY
-	unsigned _priority : 8; /* 0..255 */
-#endif
-} P3;
-#define Air3	(sizeof(P3) - 3)
-
-#define Pinit	((P2 *)_this)
-typedef struct P2 { /* :init: */
+#define Pinit	((P3 *)_this)
+typedef struct P3 { /* :init: */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
@@ -226,8 +250,19 @@ typedef struct P2 { /* :init: */
 	unsigned _priority : 8; /* 0..255 */
 #endif
 	int idClient;
+} P3;
+#define Air3	(sizeof(P3) - Offsetof(P3, idClient) - 1*sizeof(int))
+
+#define Phacker	((P2 *)_this)
+typedef struct P2 { /* hacker */
+	unsigned _pid : 8;  /* 0..255 */
+	unsigned _t   : 4; /* proctype */
+	unsigned _p   : 7; /* state    */
+#ifdef HAS_PRIORITY
+	unsigned _priority : 8; /* 0..255 */
+#endif
 } P2;
-#define Air2	(sizeof(P2) - Offsetof(P2, idClient) - 1*sizeof(int))
+#define Air2	(sizeof(P2) - 3)
 
 #define Pclient	((P1 *)_this)
 typedef struct P1 { /* client */
@@ -251,40 +286,41 @@ typedef struct P0 { /* crs */
 	unsigned _priority : 8; /* 0..255 */
 #endif
 	uchar message;
+	int notAvailableSeatCount;
 	int flightFullMessageCount;
 	int assignedSeats;
-	int receivedClientId;
+	int receivedCustomerId;
 	int receivedSeat;
 	int i;
 } P0;
 #define Air0	(sizeof(P0) - Offsetof(P0, i) - 1*sizeof(int))
 
-typedef struct P5 { /* np_ */
+typedef struct P7 { /* np_ */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 7; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
-} P5;
-#define Air5	(sizeof(P5) - 3)
+} P7;
+#define Air7	(sizeof(P7) - 3)
 
 
 #ifndef NOCLAIM
  #ifndef NP
 	#undef VERI
-	#define VERI	6
+	#define VERI	8
  #endif
-	#define Pclaim	P6
+	#define Pclaim	P8
 
-typedef struct P6 {
+typedef struct P8 {
 	unsigned _pid : 8; /* always zero */
 	unsigned _t   : 4; /* active-claim type  */
 	unsigned _p   : 7; /* active-claim state */
-	unsigned _n   : 2; /* active-claim index */
+	unsigned _n   : 3; /* active-claim index */
 	uchar c_cur[NCLAIMS]; /* claim-states */
-} P6;
-	#define Air6	(0)
+} P8;
+	#define Air8	(0)
 
 #endif
 #if defined(BFS) && defined(REACH)
@@ -474,7 +510,7 @@ typedef struct State {
 	#endif
 #endif
 	uchar clientToCrs;
-	uchar crsToClient[4];
+	uchar crsToClient[5];
 	struct Seat seats[3];
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
@@ -500,20 +536,22 @@ typedef struct TRIX_v6 {
 #define FORWARD_MOVES	"pan.m"
 #define BACKWARD_MOVES	"pan.b"
 #define TRANSITIONS	"pan.t"
-#define _NP_	5
-#define _nstates5	3 /* np_ */
-#define _endstate5	2 /* np_ */
+#define _NP_	7
+#define _nstates7	3 /* np_ */
+#define _endstate7	2 /* np_ */
 
-#define _start5	0 /* np_ */
+#define _start7	0 /* np_ */
+#define _start6	3
+#define _start5	5
 #define _start4	5
-#define _start3	5
-#define _start2	1
+#define _start3	1
+#define _start2	7
 #define _start1	12
 #define _start0	9
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
-	#define ACCEPT_LAB	2 /* user-defined accept labels */
+	#define ACCEPT_LAB	3 /* user-defined accept labels */
 #endif
 #ifdef MEMCNT
 	#ifdef MEMLIM
@@ -542,7 +580,16 @@ typedef struct TRIX_v6 {
 	#define MEMLIM	(2048)	/* need a default, using 2 GB */
 #endif
 #define PROG_LAB	0 /* progress labels */
-#define NQS	5
+#define NQS	6
+typedef struct Q6 {
+	uchar Qlen;	/* q_size */
+	uchar _t;	/* q_type */
+	struct {
+		uchar fld0;
+		int fld1;
+		int fld2;
+	} contents[1];
+} Q6;
 typedef struct Q5 {
 	uchar Qlen;	/* q_size */
 	uchar _t;	/* q_type */
@@ -914,7 +961,7 @@ void qsend(int, int, int, int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	46
+#define NTRANS	59
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);
