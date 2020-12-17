@@ -17,7 +17,7 @@ ltl ifMoreClientsThanSeatsFlightFullCounterGreaterThanZero { [](N_CUSTOMERS > N_
 
 // NOT AVAILABLE SEAT RESPONSES EQUALS 3 FOR SEAT_0, 2 FOR SEAT_1, 1 FOR SEAT_2 MINUS 1 FULL FLIGHT MESSAGE
 // verifies that seats are blocked and remaining customers asking for a seat receive either a NOT_AVAILABLE_SEAT or a FLIGHT_FULL message
-ltl notAvailableCountEqualsToNthTriangleNumber { <>( NOT_AVAILABLE_MSGS_COUNTER == ((N_SEATS * (N_SEATS + 1) / 2) - 1) ) }
+ltl notAvailablePlusFlightFullEqualsNthTriangle { <>( (NOT_AVAILABLE_MSGS_COUNTER + FLIGHT_FULL_COUNTER) == ((N_SEATS * (N_SEATS + 1) / 2)) ) }
 ltl alwaysEventuallyCustomersBuyingProcessDone{ <> ( done[0] && done[1] &&  done[2] &&  done[3] ) }
 
 /*ltl alwaysLastClientMessageIsSuccesfulOrFlightFull { []<> }*/

@@ -20,10 +20,17 @@ accept_S4:
 	:: (! (((crs:flightFullMessageCount==(4-3))))) -> goto accept_S4
 	od;
 }
-never notAvailableCountEqualsToNthTriangleNumber {    /* !(<> ((crs:notAvailableSeatCount==(((3*(3+1))/2)-1)))) */
+never notAvailablePlusFlightFullEqualsNthTriangle {    /* !(<> (((crs:notAvailableSeatCount+crs:flightFullMessageCount)==((3*(3+1))/2)))) */
 accept_init:
 T0_init:
 	do
-	:: (! (((crs:notAvailableSeatCount==(((3*(3+1))/2)-1))))) -> goto T0_init
+	:: (! ((((crs:notAvailableSeatCount+crs:flightFullMessageCount)==((3*(3+1))/2))))) -> goto T0_init
+	od;
+}
+never alwaysEventuallyCustomersBuyingProcessDone {    /* !(<> ((((done[0]) && (done[1])) && (done[2])) && (done[3]))) */
+accept_init:
+T0_init:
+	do
+	:: (! (((((done[0]) && (done[1])) && (done[2])) && (done[3])))) -> goto T0_init
 	od;
 }
